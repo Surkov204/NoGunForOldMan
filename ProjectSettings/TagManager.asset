@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - New tag
+  - Enermy
+  - Armor
+  - Ground
+  - ArmorAk47
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Player
+  - ObjectImpact
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2418449413
+    locked: 0
+  - name: Player
+    uniqueID: 2269749097
+    locked: 0
+  - name: Ground
+    uniqueID: 3119289007
+    locked: 0
+  - name: Enermy
+    uniqueID: 2287445051
+    locked: 0
+  - name: Gun
+    uniqueID: 4155165887
+    locked: 0
