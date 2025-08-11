@@ -1,3 +1,4 @@
+using JS;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class health : MonoBehaviour
     public bool isPlayer;
 
 
-    private UiManager uiManager;
+   // private UiManager uiManager;
    
     private void Awake()
     {
@@ -59,7 +60,7 @@ public class health : MonoBehaviour
             if (isPlayer)
             {
                 Debug.Log("Game Over on");
-                FindObjectOfType<UiManager>().GameOver();
+                UiManager.Instance.ShowUI(UIName.GameOverScreen);
             }
             dead = true;
 

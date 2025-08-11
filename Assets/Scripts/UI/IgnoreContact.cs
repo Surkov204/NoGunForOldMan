@@ -16,7 +16,7 @@ public class IgnoreContact : MonoBehaviour
         {
             AudioManager.instance.PlaySound(soundDrop);
             boxCollider.isTrigger = false;
-            Debug.Log("Contact");
+ 
         }
     }
 }

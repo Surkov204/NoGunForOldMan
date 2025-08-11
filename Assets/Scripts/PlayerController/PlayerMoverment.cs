@@ -8,47 +8,54 @@ public class PlayerMoverment : MonoBehaviour
     [Header("Basic Movement Value")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
+    [SerializeField] private float extraJump;
+    private float movementvalue;
+    private float extraJumpCounter;
+    private bool CheckOnWall;
+
+    [Header("Layer Mark")]
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask groundDecay;
-    [SerializeField] private float extraJump;
+    [SerializeField] private LayerMask wallLayer;
+
+
     [Header("Dash Value")]
     [SerializeField] private float dashBoost;   
     [SerializeField] public float dashTime;
-    [SerializeField] public float coolDownBoosting;
-    
+    [SerializeField] public float coolDownBoosting; 
     private float _dashTime;
     public float _coolDownBoosting { get; private set; }
     private bool isDashing = false;
+
+    /// Body player ///
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
-    private float movementvalue;
-    private float extraJumpCounter;
-    private float x = 0f;
-    private bool checkRigth;
+  
+    
     private void Awake()
     {
         //VARIABLE
 
-        checkRigth = true;
+        CheckOnWall = false;
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         _coolDownBoosting = coolDownBoosting;
+
     }
 
 
     private void Update()
-    {        
-        // get movement Value //
-        movementvalue = Input.GetAxis("Horizontal");
-        // move x and y axis //
-        body.velocity = new Vector2(movementvalue * speed, body.velocity.y);
+    {
 
-        
+        if (!isOnWall() || CheckOnWall == false)
+        {
+            MoveForward();
+            CheckOnWall = true;
+    
+        }
+    
         // Flip //
-        if (movementvalue > 0.01f)
-            transform.localScale = new Vector3(1f,1f,1f);
-        else if (movementvalue < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+        
 
         // jumping  //
         if (Input.GetKeyDown(KeyCode.Space))
@@ -57,9 +64,9 @@ public class PlayerMoverment : MonoBehaviour
      
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
+        if (Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
         {
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
         }
         if (isGrounded() || isGroundDecay())
         {
@@ -95,18 +102,21 @@ public class PlayerMoverment : MonoBehaviour
         }
      
     }
-
+    private void MoveForward() {
+        movementvalue = Input.GetAxis("Horizontal");
+        body.linearVelocity = new Vector2(movementvalue * speed, body.linearVelocity.y);
+    }
     private void jump()
     {
         if (isGrounded() || isGroundDecay())
         {
-            body.velocity = new Vector2(body.velocity.x, jumpPower);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
         }
         else
         {
             if (extraJumpCounter > 0)
             {   
-                body.velocity = new Vector2(body.velocity.x, jumpPower);
+                body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
         
                 extraJumpCounter--;
             }
@@ -123,6 +133,10 @@ public class PlayerMoverment : MonoBehaviour
     private bool isGroundDecay()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundDecay);
+        return raycastHit.collider != null;
+    }
+    private bool isOnWall() {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
     public bool canAttack()

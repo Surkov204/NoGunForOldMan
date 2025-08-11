@@ -52,13 +52,13 @@ public class ProjectTile : MonoBehaviour
 
         if (collision.tag == "Ground")
         {
-            Deactivate(); // Vô hiệu hóa viên đạn
+            Deactivate();
             Debug.Log("on wall");
         }
 
         if (collision.tag == "Player")
         {
-            collision.GetComponent <health>().TakeDamage(damaged); ;
+            collision.GetComponent <health>().TakeDamage(damaged); 
             Deactivate();
         }
     }

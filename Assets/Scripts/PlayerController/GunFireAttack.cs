@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class PlayerAttack : MonoBehaviour
+public class GunFireAttack : MonoBehaviour
 {
     [SerializeField] private float attackCoolDown;
     [SerializeField] private Transform firepoint;
@@ -22,11 +22,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject ReloadText;
     [SerializeField] private GameObject ReloadingText;
     [SerializeField] private float BulletHaving;
-    [SerializeField] private DataWeapon[] weapons;
+ //   [SerializeField] private DataWeapon[] weapons;
     [SerializeField] private float reloadTime = 1;
     [SerializeField] public float maxBullet = 12f;
     [SerializeField] private AudioClip GunSoundEffect;
     [SerializeField] private AudioClip ReloadSound;
+    [SerializeField] private string fireState;
+    [SerializeField] private DataWeapon currentWeapon;
 
     private float _BulletHaving;
     private float BulletCounting = 0;
@@ -34,8 +36,8 @@ public class PlayerAttack : MonoBehaviour
     public float currentBullet { get; private set; }
     private int currentWeaponIndex = 0;
     private int weaponSelect = 0;
-    private DataWeapon currentWeapon;
 
+    public bool IsReloading => isReloading;
 
     private PlayerMoverment playerMoverment;
     private float coolDownTimer = Mathf.Infinity;
@@ -44,35 +46,67 @@ public class PlayerAttack : MonoBehaviour
     {
         playerMoverment = GetComponent<PlayerMoverment>();
     }
+
     private void Start()
     {
         currentBullet = maxBullet;
-        SwitchWeapon(weaponSelect);
         _BulletHaving = currentWeapon.HavingAmmo;
-
     }
+
+    private void OnEnable()
+    {
+        if (currentWeapon != null)
+        {
+            UpdateBulletTextUI();
+
+            if (currentWeapon.imageWeaponGameObject != null)
+                currentWeapon.imageWeaponGameObject.SetActive(true);
+
+            if (currentWeapon.bulletBarWeapon != null)
+                currentWeapon.bulletBarWeapon.SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (currentWeapon != null)
+        {
+            if (currentWeapon.imageWeaponGameObject != null)
+                currentWeapon.imageWeaponGameObject.SetActive(false);
+
+            if (currentWeapon.bulletBarWeapon != null)
+                currentWeapon.bulletBarWeapon.SetActive(false);
+        }
+    }
+
     private void Update()
     {
+        //if (Input.GetKey(KeyCode.Alpha1))
+        //{
+        //    weaponSelect = 0;
+        //    SwitchWeapon(weaponSelect);
+        //    _BulletHaving = currentWeapon.HavingAmmo;
+        //}
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            weaponSelect = 0;
-            SwitchWeapon(weaponSelect);
-            _BulletHaving = currentWeapon.HavingAmmo;
-        }
-        if (Input.GetKey(KeyCode.Alpha2) && weapons.Length > 1)
-        {
-            weaponSelect = 1;
-            SwitchWeapon(weaponSelect);
-            _BulletHaving = currentWeapon.HavingAmmo;
-        }
+        //if (Input.GetKey(KeyCode.Alpha2) && weapons.Length > 1)
+        //{
+        //    weaponSelect = 1;
+        //    SwitchWeapon(weaponSelect);
+        //    _BulletHaving = currentWeapon.HavingAmmo;
+        //}
 
-      //  UpdateUI();
+        //if (Input.GetKey(KeyCode.Alpha3) && weapons.Length > 1)
+        //{
+        //    weaponSelect = 2;
+        //    SwitchWeapon(weaponSelect);
+        //    _BulletHaving = currentWeapon.HavingAmmo;
+        //}
+
         if (currentWeapon.HavingAmmo != 0 || currentWeapon.currentAmmor != 0)
         {
             if (Input.GetKeyDown(KeyCode.R) && currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && !isReloading && currentWeapon.HavingAmmo!= 0)
             {
-                UpdateUI();
+                UpdateBulletTextUI();
                 StartCoroutine(Reload());
             }
 
@@ -80,11 +114,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (currentWeapon.currentAmmor > 0)
                 {
-                    
+                    Debug.Log("shooting");
                     attack();
+                    
                     currentWeapon.currentAmmor--;
                     currentBullet = currentWeapon.currentAmmor;              
-                    UpdateUI();
+                    UpdateBulletTextUI();
                     coolDownTimer = 0;
                 }
                 else
@@ -96,14 +131,12 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-           
-        }
-      
+        }  
     }
+
     IEnumerator Reload()
     {
         isReloading = true;
-        // waiting for reloading //
         ReloadingText.SetActive(true);
         Debug.Log(currentWeapon.weaponName);
 
@@ -130,83 +163,81 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
-
-
-        UpdateUI();
+        UpdateBulletTextUI();
         ReloadText.SetActive(false);
-        //  reload successufull // 
    
         ReloadingText.SetActive(false);
         isReloading = false;
     
     }
 
-    private void SwitchWeapon(int weaponIndex)
-    {
-      //  UpdateUI();
+    //private void SwitchWeapon(int weaponIndex)
+    //{
+    //    if (currentWeapon != null && currentWeapon.weaponGameObject.activeSelf)
+    //    {
+    //        currentWeapon.weaponGameObject.SetActive(false);
+    //        currentWeapon.imageWeaponGameObject.SetActive(false);
+    //        currentWeapon.bulletBarWeapon.SetActive(false);
+    //    } 
+    //    currentWeaponIndex = weaponIndex;
+    //    currentWeapon = weapons[currentWeaponIndex];
+    //    currentWeapon.weaponGameObject.SetActive(true);
+    //    currentWeapon.imageWeaponGameObject.SetActive(true);
+    //    currentWeapon.bulletBarWeapon.SetActive(true);
+    //    UpdateUI();
+    //}
 
-        if (currentWeapon != null && currentWeapon.weaponGameObject.activeSelf)
-        {
-           
-            currentWeapon.weaponGameObject.SetActive(false);
-            currentWeapon.imageWeaponGameObject.SetActive(false);
-            currentWeapon.bulletBarWeapon.SetActive(false);
-            if (!currentWeapon.weaponGameObject.activeInHierarchy)
-            {
-           
-            }
-
-        } 
-        
-        // Gán vũ khí mới
-        currentWeaponIndex = weaponIndex;
-        currentWeapon = weapons[currentWeaponIndex];
-        currentWeapon.weaponGameObject.SetActive(true);
-        currentWeapon.imageWeaponGameObject.SetActive(true);
-        currentWeapon.bulletBarWeapon.SetActive(true);
-        UpdateUI();
-    }
-    private void UpdateUI()
+    private void UpdateBulletTextUI()
     {
         currentBulletText.text = currentWeapon.currentAmmor.ToString();
         currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Armor")
+        if (collision.tag == "ArmorRevolver")
         {
-     
-            currentWeapon = weapons[0];
-            currentWeapon.HavingAmmo += 12;
-   
             if (currentWeapon != null && currentWeapon.weaponName == "Revolver" && currentWeapon.weaponGameObject.activeInHierarchy)
             {
                 Debug.Log(currentWeapon.weaponName);
+                collision.gameObject.SetActive(false);
+                currentWeapon.HavingAmmo += 12;
                 currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
             }
             else
             {
                 Debug.Log("Object null");
             }
-            collision.gameObject.SetActive(false);
         }
 
         if (collision.tag == "ArmorAk47")
         {
-
-            currentWeapon = weapons[1];
-            currentWeapon.HavingAmmo += 42;
-
             if (currentWeapon != null && currentWeapon.weaponName == "ak47" && currentWeapon.weaponGameObject.activeInHierarchy)
             {
                 Debug.Log(currentWeapon.weaponName);
+                collision.gameObject.SetActive(false); 
+                currentWeapon.HavingAmmo += 42;
                 currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
             }
             else
             {
                 Debug.Log("Object null");
             }
-            collision.gameObject.SetActive(false);
+        }
+
+        if (collision.tag == "ArmorShotGun")
+        {
+            if (currentWeapon != null && currentWeapon.weaponName == "ShotGun" && currentWeapon.weaponGameObject.activeInHierarchy)
+            {
+                Debug.Log(currentWeapon.weaponName);
+                collision.gameObject.SetActive(false);
+                currentWeapon.HavingAmmo += 6;
+                currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
+            }
+            else
+            {
+                Debug.Log("Object null");
+            }
         }
     }
 
@@ -214,12 +245,10 @@ public class PlayerAttack : MonoBehaviour
     {
         AudioManager.instance.PlaySound(GunSoundEffect);
         GameObject shell = Instantiate(shellPrefab, shellEjectPoint.position, shellEjectPoint.rotation);
-
         Rigidbody2D shellRb = shell.GetComponent<Rigidbody2D>();
         
         if (shellRb != null)
         {
-          
             Vector3 forceDirection = shellEjectPoint.TransformDirection(ejectDirection.normalized);
             shellRb.AddForce(forceDirection * ejectForce, ForceMode2D.Impulse);
 

@@ -1,62 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSelectWeapon : MonoBehaviour
 {
-    public GameObject[] weapons;
-    public GameObject[] imageWeapon;
-    private int selectedWeapon = 0; 
-
-    void Start()
-    {
-        SelectCurrentWeapon();
-    }
+    [SerializeField] private PlayerGunInventory inv;
 
     void Update()
     {
-     
-        int previousWeapon = selectedWeapon;
+        var cur = inv.CurrentGO();
+        var gfa = cur ? cur.GetComponent<GunFireAttack>() : null;
+        if (gfa && gfa.IsReloading) return;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            selectedWeapon = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && weapons.Length >= 2)
-        {
-            selectedWeapon = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && weapons.Length >= 3)
-        {
-            selectedWeapon = 2;
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) inv.SelectGun(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) inv.SelectGun(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) inv.SelectGun(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) inv.SelectGun(3);
 
-        // Chuyển đổi vũ khí bằng con lăn chuột
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll > 0f)
-        {
-            selectedWeapon = (selectedWeapon + 1) % weapons.Length;
-        }
-        else if (scroll < 0f)
-        {
-            selectedWeapon = (selectedWeapon - 1 + weapons.Length) % weapons.Length;
-        }
-
-        
-        if (previousWeapon != selectedWeapon)
-        {
-            SelectCurrentWeapon();
-        }
-    }
-
-    void SelectCurrentWeapon()
-    {
-
-        for (int i = 0; i < weapons.Length; i++)
-        {
-            weapons[i].SetActive(i == selectedWeapon);
-            imageWeapon[i].SetActive(i == selectedWeapon);
-        }
-        Debug.Log("Selected Weapon: " + (selectedWeapon + 1));
+        float s = Input.GetAxis("Mouse ScrollWheel");
+        if (s > 0f) inv.SelectNext(+1);
+        else if (s < 0f) inv.SelectNext(-1);
     }
 }
