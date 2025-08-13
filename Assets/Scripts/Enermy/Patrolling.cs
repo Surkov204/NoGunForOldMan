@@ -23,6 +23,7 @@ public class Patrolling : MonoBehaviour
 
     private float idleTime;
     private bool movingleft;
+
     private void Awake()
     {
         initscale = enemy.localScale;
@@ -31,7 +32,6 @@ public class Patrolling : MonoBehaviour
     {
        // anim.SetBool("moving", false);
     }
-
 
     private void Update()
     {

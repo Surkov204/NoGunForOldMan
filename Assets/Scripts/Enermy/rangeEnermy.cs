@@ -1,5 +1,7 @@
-
+﻿
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class rangedEnemy : MonoBehaviour
 {
@@ -10,40 +12,90 @@ public class rangedEnemy : MonoBehaviour
 
     [Header("Ranged Attack")]
     [SerializeField] private Transform firepoint;
-    [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private GameObject[] bullets;
 
-    [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
-    [SerializeField] private BoxCollider2D boxCollider;
-
-    [Header("Player Layer")]
+    [Header("Detection (Circle)")]
+    [SerializeField] private Vector2 offset = new Vector2(1.5f, 0f); 
     [SerializeField] private LayerMask playerLayer;
 
+
     [Header("SoundManager")]
-    [SerializeField] private AudioClip FireBallSound;
+    [SerializeField] private AudioClip FireBulletSound;
+
+    [Header("Gun")]
+    [SerializeField] private Transform enemyGun;
 
     private float coolDownTimer = Mathf.Infinity;
     private int i;
  
     private Patrolling enemyPatrolling;
+    private bool isChasing = false;
+    [SerializeField] private Transform detectedPlayer;
+    [SerializeField] private Transform enemyBody;
+    [SerializeField] private float gunForwardOffset = 0f;
+    [SerializeField] private float speedChasing = 0f;
+    [SerializeField] private float desiredXDistance = 3f;   
+    [SerializeField] private float distanceTolerance = 0.3f;
+
+    [Header("Line of Sight")]
+    [SerializeField] private LayerMask obstacleLayers;  
+
+
     private void Awake()
     {
         enemyPatrolling = GetComponentInParent<Patrolling>();
     }
+
     private void Update()
     {
         coolDownTimer += Time.deltaTime;
 
-        if (PlayerInside())
+        bool canSee = PlayerInside(); 
+        if (canSee) isChasing = true;
+
+        if (canSee)
         {
+            Debug.Log("player in sight");
+
+            enemyPatrolling.enabled = false;
+            Vector2 dir = detectedPlayer.position - enemyGun.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + gunForwardOffset;
+
+            enemyGun.rotation = Quaternion.Euler(0f, 0f, angle);
+            bool targetOnRight = detectedPlayer.position.x >= transform.position.x;
+
+            float dx = detectedPlayer.position.x - transform.position.x;
+            float adx = Mathf.Abs(dx);
+
+            if (adx > desiredXDistance + distanceTolerance)
+            {
+                transform.Translate(Mathf.Sign(dx) * speedChasing * Time.deltaTime, 0f, 0f);
+            }
+            else if (adx < desiredXDistance - distanceTolerance)
+            {
+                transform.Translate(-Mathf.Sign(dx) * speedChasing * Time.deltaTime, 0f, 0f);
+            }
+
+            if (enemyBody)
+                enemyBody.localScale = new Vector3(targetOnRight ? 1f : -1f, 1f, 1f);
+
+
+            float z = (targetOnRight ? angle : angle + 180f) + gunForwardOffset;
+            enemyGun.rotation = Quaternion.Euler(0f, 0f, z);
+
             if (coolDownTimer >= attackCoolDown)
             {
                 coolDownTimer = 0;
+                AudioManager.instance.PlaySound(FireBulletSound);
                 rangedAttack();
                 i++;
-            
             }
         }
+        else
+        {
+            enemyGun.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
         if (enemyPatrolling != null)
             enemyPatrolling.enabled = !PlayerInside();
 
@@ -52,32 +104,70 @@ public class rangedEnemy : MonoBehaviour
     {
         coolDownTimer = 0;
 
-        fireballs[FindFireball()].transform.position = firepoint.position;
-        fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile(Mathf.Sign(transform.localScale.x));
+        bullets[FindFireball()].transform.position = firepoint.position;
+        bullets[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile(Mathf.Sign(transform.localScale.x),enemyGun);
 
     }
     private int FindFireball()
     {
-        for (int i = 0; i < fireballs.Length; i++)
+        for (int i = 0; i < bullets.Length; i++)
         {
-            if (!fireballs[i].activeInHierarchy)
+            if (!bullets[i].activeInHierarchy)
                 return i;
         }
         return 0;
     }
-
+    private Vector2 GetDetectionCenter()
+    {
+        float face = Mathf.Sign(transform.localScale.x);
+        Vector2 worldOffset = new Vector2(offset.x * face, offset.y);
+        return (Vector2)transform.position + worldOffset;
+    }
     private bool PlayerInside()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, playerLayer);
+        Vector2 center = GetDetectionCenter();
+        Collider2D hit = Physics2D.OverlapCircle(center, range, playerLayer);
+        if (hit != null) {
+            if (HasLineOfSight(hit.transform))
+            {
+                detectedPlayer = hit.transform;
+                return true;
+            }
+        }
+        detectedPlayer = null;
+        return false;
+    }
 
-        return hit.collider != null;
+    private bool HasLineOfSight(Transform target)
+    {
+        if (!target) return false;
+
+        Vector2 origin = enemyGun ? (Vector2)enemyGun.position : (Vector2)transform.position;
+
+        Vector2 dest = target.TryGetComponent<Collider2D>(out var col)
+                       ? (Vector2)col.bounds.center
+                       : (Vector2)target.position;
+
+        int mask = playerLayer | obstacleLayers;
+
+        RaycastHit2D hit = Physics2D.Linecast(origin, dest, mask);
+
+        if (hit.collider == null) return false;
+        bool firstHitIsPlayer = (playerLayer.value & (1 << hit.collider.gameObject.layer)) != 0;
+        return firstHitIsPlayer;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance, new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
+        Vector2 center = Application.isPlaying ? GetDetectionCenter()
+                                               : (Vector2)transform.position + new Vector2(offset.x * Mathf.Sign(transform.localScale.x), offset.y);
+        Gizmos.DrawWireSphere(center, range);
+
+        if (Application.isPlaying && detectedPlayer) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(firepoint.position, detectedPlayer.position);
+        }
     }
 
 

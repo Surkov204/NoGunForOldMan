@@ -2,13 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - New tag
   - Enermy
   - Armor
   - Ground
   - ArmorAk47
+  - ArmorRevolver
+  - ArmorShotGun
   layers:
   - Default
   - TransparentFX
@@ -18,12 +20,12 @@ TagManager:
   - UI
   - Player
   - ObjectImpact
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Enemy
+  - Ak47_GunEnemy
+  - revolver_GunEnemy
+  - shotGun_GunEnemy
+  - Indicator
   - 
   - 
   - 
@@ -61,3 +63,8 @@ TagManager:
   - name: Gun
     uniqueID: 4155165887
     locked: 0
+  - name: Grenade
+    uniqueID: 1695753077
+    locked: 0
+  m_RenderingLayers:
+  - Default

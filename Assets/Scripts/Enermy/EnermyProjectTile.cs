@@ -15,7 +15,7 @@ public class EnemyProjectile : Damaged
      
         coll = GetComponent<BoxCollider2D>();
     }
-    public void ActivateProjectile(float _direction)
+    public void ActivateProjectile(float _direction, Transform gunScaletransform)
     {
         hit = false;
         lifetime = 0;
@@ -28,11 +28,11 @@ public class EnemyProjectile : Damaged
             localScaleX = -localScaleX;
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+        transform.rotation = gunScaletransform.rotation;
     }
 
     private void Update()
     {
-        if (hit) return;
         float movementSpeed = speed * Time.deltaTime* direction;
         transform.Translate(movementSpeed, 0, 0);
 
@@ -47,12 +47,5 @@ public class EnemyProjectile : Damaged
 
         base.OnTriggerEnter2D(collision);
 
-        coll.enabled = false;
-
-        gameObject.SetActive(false);
-    }
-    public void Deactivate()
-    {
-        gameObject.SetActive(false);
     }
 }

@@ -41,7 +41,6 @@ public class ProjectTile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hit = true;
-        boxCollider.enabled = false;
         Deactivate();
 
         if (collision.tag == "Enermy")
@@ -52,13 +51,13 @@ public class ProjectTile : MonoBehaviour
 
         if (collision.tag == "Ground")
         {
-            Deactivate(); // Vô hiệu hóa viên đạn
+            Deactivate();
             Debug.Log("on wall");
         }
 
         if (collision.tag == "Player")
         {
-            collision.GetComponent <health>().TakeDamage(damaged); ;
+            collision.GetComponent <health>().TakeDamage(damaged); 
             Deactivate();
         }
     }

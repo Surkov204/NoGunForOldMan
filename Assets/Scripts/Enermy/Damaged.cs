@@ -11,6 +11,7 @@ public class Damaged : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<health>().TakeDamage(damage);
+            gameObject.SetActive(false);
         }
     }
 }
