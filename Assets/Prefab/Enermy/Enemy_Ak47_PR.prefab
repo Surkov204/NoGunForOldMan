@@ -4714,6 +4714,9 @@ MonoBehaviour:
   speedChasing: 5
   desiredXDistance: 3
   distanceTolerance: 0.3
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 264
 --- !u!61 &8931328147634182432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4810,6 +4813,8 @@ MonoBehaviour:
   SoundHurt: {fileID: 0}
   SoundDie: {fileID: 0}
   DecayObject: {fileID: 1966403520609444713}
+  screenDamage: {fileID: 0}
+  shakingCamera: {fileID: 0}
   isPlayer: 0
 --- !u!1 &8063533090303124464
 GameObject:

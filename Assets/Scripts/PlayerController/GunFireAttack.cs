@@ -29,7 +29,7 @@ public class GunFireAttack : MonoBehaviour
     [SerializeField] private AudioClip ReloadSound;
     [SerializeField] private string fireState;
     [SerializeField] private DataWeapon currentWeapon;
-
+    [SerializeField] private Animator gunEffect;
     private float _BulletHaving;
     private float BulletCounting = 0;
     private bool isReloading = false;

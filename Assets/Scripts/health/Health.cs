@@ -24,18 +24,18 @@ public class health : MonoBehaviour
     [SerializeField] private AudioClip SoundDie;
     [Header("Decay")]
     [SerializeField] private GameObject DecayObject;
+    [Header("ScreenDamaged")]
+    [SerializeField] private Animator screenDamage;
+    [SerializeField] private Animator shakingCamera;
+    private static readonly int Hit = Animator.StringToHash("damageScreen");
+    private static readonly int Shaking = Animator.StringToHash("Saking");
     public bool isPlayer;
-
-
-   // private UiManager uiManager;
-   
+    
     private void Awake()
     {
         currentHealth = startingHealth;
-        anim = GetComponent<Animator>();
-        
         spriteRender = GetComponent<SpriteRenderer>();
- 
+
     }
 
     public void TakeDamage(float _damage)
@@ -44,6 +44,15 @@ public class health : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            if (isPlayer) {
+                if (screenDamage != null && shakingCamera != null) {
+                    screenDamage.ResetTrigger(Hit);
+                    screenDamage.SetTrigger(Hit);
+
+                    shakingCamera.ResetTrigger(Shaking);
+                    shakingCamera.SetTrigger(Shaking);
+                }
+            }
             StartCoroutine(Invunerability());
         }
         else
@@ -53,17 +62,16 @@ public class health : MonoBehaviour
             {
                 component.enabled = false;
                 Deactivate();
-            }
-                  
+            }      
                 DecayObject.transform.SetParent(null);
                 DecayObject.SetActive(true);
+
             if (isPlayer)
             {
                 Debug.Log("Game Over on");
                 UiManager.Instance.ShowUI(UIName.GameOverScreen);
             }
             dead = true;
-
         }
 
     }

@@ -485,8 +485,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 2863554388306145938}
+        m_TargetAssemblyTypeName: UiGameOverScreen, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:

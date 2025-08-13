@@ -23,9 +23,9 @@ TagManager:
   - Wall
   - Enemy
   - Ak47_GunEnemy
-  - 
-  - 
-  - 
+  - revolver_GunEnemy
+  - shotGun_GunEnemy
+  - Indicator
   - 
   - 
   - 
@@ -62,6 +62,9 @@ TagManager:
     locked: 0
   - name: Gun
     uniqueID: 4155165887
+    locked: 0
+  - name: Grenade
+    uniqueID: 1695753077
     locked: 0
   m_RenderingLayers:
   - Default

@@ -41,7 +41,6 @@ public class ProjectTile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hit = true;
-        boxCollider.enabled = false;
         Deactivate();
 
         if (collision.tag == "Enermy")

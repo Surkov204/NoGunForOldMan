@@ -170,13 +170,12 @@ MonoBehaviour:
   ReloadText: {fileID: 0}
   ReloadingText: {fileID: 0}
   BulletHaving: 12
-  weapons:
-  - {fileID: 308864679278469121}
   reloadTime: 1
   maxBullet: 12
   GunSoundEffect: {fileID: 8300000, guid: cebedea967d2c8b44a40d62b6d69456b, type: 3}
   ReloadSound: {fileID: 8300000, guid: 8161641d69066a74ba792ec001fa272f, type: 3}
   fireState: 
+  currentWeapon: {fileID: 0}
 --- !u!61 &5541115337940741535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,7 +206,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

@@ -36,6 +36,11 @@ public class rangedEnemy : MonoBehaviour
     [SerializeField] private float speedChasing = 0f;
     [SerializeField] private float desiredXDistance = 3f;   
     [SerializeField] private float distanceTolerance = 0.3f;
+
+    [Header("Line of Sight")]
+    [SerializeField] private LayerMask obstacleLayers;  
+
+
     private void Awake()
     {
         enemyPatrolling = GetComponentInParent<Patrolling>();
@@ -45,19 +50,16 @@ public class rangedEnemy : MonoBehaviour
     {
         coolDownTimer += Time.deltaTime;
 
-        if (PlayerInside())
-            isChasing = true;
+        bool canSee = PlayerInside(); 
+        if (canSee) isChasing = true;
 
-        if (PlayerInside())
+        if (canSee)
         {
             Debug.Log("player in sight");
-
 
             enemyPatrolling.enabled = false;
             Vector2 dir = detectedPlayer.position - enemyGun.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + gunForwardOffset;
-
-          
 
             enemyGun.rotation = Quaternion.Euler(0f, 0f, angle);
             bool targetOnRight = detectedPlayer.position.x >= transform.position.x;
@@ -126,13 +128,33 @@ public class rangedEnemy : MonoBehaviour
         Vector2 center = GetDetectionCenter();
         Collider2D hit = Physics2D.OverlapCircle(center, range, playerLayer);
         if (hit != null) {
-            detectedPlayer = hit.transform;
-            return true;
+            if (HasLineOfSight(hit.transform))
+            {
+                detectedPlayer = hit.transform;
+                return true;
+            }
         }
         detectedPlayer = null;
-
         return false;
+    }
 
+    private bool HasLineOfSight(Transform target)
+    {
+        if (!target) return false;
+
+        Vector2 origin = enemyGun ? (Vector2)enemyGun.position : (Vector2)transform.position;
+
+        Vector2 dest = target.TryGetComponent<Collider2D>(out var col)
+                       ? (Vector2)col.bounds.center
+                       : (Vector2)target.position;
+
+        int mask = playerLayer | obstacleLayers;
+
+        RaycastHit2D hit = Physics2D.Linecast(origin, dest, mask);
+
+        if (hit.collider == null) return false;
+        bool firstHitIsPlayer = (playerLayer.value & (1 << hit.collider.gameObject.layer)) != 0;
+        return firstHitIsPlayer;
     }
 
     private void OnDrawGizmos()
