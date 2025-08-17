@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private AudioClip DeathSound_1;
-    [SerializeField] private AudioClip DeathSound_2;
-    [SerializeField] private AudioClip DeathSound_3;
-    public float fieldOfImpact;
-    
-    public float force;
 
+    [SerializeField] private AudioClip DeathSound;
+    [SerializeField] private float fieldOfImpact;
+    [SerializeField] private float force;
+    private bool hasExploded = false;
     public LayerMask layerMask;
 
     private void Start()
     {
-        AudioManager.instance.PlaySound(DeathSound_2);
+        AudioManager.instance.PlaySound(DeathSound);
+       
     }
-
     private void Update()
     {
-
+        if (!hasExploded)
+        {
+            CameraManager.Instance.GrenadeCamera();
+            StartCoroutine(ResetCameraShake(0.5f));
+            hasExploded = true;
+        }
         Explode();
     }
 
-
-    private void Explode()
+    public void Explode()
     {
-       Collider2D[] Objects = Physics2D.OverlapCircleAll(transform.position, fieldOfImpact, layerMask);
+        Collider2D[] Objects = Physics2D.OverlapCircleAll(transform.position, fieldOfImpact, layerMask);
         foreach (Collider2D obj in Objects)
         {
             Vector2 direction = obj.transform.position - transform.position;
 
             obj.GetComponent<Rigidbody2D>().AddForce(direction * force);
         }
+       
+    }
+    private IEnumerator ResetCameraShake(float timeToReset) {
+        yield return new WaitForSeconds(timeToReset);
+        CameraManager.Instance.ResetGrenadeCamera();
     }
 
     private void OnDrawGizmosSelected()

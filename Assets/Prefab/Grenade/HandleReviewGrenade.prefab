@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &727457714481625368
 Transform:
   m_ObjectHideFlags: 0
@@ -999,10 +999,11 @@ MonoBehaviour:
   grenadePrefab: {fileID: 0}
   grenadePreview: {fileID: 3938859776830202990}
   dotPrefab: {fileID: 1005169306876393795, guid: f124cc1b6c3df2442a2e410dacc01a0d, type: 3}
+  explosionPrefab: {fileID: 1547579140062478752, guid: b3a7c2262f55abb4a92b556e5f570965, type: 3}
   dotCount: 20
   stepTime: 0.1
   throwForce: 12
-  fuseSeconds: 2.5
+  fuseSeconds: 5
 --- !u!1 &4017036871707338485
 GameObject:
   m_ObjectHideFlags: 0

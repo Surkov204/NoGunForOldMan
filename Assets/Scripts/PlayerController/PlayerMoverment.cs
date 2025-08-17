@@ -31,7 +31,6 @@ public class PlayerMoverment : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
   
-    
     private void Awake()
     {
         //VARIABLE
@@ -42,7 +41,6 @@ public class PlayerMoverment : MonoBehaviour
         _coolDownBoosting = coolDownBoosting;
 
     }
-
 
     private void Update()
     {
@@ -58,13 +56,13 @@ public class PlayerMoverment : MonoBehaviour
         
 
         // jumping  //
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             jump();
      
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
         }
@@ -102,10 +100,12 @@ public class PlayerMoverment : MonoBehaviour
         }
      
     }
+
     private void MoveForward() {
         movementvalue = Input.GetAxis("Horizontal");
         body.linearVelocity = new Vector2(movementvalue * speed, body.linearVelocity.y);
     }
+
     private void jump()
     {
         if (isGrounded() || isGroundDecay())
@@ -121,7 +121,6 @@ public class PlayerMoverment : MonoBehaviour
                 extraJumpCounter--;
             }
 
-
         }
     }
 
@@ -130,15 +129,18 @@ public class PlayerMoverment : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundlayer);
         return raycastHit.collider != null;
     }
+
     private bool isGroundDecay()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundDecay);
         return raycastHit.collider != null;
     }
+
     private bool isOnWall() {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
+
     public bool canAttack()
     {
         return movementvalue == 0 && isGrounded();

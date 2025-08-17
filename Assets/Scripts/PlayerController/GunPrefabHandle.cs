@@ -27,5 +27,10 @@ public class GunPrefabHandle : MonoBehaviour
         if (!prefab || !inventory) return false;
         return inventory.AddGunPrefab(prefab);
     }
+    public bool TransferGrenadeToInventory(GameObject grenadePrefab, PlayerGunInventory inventory, int amount = 1)
+    {
+        if (!grenadePrefab || !inventory) return false;
+        return inventory.AddGrenade(grenadePrefab, amount);
+    }
 
 }
