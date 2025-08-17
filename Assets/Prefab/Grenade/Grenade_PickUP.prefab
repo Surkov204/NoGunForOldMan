@@ -628,15 +628,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24e46cd25730594a87962f9a09b0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponId: Grenade
+  weaponId: HandleReviewGrenade
   handle: {fileID: 0}
   pickKey: 101
-  enterRadius: 1.6
-  exitRadius: 1.9
+  isGrenadePickup: 1
+  grenadeAmount: 1
+  grenadePrefab: {fileID: 0}
+  enterRadius: 0.75
+  exitRadius: 0.3
   rangeCenter: {fileID: 0}
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   pressEHint: {fileID: 0}
 --- !u!1 &1697210282105731691
 GameObject:

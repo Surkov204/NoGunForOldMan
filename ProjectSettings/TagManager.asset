@@ -11,6 +11,8 @@ TagManager:
   - ArmorAk47
   - ArmorRevolver
   - ArmorShotGun
+  - Surface
+  - Wall
   layers:
   - Default
   - TransparentFX

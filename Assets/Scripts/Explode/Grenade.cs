@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System;
 public class Grenade : MonoBehaviour
 {
-    public float fuseSeconds = 2.5f;
-    public GameObject explosionPrefab;
+    [SerializeField] private float fuseSeconds = 2.5f;
+    [SerializeField] private GameObject explosionPrefab;
 
     void Start()
     {

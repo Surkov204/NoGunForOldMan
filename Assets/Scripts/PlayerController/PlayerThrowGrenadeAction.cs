@@ -8,10 +8,12 @@ public class PlayerThrowGrenadeAction : MonoBehaviour
     [SerializeField] private GameObject grenadePreview;       
     [SerializeField] private GameObject dotPrefab;
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private PlayerGunInventory PlayerGunInventory;
     [SerializeField] private int dotCount = 20;
     [SerializeField] private float stepTime = 0.1f;
     [SerializeField] private float throwForce = 12f;
     [SerializeField] private float fuseSeconds = 2.5f;
+ 
 
     private Camera cam;
     private GameObject[] dots;
@@ -72,17 +74,28 @@ public class PlayerThrowGrenadeAction : MonoBehaviour
 
     void Throw()
     {
-        var rb = Instantiate(grenadePrefab, throwPoint.position, Quaternion.identity);
-        rb.linearVelocity = AimDir().normalized * throwForce;
+        if (PlayerGunInventory.UseGrenade())
+        {
+            var rb = Instantiate(grenadePrefab, throwPoint.position, Quaternion.identity);
+            rb.linearVelocity = AimDir().normalized * throwForce;
+            Debug.Log("boom begin");
 
-        Debug.Log("boom begin");
-        if (grenadePreview)
-            Destroy(grenadePreview);
+            float randomSpin = Random.Range(-200f, 200f);
+            rb.angularVelocity = randomSpin;    
 
-        Destroy(gameObject); 
+            if (PlayerGunInventory.GrenadeCount <= 0)
+            {
+                if (grenadePreview)
+                    grenadePreview.SetActive(false);
+                PlayerGunInventory.RemoveCurrentGun();
+                PlayerGunInventory.SwitchToEmptyHand(); 
+            }
+        }
+        else
+        {
+            Debug.Log("No grenades left!");
+        }
     }
-
-
 
     Vector2 AimDir()
     {

@@ -6,6 +6,9 @@ public class PlayerPickGunAction : MonoBehaviour
     [SerializeField] string weaponId;
     [SerializeField] GunPrefabHandle handle;
     [SerializeField] KeyCode pickKey = KeyCode.E;
+    [SerializeField] private bool isGrenadePickup = false;
+    [SerializeField] private int grenadeAmount = 1;
+    [SerializeField] private GameObject grenadePrefab;
 
     [Header("Range")]
     [SerializeField] float enterRadius = 1.6f;
@@ -75,10 +78,17 @@ public class PlayerPickGunAction : MonoBehaviour
 
         if (s_Focus == this && Input.GetKeyDown(pickKey))
         {
-            bool ok = handle.TransferToInventory(weaponId, s_Inv);
+            bool ok;
+            if (isGrenadePickup)
+            {
+                ok = handle.TransferGrenadeToInventory(grenadePrefab, s_Inv, 1);
+            }
+            else
+            {
+                ok = handle.TransferToInventory(weaponId, s_Inv);
+            }
             SetHint(false);
             if (ok) Destroy(gameObject);
-            else Debug.Log("Cannot find prefab by ID or inventory full");
         }
     }
 
