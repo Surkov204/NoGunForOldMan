@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
@@ -18,11 +18,31 @@ public class PlayerMoverment : MonoBehaviour
     [SerializeField] private LayerMask groundDecay;
     [SerializeField] private LayerMask wallLayer;
 
+    [Header("Power Grounded")]
+    [SerializeField] private float slamForce = -25f;
+    [SerializeField] private GameObject superGroundedDamageZone;
+    [SerializeField] private float timeToResetPowerGrounded;
+    private bool isSlamming = false;
+
+    [Header("Power Grounded Damage Scale")]
+    [SerializeField] private float baseSlamDamage = 10f;   
+    [SerializeField] private float damagePerUnitHeight = 2f; 
+    private float slamStartHeight;
+
+    [Header("Power Grounded Effect")]
+    [SerializeField] private GameObject shockwavePrefab;
+    [SerializeField] private Transform shockwavePoint;
+    [SerializeField] private float shockwaveDuration = 1.5f;
 
     [Header("Dash Value")]
     [SerializeField] private float dashBoost;   
     [SerializeField] public float dashTime;
-    [SerializeField] public float coolDownBoosting; 
+    [SerializeField] public float coolDownBoosting;
+
+    [Header("Animation")]
+    [SerializeField] private Animator superGroundedShaking;
+    [SerializeField] private string animationValue;
+
     private float _dashTime;
     public float _coolDownBoosting { get; private set; }
     private bool isDashing = false;
@@ -34,7 +54,6 @@ public class PlayerMoverment : MonoBehaviour
     private void Awake()
     {
         //VARIABLE
-
         CheckOnWall = false;
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -44,62 +63,111 @@ public class PlayerMoverment : MonoBehaviour
 
     private void Update()
     {
-
         if (!isOnWall() || CheckOnWall == false)
         {
-            MoveForward();
+            if (!isDashing)  
+                MoveForward();
             CheckOnWall = true;
-    
         }
-    
-        // Flip //
-        
-
         // jumping  //
+        if (!isDashing)
+            JumpAndDoubleJump();
+        // Dashing //
+        if (!isSlamming)
+            Dashing();
+        // slam Ground //
+        PowerGrounded();
+    }
+
+    private void JumpAndDoubleJump()
+    {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             jump();
-     
         }
 
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
         }
+
         if (isGrounded() || isGroundDecay())
         {
             extraJumpCounter = extraJump;
         }
+    }
 
-        // Dashing //
+    private void Dashing()
+    {
         if (dashBoost > 0 && dashTime > 0 && coolDownBoosting > 0)
         {
             _coolDownBoosting = Mathf.Clamp(_coolDownBoosting, 0f, coolDownBoosting);
 
-            if (Input.GetKey(KeyCode.LeftShift) && _dashTime <= 0 && isDashing == false && _coolDownBoosting >= coolDownBoosting)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && _coolDownBoosting >= coolDownBoosting)
             {
-               
-                speed += dashBoost;
+                Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                float dirX = (mouseWorld.x >= transform.position.x) ? 1f : -1f;
+
+                body.velocity = new Vector2(dirX * dashBoost, 0f);
+
                 _dashTime = dashTime;
                 isDashing = true;
-   
                 _coolDownBoosting = 0;
             }
 
-            if (_dashTime <= 0 && isDashing == true)
-            {
-                speed -= dashBoost;
-                isDashing = false;
-           
-            }
-            else
+            if (isDashing)
             {
                 _dashTime -= Time.deltaTime;
+                if (_dashTime <= 0f)
+                {
+                    isDashing = false;
+                }
             }
+
             _coolDownBoosting += Time.deltaTime;
         }
-     
     }
+
+    private void PowerGrounded()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !isGrounded())
+        {
+            isSlamming = true;
+            superGroundedDamageZone.SetActive(true);
+            slamStartHeight = transform.position.y;
+            body.velocity = new Vector2(0, slamForce); 
+        }
+    
+        if (isSlamming && (isGrounded() || isGroundDecay()))
+        {
+            isSlamming = false;
+            superGroundedShaking.ResetTrigger(animationValue);
+            superGroundedShaking.SetTrigger(animationValue);
+
+            float slamEndHeight = transform.position.y;
+            float fallDistance = slamStartHeight - slamEndHeight;
+            float finalDamage = baseSlamDamage + Mathf.Max(0, fallDistance * damagePerUnitHeight);
+            Debug.Log("final damage " + finalDamage);
+
+            PlayerSuperGroundedDamage damage = superGroundedDamageZone.GetComponent<PlayerSuperGroundedDamage>();
+            if (damage != null) damage.SetDamage(finalDamage);
+
+            if (shockwavePrefab != null) {
+                GameObject shockWave = Instantiate(shockwavePrefab, shockwavePoint);
+                Destroy(shockWave, shockwaveDuration);
+            }
+
+            StartCoroutine(InActivatedSuperGroundedZone(timeToResetPowerGrounded));
+            body.velocity = Vector2.zero;
+            Debug.Log("Power Slam Landed!");
+        }
+    }
+
+    private IEnumerator InActivatedSuperGroundedZone(float timeToResetPowerGrounded) {
+        yield return new WaitForSeconds(timeToResetPowerGrounded);
+        superGroundedDamageZone.SetActive(false);
+    }
+
 
     private void MoveForward() {
         movementvalue = Input.GetAxis("Horizontal");

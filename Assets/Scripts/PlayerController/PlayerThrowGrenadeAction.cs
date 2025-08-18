@@ -51,6 +51,36 @@ public class PlayerThrowGrenadeAction : MonoBehaviour
         }
     }
 
+    private bool SolveSpeedForCursor(Vector2 target, Vector2 start, Vector2 gravity, out float v, out float time)
+    {
+        float g = -gravity.y; 
+        Vector2 d = target - start;
+        float x = d.x;
+        float y = d.y;
+
+        float theta = Mathf.Atan2(d.y, d.x);
+        float cos = Mathf.Cos(theta);
+        float sin = Mathf.Sin(theta);
+
+        float denom = (x * (sin / cos) - y);
+        if (Mathf.Abs(cos) < 1e-4f || denom <= 0)
+        {
+            v = 0; time = 0;
+            return false; 
+        }
+
+        float v2 = (g * x * x) / (2f * cos * cos * denom);
+        if (v2 <= 0)
+        {
+            v = 0; time = 0;
+            return false;
+        }
+
+        v = Mathf.Sqrt(v2);
+        time = x / (v * cos);
+        return time > 0;
+    }
+
     void ShowTrajectory()
     {
         Vector2 startPos = throwPoint.position;

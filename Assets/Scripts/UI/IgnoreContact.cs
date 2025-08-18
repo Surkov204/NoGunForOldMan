@@ -12,10 +12,10 @@ public class IgnoreContact : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground" )
+        if (collision.tag == "Ground" || collision.tag == "Surface")
         {
             AudioManager.instance.PlaySound(soundDrop);
-            boxCollider.isTrigger = false;
+            boxCollider.isTrigger = false;  
  
         }
     }

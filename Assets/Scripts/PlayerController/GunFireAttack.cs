@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GunFireAttack : MonoBehaviour
 {
@@ -101,24 +102,31 @@ public class GunFireAttack : MonoBehaviour
         //    SwitchWeapon(weaponSelect);
         //    _BulletHaving = currentWeapon.HavingAmmo;
         //}
+ 
 
         if (currentWeapon.HavingAmmo != 0 || currentWeapon.currentAmmor != 0)
         {
             if (Input.GetKeyDown(KeyCode.R) && currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && !isReloading && currentWeapon.HavingAmmo!= 0)
             {
+
                 UpdateBulletTextUI();
                 StartCoroutine(Reload());
             }
+
+            if (SimplePieMenu.PieMenuGlobals.IsChoosingWeapon)
+                return;
+            else Debug.Log(false);
 
             if (Input.GetMouseButton(0) && coolDownTimer > currentWeapon.fireRate && !isReloading)
             {
                 if (currentWeapon.currentAmmor > 0)
                 {
+
                     Debug.Log("shooting");
                     attack();
-                    
+
                     currentWeapon.currentAmmor--;
-                    currentBullet = currentWeapon.currentAmmor;              
+                    currentBullet = currentWeapon.currentAmmor;
                     UpdateBulletTextUI();
                     coolDownTimer = 0;
                 }

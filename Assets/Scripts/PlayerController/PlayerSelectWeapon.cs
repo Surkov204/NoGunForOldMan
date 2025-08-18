@@ -14,6 +14,7 @@ public class PlayerSelectWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) inv.SelectGun(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) inv.SelectGun(2);
         if (Input.GetKeyDown(KeyCode.Alpha4)) inv.SelectGun(3);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) inv.SelectGun(4);
 
         float s = Input.GetAxis("Mouse ScrollWheel");
         if (s > 0f) inv.SelectNext(+1);
