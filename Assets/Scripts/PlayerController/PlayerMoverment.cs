@@ -39,6 +39,11 @@ public class PlayerMoverment : MonoBehaviour
     [SerializeField] public float dashTime;
     [SerializeField] public float coolDownBoosting;
 
+    [Header("Ghost Trail Effect")]
+    [SerializeField] private GameObject ghostPrefab;
+    [SerializeField] private float ghostSpawnInterval = 0.05f;
+    private float ghostSpawnTimer;
+
     [Header("Animation")]
     [SerializeField] private Animator superGroundedShaking;
     [SerializeField] private string animationValue;
@@ -118,6 +123,14 @@ public class PlayerMoverment : MonoBehaviour
             if (isDashing)
             {
                 _dashTime -= Time.deltaTime;
+
+                ghostSpawnTimer -= Time.deltaTime;
+                if (ghostSpawnTimer <= 0f)
+                {
+                    SpawnGhost();
+                    ghostSpawnTimer = ghostSpawnInterval;
+                }
+
                 if (_dashTime <= 0f)
                 {
                     isDashing = false;
@@ -125,6 +138,22 @@ public class PlayerMoverment : MonoBehaviour
             }
 
             _coolDownBoosting += Time.deltaTime;
+        }
+    }
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab != null)
+        {
+            GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
+            SpriteRenderer ghostSR = ghost.GetComponent<SpriteRenderer>();
+            SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+
+            if (ghostSR != null && playerSR != null)
+            {
+                ghostSR.sprite = playerSR.sprite;
+                ghostSR.flipX = playerSR.flipX;   
+            }
         }
     }
 

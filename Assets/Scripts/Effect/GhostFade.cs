@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class GhostFade : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float fadeTime = 0.5f;
+    private SpriteRenderer sr;
+    private Color startColor;
+
+    private void Awake()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+        startColor = sr.color;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Color c = sr.color;
+        c.a -= Time.deltaTime / fadeTime;
+        sr.color = c;
+
+        if (sr.color.a <= 0)
+            Destroy(gameObject);
     }
 }
