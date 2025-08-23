@@ -109,6 +109,7 @@ public class PlayerMoverment : MonoBehaviour
                 Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float dirX = (mouseWorld.x >= transform.position.x) ? 1f : -1f;
 
+                body.gravityScale = 0;
                 body.velocity = new Vector2(dirX * dashBoost, 0f);
 
                 _dashTime = dashTime;
@@ -129,6 +130,7 @@ public class PlayerMoverment : MonoBehaviour
 
                 if (_dashTime <= 0f)
                 {
+                    body.gravityScale = 5;
                     isDashing = false;
                 }
             }
