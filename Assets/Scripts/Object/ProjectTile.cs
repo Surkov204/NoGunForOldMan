@@ -49,7 +49,7 @@ public class ProjectTile : MonoBehaviour
             Deactivate();
         }
 
-        if (collision.tag == "Ground")
+        if (collision.tag == "Ground" || collision.tag == "Surface")
         {
             Deactivate();
             Debug.Log("on wall");

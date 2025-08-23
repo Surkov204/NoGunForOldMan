@@ -8,6 +8,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private float fieldOfImpact;
     [SerializeField] private float force;
+    [SerializeField] private bool isSuperGrounded = false;
     private bool hasExploded = false;
     public LayerMask layerMask;
 
@@ -18,7 +19,7 @@ public class Explosion : MonoBehaviour
     }
     private void Update()
     {
-        if (!hasExploded)
+        if (!hasExploded && isSuperGrounded == false)
         {
             CameraManager.Instance.GrenadeCamera();
             StartCoroutine(ResetCameraShake(0.5f));

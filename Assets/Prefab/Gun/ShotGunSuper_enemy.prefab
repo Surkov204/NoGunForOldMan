@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5454445428416350574}
   m_Layer: 0
   m_Name: ShotGunSuper_enemy
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +140,11 @@ MonoBehaviour:
   weaponId: ShotGun
   handle: {fileID: 0}
   pickKey: 101
-  interactRadius: 2.29
+  isGrenadePickup: 0
+  grenadeAmount: 1
+  grenadePrefab: {fileID: 0}
+  enterRadius: 1.6
+  exitRadius: 1.9
   rangeCenter: {fileID: 0}
   playerMask:
     serializedVersion: 2

@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &38671908918855909
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &129885710422278911
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &138038765178925807
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &221249182677837610
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &241857572387263304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &289214698601663915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &289835977208789491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &307148196958639539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &359729149280517202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &364019963144076992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &399957315217818559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &514024353110523006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &643861468235104757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &650764778622954854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &731591575896467449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,7 +2834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &734122776384654808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,7 +3010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &863023840905090809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,7 +3186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &865087808843002981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,7 +3362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &977364062586152627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,7 +3538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1028767341692844762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,7 +3714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1068807438067997948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,7 +3890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1165612849009144060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,7 +4066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1227666735022825244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,7 +4242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1270621780239988591
 GameObject:
   m_ObjectHideFlags: 0
@@ -4418,7 +4418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1331954848532889809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,7 +4594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1335636315886528998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1350075637901585909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,7 +4946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1441476225629043566
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,7 +5122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1547579140062478752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,7 +5508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1627024052897596950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5684,7 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1667863108778437406
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,7 +5860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1711633311322653503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,7 +6036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1762478246904859439
 GameObject:
   m_ObjectHideFlags: 0
@@ -6212,7 +6212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1764726080001690842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6388,7 +6388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1851486328818664884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,7 +6564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1953047460219079506
 GameObject:
   m_ObjectHideFlags: 0
@@ -6740,7 +6740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1959310444398790217
 GameObject:
   m_ObjectHideFlags: 0
@@ -6916,7 +6916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &1972793820343623929
 GameObject:
   m_ObjectHideFlags: 0
@@ -7092,7 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2063678698877020126
 GameObject:
   m_ObjectHideFlags: 0
@@ -7268,7 +7268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2117091595547889840
 GameObject:
   m_ObjectHideFlags: 0
@@ -7444,7 +7444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2197349034850754487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7620,7 +7620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2228453073512848124
 GameObject:
   m_ObjectHideFlags: 0
@@ -7796,7 +7796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2236567807042545184
 GameObject:
   m_ObjectHideFlags: 0
@@ -7972,7 +7972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2337697567874542628
 GameObject:
   m_ObjectHideFlags: 0
@@ -8148,7 +8148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2459071342414771532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8324,7 +8324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2462611675868612055
 GameObject:
   m_ObjectHideFlags: 0
@@ -8500,7 +8500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2496295654641952075
 GameObject:
   m_ObjectHideFlags: 0
@@ -8676,7 +8676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2551131093266334348
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,7 +8852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2553683952304779605
 GameObject:
   m_ObjectHideFlags: 0
@@ -9028,7 +9028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2554340129009819708
 GameObject:
   m_ObjectHideFlags: 0
@@ -9204,7 +9204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2615309489508360096
 GameObject:
   m_ObjectHideFlags: 0
@@ -9380,7 +9380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2804798849795392335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9556,7 +9556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2846631105366750490
 GameObject:
   m_ObjectHideFlags: 0
@@ -9732,7 +9732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2856306321488775438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9908,7 +9908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2874734189389691095
 GameObject:
   m_ObjectHideFlags: 0
@@ -10084,7 +10084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &2880668172731424882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10260,7 +10260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3136399781999729591
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,7 +10436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3150781933113443006
 GameObject:
   m_ObjectHideFlags: 0
@@ -10612,7 +10612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3152922758760890130
 GameObject:
   m_ObjectHideFlags: 0
@@ -10788,7 +10788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3209102287256107050
 GameObject:
   m_ObjectHideFlags: 0
@@ -10964,7 +10964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3231721205756953083
 GameObject:
   m_ObjectHideFlags: 0
@@ -11140,7 +11140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3257707164098611120
 GameObject:
   m_ObjectHideFlags: 0
@@ -11316,7 +11316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3262916870906506984
 GameObject:
   m_ObjectHideFlags: 0
@@ -11492,7 +11492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3268054378416895402
 GameObject:
   m_ObjectHideFlags: 0
@@ -11668,7 +11668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3327105157146596969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11844,7 +11844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3458929936080213097
 GameObject:
   m_ObjectHideFlags: 0
@@ -12020,7 +12020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3474324688842997231
 GameObject:
   m_ObjectHideFlags: 0
@@ -12196,7 +12196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3476298645082276200
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,7 +12372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3483379758062442725
 GameObject:
   m_ObjectHideFlags: 0
@@ -12548,7 +12548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3543324456655614982
 GameObject:
   m_ObjectHideFlags: 0
@@ -12724,7 +12724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3888966285426900869
 GameObject:
   m_ObjectHideFlags: 0
@@ -12900,7 +12900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3912304281021915138
 GameObject:
   m_ObjectHideFlags: 0
@@ -13076,7 +13076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &3991817845772396122
 GameObject:
   m_ObjectHideFlags: 0
@@ -13252,7 +13252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4051810350085456686
 GameObject:
   m_ObjectHideFlags: 0
@@ -13428,7 +13428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4274561326466973948
 GameObject:
   m_ObjectHideFlags: 0
@@ -13604,7 +13604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4307995822191970439
 GameObject:
   m_ObjectHideFlags: 0
@@ -13780,7 +13780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4377620384457706357
 GameObject:
   m_ObjectHideFlags: 0
@@ -13956,7 +13956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4384362010841866673
 GameObject:
   m_ObjectHideFlags: 0
@@ -14132,7 +14132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4468828422830904375
 GameObject:
   m_ObjectHideFlags: 0
@@ -14308,7 +14308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4495290781934512748
 GameObject:
   m_ObjectHideFlags: 0
@@ -14484,7 +14484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4516650347364761679
 GameObject:
   m_ObjectHideFlags: 0
@@ -14660,7 +14660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4556219569961437085
 GameObject:
   m_ObjectHideFlags: 0
@@ -14836,7 +14836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4616770470287277201
 GameObject:
   m_ObjectHideFlags: 0
@@ -15012,7 +15012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4679418145856364530
 GameObject:
   m_ObjectHideFlags: 0
@@ -15188,7 +15188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4749220026432143647
 GameObject:
   m_ObjectHideFlags: 0
@@ -15364,7 +15364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4763747511318179676
 GameObject:
   m_ObjectHideFlags: 0
@@ -15540,7 +15540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4774523413019282813
 GameObject:
   m_ObjectHideFlags: 0
@@ -15716,7 +15716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4816967961817290566
 GameObject:
   m_ObjectHideFlags: 0
@@ -15892,7 +15892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4889417753555005904
 GameObject:
   m_ObjectHideFlags: 0
@@ -16068,7 +16068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4893140135135924562
 GameObject:
   m_ObjectHideFlags: 0
@@ -16244,7 +16244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &4975321141401170333
 GameObject:
   m_ObjectHideFlags: 0
@@ -16420,7 +16420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5012943922107382222
 GameObject:
   m_ObjectHideFlags: 0
@@ -16596,7 +16596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5013667782542168002
 GameObject:
   m_ObjectHideFlags: 0
@@ -16772,7 +16772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5072059268219338727
 GameObject:
   m_ObjectHideFlags: 0
@@ -16948,7 +16948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5119364385931585982
 GameObject:
   m_ObjectHideFlags: 0
@@ -17124,7 +17124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5230455907918881674
 GameObject:
   m_ObjectHideFlags: 0
@@ -17300,7 +17300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5252914316038449678
 GameObject:
   m_ObjectHideFlags: 0
@@ -17476,7 +17476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5359251608930125375
 GameObject:
   m_ObjectHideFlags: 0
@@ -17652,7 +17652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5380351074649153817
 GameObject:
   m_ObjectHideFlags: 0
@@ -17828,7 +17828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5471229329882425190
 GameObject:
   m_ObjectHideFlags: 0
@@ -18004,7 +18004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5525949718581970429
 GameObject:
   m_ObjectHideFlags: 0
@@ -18180,7 +18180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5573768796049638549
 GameObject:
   m_ObjectHideFlags: 0
@@ -18356,7 +18356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5655484301249251758
 GameObject:
   m_ObjectHideFlags: 0
@@ -18532,7 +18532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5732624520970095475
 GameObject:
   m_ObjectHideFlags: 0
@@ -18708,7 +18708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5749125059700128635
 GameObject:
   m_ObjectHideFlags: 0
@@ -18884,7 +18884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5847416219504192649
 GameObject:
   m_ObjectHideFlags: 0
@@ -19060,7 +19060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5882061597672748466
 GameObject:
   m_ObjectHideFlags: 0
@@ -19236,7 +19236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5891695027723840338
 GameObject:
   m_ObjectHideFlags: 0
@@ -19412,7 +19412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5891985766331538832
 GameObject:
   m_ObjectHideFlags: 0
@@ -19588,7 +19588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5897645573493729822
 GameObject:
   m_ObjectHideFlags: 0
@@ -19764,7 +19764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &5990419979583973181
 GameObject:
   m_ObjectHideFlags: 0
@@ -19940,7 +19940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6096526214498136697
 GameObject:
   m_ObjectHideFlags: 0
@@ -20116,7 +20116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6115316777142604007
 GameObject:
   m_ObjectHideFlags: 0
@@ -20292,7 +20292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6128530788194872323
 GameObject:
   m_ObjectHideFlags: 0
@@ -20468,7 +20468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6130598437063813688
 GameObject:
   m_ObjectHideFlags: 0
@@ -20644,7 +20644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6144076330005940012
 GameObject:
   m_ObjectHideFlags: 0
@@ -20820,7 +20820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6145998288229353408
 GameObject:
   m_ObjectHideFlags: 0
@@ -20996,7 +20996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6154733431074992151
 GameObject:
   m_ObjectHideFlags: 0
@@ -21172,7 +21172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6174169999830456751
 GameObject:
   m_ObjectHideFlags: 0
@@ -21348,7 +21348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6250849683670941150
 GameObject:
   m_ObjectHideFlags: 0
@@ -21524,7 +21524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6269677326748298741
 GameObject:
   m_ObjectHideFlags: 0
@@ -21700,7 +21700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6326478777364251667
 GameObject:
   m_ObjectHideFlags: 0
@@ -21876,7 +21876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6356957061291401983
 GameObject:
   m_ObjectHideFlags: 0
@@ -22052,7 +22052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6384334085554691743
 GameObject:
   m_ObjectHideFlags: 0
@@ -22228,7 +22228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6427548199125879981
 GameObject:
   m_ObjectHideFlags: 0
@@ -22404,7 +22404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6563399602846568465
 GameObject:
   m_ObjectHideFlags: 0
@@ -22580,7 +22580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6584453902097443048
 GameObject:
   m_ObjectHideFlags: 0
@@ -22756,7 +22756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6603239757579762275
 GameObject:
   m_ObjectHideFlags: 0
@@ -22932,7 +22932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6658279592200804190
 GameObject:
   m_ObjectHideFlags: 0
@@ -23108,7 +23108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6744431216926826277
 GameObject:
   m_ObjectHideFlags: 0
@@ -23284,7 +23284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6891359209713296945
 GameObject:
   m_ObjectHideFlags: 0
@@ -23460,7 +23460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6916324595374271056
 GameObject:
   m_ObjectHideFlags: 0
@@ -23636,7 +23636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &6976432719025477094
 GameObject:
   m_ObjectHideFlags: 0
@@ -23812,7 +23812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7073903466459138565
 GameObject:
   m_ObjectHideFlags: 0
@@ -23988,7 +23988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7074537102007413871
 GameObject:
   m_ObjectHideFlags: 0
@@ -24164,7 +24164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7105054885327451911
 GameObject:
   m_ObjectHideFlags: 0
@@ -24340,7 +24340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7153441384608208630
 GameObject:
   m_ObjectHideFlags: 0
@@ -24516,7 +24516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7156929726448049236
 GameObject:
   m_ObjectHideFlags: 0
@@ -24692,7 +24692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7182110933932109927
 GameObject:
   m_ObjectHideFlags: 0
@@ -24868,7 +24868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7196817934169454139
 GameObject:
   m_ObjectHideFlags: 0
@@ -25044,7 +25044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7266906607017825434
 GameObject:
   m_ObjectHideFlags: 0
@@ -25220,7 +25220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7323990991967862453
 GameObject:
   m_ObjectHideFlags: 0
@@ -25396,7 +25396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7332553614348373780
 GameObject:
   m_ObjectHideFlags: 0
@@ -25572,7 +25572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7432909575364154492
 GameObject:
   m_ObjectHideFlags: 0
@@ -25748,7 +25748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7478615461526519072
 GameObject:
   m_ObjectHideFlags: 0
@@ -25924,7 +25924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7651369884323453914
 GameObject:
   m_ObjectHideFlags: 0
@@ -26100,7 +26100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7663103426029814455
 GameObject:
   m_ObjectHideFlags: 0
@@ -26276,7 +26276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7781656273141836754
 GameObject:
   m_ObjectHideFlags: 0
@@ -26452,7 +26452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7877603461926638160
 GameObject:
   m_ObjectHideFlags: 0
@@ -26628,7 +26628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &7911472487852463587
 GameObject:
   m_ObjectHideFlags: 0
@@ -26804,7 +26804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8029777643929472624
 GameObject:
   m_ObjectHideFlags: 0
@@ -26980,7 +26980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8049614618461869217
 GameObject:
   m_ObjectHideFlags: 0
@@ -27156,7 +27156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8060066670682618535
 GameObject:
   m_ObjectHideFlags: 0
@@ -27332,7 +27332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8084474593104402040
 GameObject:
   m_ObjectHideFlags: 0
@@ -27508,7 +27508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8094456550367284355
 GameObject:
   m_ObjectHideFlags: 0
@@ -27684,7 +27684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8119497712737401306
 GameObject:
   m_ObjectHideFlags: 0
@@ -27860,7 +27860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8140693015325727917
 GameObject:
   m_ObjectHideFlags: 0
@@ -28036,7 +28036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8170682416852859448
 GameObject:
   m_ObjectHideFlags: 0
@@ -28212,7 +28212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8275668157243042064
 GameObject:
   m_ObjectHideFlags: 0
@@ -28388,7 +28388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8377901672996181085
 GameObject:
   m_ObjectHideFlags: 0
@@ -28564,7 +28564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8383373285357582564
 GameObject:
   m_ObjectHideFlags: 0
@@ -28740,7 +28740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8449337355952617901
 GameObject:
   m_ObjectHideFlags: 0
@@ -28916,7 +28916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8502388648435998291
 GameObject:
   m_ObjectHideFlags: 0
@@ -29092,7 +29092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8612326870215113098
 GameObject:
   m_ObjectHideFlags: 0
@@ -29268,7 +29268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8725453160223664692
 GameObject:
   m_ObjectHideFlags: 0
@@ -29444,7 +29444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8730213960703525359
 GameObject:
   m_ObjectHideFlags: 0
@@ -29620,7 +29620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8736174937449003318
 GameObject:
   m_ObjectHideFlags: 0
@@ -29796,7 +29796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8746315870772169631
 GameObject:
   m_ObjectHideFlags: 0
@@ -29972,7 +29972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8870856216956104281
 GameObject:
   m_ObjectHideFlags: 0
@@ -30148,7 +30148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &8934935659688327832
 GameObject:
   m_ObjectHideFlags: 0
@@ -30324,7 +30324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9018178885724877676
 GameObject:
   m_ObjectHideFlags: 0
@@ -30500,7 +30500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9104695724735829741
 GameObject:
   m_ObjectHideFlags: 0
@@ -30676,7 +30676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9105326600236777847
 GameObject:
   m_ObjectHideFlags: 0
@@ -30852,7 +30852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9137947120875683496
 GameObject:
   m_ObjectHideFlags: 0
@@ -31028,7 +31028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9146854434207681385
 GameObject:
   m_ObjectHideFlags: 0
@@ -31204,7 +31204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9156609663540195628
 GameObject:
   m_ObjectHideFlags: 0
@@ -31380,7 +31380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9170876613702875515
 GameObject:
   m_ObjectHideFlags: 0
@@ -31556,7 +31556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200
 --- !u!1 &9215475906444299318
 GameObject:
   m_ObjectHideFlags: 0
@@ -31732,4 +31732,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21396231b46c87b48a896f17831b0aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedtanken: 200
+  damagedtaken: 200

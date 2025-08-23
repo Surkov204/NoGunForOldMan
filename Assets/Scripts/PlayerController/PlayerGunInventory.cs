@@ -35,6 +35,7 @@ public class PlayerGunInventory : MonoBehaviour
 
         string id = ExtractId(gunPrefab);
         int exist = ownedIds.IndexOf(id);
+
         if (exist >= 0) { SelectGun(exist); return true; }  
 
         if (spawned.Count >= maxSlots) return false;
@@ -46,6 +47,17 @@ public class PlayerGunInventory : MonoBehaviour
         spawned.Add(inst);
 
         if (CurrentIndex == -1) SelectGun(0);
+        return true;
+    }
+
+    public bool AddGrenade(GameObject grenadePrefab, int amount)
+    {
+        if (grenadeCount >= maxGrenade) return false;
+        grenadeCount = Mathf.Min(grenadeCount + amount, maxGrenade);
+
+        AddGunPrefab(grenadePrefab);
+
+        Debug.Log($"Grenade picked up: {grenadeCount}/{maxGrenade}");
         return true;
     }
 
@@ -62,8 +74,13 @@ public class PlayerGunInventory : MonoBehaviour
     public void SelectGun(int index)
     {
         if (index < 0 || index >= spawned.Count) return;
+
         for (int i = 0; i < spawned.Count; i++)
+        {
             spawned[i].SetActive(i == index);
+            Debug.Log(ownedIds[i]);
+        }    
+        
         CurrentIndex = index;
     }
 
@@ -89,16 +106,7 @@ public class PlayerGunInventory : MonoBehaviour
         }
     }
 
-    public bool AddGrenade(GameObject grenadePrefab, int amount)
-    {
-        if (grenadeCount >= maxGrenade) return false;
-        grenadeCount = Mathf.Min(grenadeCount + amount, maxGrenade);
 
-        AddGunPrefab(grenadePrefab);
-
-        Debug.Log($"Grenade picked up: {grenadeCount}/{maxGrenade}");
-        return true;
-    }
 
     public bool UseGrenade()
     {
@@ -108,6 +116,8 @@ public class PlayerGunInventory : MonoBehaviour
         return true;
     }
 
+    public int FindIndexById(string id) => ownedIds.IndexOf(id);
+    
     public GameObject CurrentGO() =>
     (CurrentIndex >= 0 && CurrentIndex < spawned.Count) ? spawned[CurrentIndex] : null;
 
