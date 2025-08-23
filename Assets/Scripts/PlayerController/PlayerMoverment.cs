@@ -55,7 +55,8 @@ public class PlayerMoverment : MonoBehaviour
     /// Body player ///
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
-  
+
+    [HideInInspector] public bool isGrappling = false;
     private void Awake()
     {
         //VARIABLE
@@ -68,20 +69,15 @@ public class PlayerMoverment : MonoBehaviour
 
     private void Update()
     {
-        if (!isOnWall() || CheckOnWall == false)
-        {
-            if (!isDashing)  
+        if (!isGrappling) {
+            if (!isDashing)
                 MoveForward();
-            CheckOnWall = true;
+            if (!isDashing)
+                JumpAndDoubleJump();
+            if (!isSlamming)
+                Dashing();
+            PowerGrounded();
         }
-        // jumping  //
-        if (!isDashing)
-            JumpAndDoubleJump();
-        // Dashing //
-        if (!isSlamming)
-            Dashing();
-        // slam Ground //
-        PowerGrounded();
     }
 
     private void JumpAndDoubleJump()
@@ -91,9 +87,9 @@ public class PlayerMoverment : MonoBehaviour
             jump();
         }
 
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
         {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
         }
 
         if (isGrounded() || isGroundDecay())
@@ -187,7 +183,7 @@ public class PlayerMoverment : MonoBehaviour
             }
 
             StartCoroutine(InActivatedSuperGroundedZone(timeToResetPowerGrounded));
-            body.velocity = Vector2.zero;
+            body.linearVelocity = Vector2.zero;
             Debug.Log("Power Slam Landed!");
         }
     }
@@ -200,20 +196,28 @@ public class PlayerMoverment : MonoBehaviour
 
     private void MoveForward() {
         movementvalue = Input.GetAxis("Horizontal");
-        body.linearVelocity = new Vector2(movementvalue * speed, body.linearVelocity.y);
+        if ((movementvalue > 0 && isOnWallRight()) || (movementvalue > 0 && isGroundedRight()))
+        {
+            movementvalue = 0;
+        }
+        if ((movementvalue < 0 && isOnWallLeft()) || (movementvalue < 0 && isGroundedLeft()))
+        {
+            movementvalue = 0;
+        }
+        body.velocity = new Vector2(movementvalue * speed, body.velocity.y);
     }
 
     private void jump()
     {
         if (isGrounded() || isGroundDecay())
         {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
+            body.velocity = new Vector2(body.velocity.x, jumpPower);
         }
         else
         {
             if (extraJumpCounter > 0)
             {   
-                body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
+                body.velocity = new Vector2(body.velocity.x, jumpPower);
         
                 extraJumpCounter--;
             }
@@ -227,17 +231,36 @@ public class PlayerMoverment : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    private bool isGroundedLeft() {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, 
+                                 Vector2.left, 0.1f, groundlayer);
+        return raycastHit.collider != null;
+    }
+
+    private bool isGroundedRight()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0,
+                                 Vector2.right, 0.1f, groundlayer);
+        return raycastHit.collider != null;
+    }
+
     private bool isGroundDecay()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundDecay);
         return raycastHit.collider != null;
     }
 
-    private bool isOnWall() {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-        return raycastHit.collider != null;
+    private bool isOnWallRight()
+    {
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0,
+                                 Vector2.right, 0.1f, wallLayer);
     }
 
+    private bool isOnWallLeft()
+    {
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0,
+                                 Vector2.left, 0.1f, wallLayer);
+    }
     public bool canAttack()
     {
         return movementvalue == 0 && isGrounded();

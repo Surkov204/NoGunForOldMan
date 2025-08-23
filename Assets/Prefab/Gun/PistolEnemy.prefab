@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 1411121931670157093}
   m_Layer: 9
   m_Name: PistolEnemy
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -562,6 +562,9 @@ MonoBehaviour:
   weaponId: Revolver
   handle: {fileID: 0}
   pickKey: 101
+  isGrenadePickup: 0
+  grenadeAmount: 1
+  grenadePrefab: {fileID: 0}
   enterRadius: 1.6
   exitRadius: 1.9
   rangeCenter: {fileID: 0}

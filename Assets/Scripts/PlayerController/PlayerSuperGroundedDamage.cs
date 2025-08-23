@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerSuperGroundedDamage : MonoBehaviour
 {
-    private float damagedTaken = 10f; 
+   [SerializeField] private float damagedTaken = 10f; 
 
     public void SetDamage(float dmg)
     {
