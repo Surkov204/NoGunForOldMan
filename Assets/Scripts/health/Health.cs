@@ -100,7 +100,7 @@ public class health : MonoBehaviour
     private void AutoRegen(){
         if (isPlayer && !dead) {
             if ((Time.time - lastDamageTime >= regenDelay) && currentHealth < startingHealth) {
-                currentHealth += regenDelay * Time.deltaTime;
+                currentHealth += regenRate * Time.deltaTime;
                 currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth);
                 AutoGenHandleBoderFade();
             }

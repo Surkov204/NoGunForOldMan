@@ -67,7 +67,6 @@ public class GrapplingRope : MonoBehaviour
         }
     }
 
-
     void StartGrapple()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

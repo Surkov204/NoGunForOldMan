@@ -1,0 +1,536 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Scene/Main" clip-path="url(#clip0_1_6709)">
+<rect width="800" height="600" fill="white"/>
+<g id="Background/Screen" clip-path="url(#clip1_1_6709)">
+<g id="Background/Pattern" clip-path="url(#clip2_1_6709)">
+<g id="Light">
+<rect id="Rectangle" x="50" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_2" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_3" x="150" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_4" x="100" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_5" x="50" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_6" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_7" x="150" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_8" x="100" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark">
+<rect id="Rectangle_9" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_10" x="50" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_11" x="100" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_12" x="150" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_13" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_14" x="50" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_15" x="100" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_16" x="150" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_2" clip-path="url(#clip3_1_6709)">
+<g id="Light_2">
+<rect id="Rectangle_17" x="250" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_18" x="200" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_19" x="350" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_20" x="300" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_21" x="250" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_22" x="200" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_23" x="350" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_24" x="300" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_2">
+<rect id="Rectangle_25" x="200" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_26" x="250" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_27" x="300" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_28" x="350" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_29" x="200" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_30" x="250" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_31" x="300" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_32" x="350" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_3" clip-path="url(#clip4_1_6709)">
+<g id="Light_3">
+<rect id="Rectangle_33" x="450" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_34" x="400" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_35" x="550" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_36" x="500" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_37" x="450" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_38" x="400" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_39" x="550" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_40" x="500" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_3">
+<rect id="Rectangle_41" x="400" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_42" x="450" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_43" x="500" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_44" x="550" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_45" x="400" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_46" x="450" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_47" x="500" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_48" x="550" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_4" clip-path="url(#clip5_1_6709)">
+<g id="Light_4">
+<rect id="Rectangle_49" x="650" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_50" x="600" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_51" x="750" y="400" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_52" x="700" y="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_53" x="650" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_54" x="600" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_55" x="750" y="500" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_56" x="700" y="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_4">
+<rect id="Rectangle_57" x="600" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_58" x="650" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_59" x="700" y="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_60" x="750" y="450" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_61" x="600" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_62" x="650" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_63" x="700" y="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_64" x="750" y="550" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_5" clip-path="url(#clip6_1_6709)">
+<g id="Light_5">
+<rect id="Rectangle_65" x="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_66" x="200" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_67" x="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_68" x="300" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_69" x="250" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_70" x="200" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_71" x="350" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_72" x="300" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_5">
+<rect id="Rectangle_73" x="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_74" x="250" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_75" x="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_76" x="350" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_77" x="200" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_78" x="250" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_79" x="300" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_80" x="350" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_6" clip-path="url(#clip7_1_6709)">
+<g id="Light_6">
+<rect id="Rectangle_81" x="450" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_82" x="400" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_83" x="550" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_84" x="500" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_85" x="450" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_86" x="400" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_87" x="550" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_88" x="500" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_6">
+<rect id="Rectangle_89" x="400" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_90" x="450" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_91" x="500" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_92" x="550" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_93" x="400" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_94" x="450" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_95" x="500" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_96" x="550" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_7" clip-path="url(#clip8_1_6709)">
+<g id="Light_7">
+<rect id="Rectangle_97" x="650" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_98" x="600" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_99" x="750" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_100" x="700" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_101" x="650" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_102" x="600" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_103" x="750" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_104" x="700" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_7">
+<rect id="Rectangle_105" x="600" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_106" x="650" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_107" x="700" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_108" x="750" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_109" x="600" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_110" x="650" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_111" x="700" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_112" x="750" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_8" clip-path="url(#clip9_1_6709)">
+<g id="Light_8">
+<rect id="Rectangle_113" x="50" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_114" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_115" x="150" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_116" x="100" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_117" x="50" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_118" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_119" x="150" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_120" x="100" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_8">
+<rect id="Rectangle_121" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_122" x="50" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_123" x="100" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_124" x="150" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_125" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_126" x="50" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_127" x="100" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_128" x="150" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_9" clip-path="url(#clip10_1_6709)">
+<g id="Light_9">
+<rect id="Rectangle_129" x="250" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_130" x="200" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_131" x="350" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_132" x="300" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_133" x="250" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_134" x="200" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_135" x="350" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_136" x="300" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_9">
+<rect id="Rectangle_137" x="200" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_138" x="250" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_139" x="300" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_140" x="350" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_141" x="200" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_142" x="250" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_143" x="300" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_144" x="350" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_10" clip-path="url(#clip11_1_6709)">
+<g id="Light_10">
+<rect id="Rectangle_145" x="450" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_146" x="400" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_147" x="550" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_148" x="500" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_149" x="450" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_150" x="400" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_151" x="550" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_152" x="500" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_10">
+<rect id="Rectangle_153" x="400" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_154" x="450" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_155" x="500" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_156" x="550" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_157" x="400" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_158" x="450" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_159" x="500" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_160" x="550" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_11" clip-path="url(#clip12_1_6709)">
+<g id="Light_11">
+<rect id="Rectangle_161" x="650" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_162" x="600" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_163" x="750" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_164" x="700" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_165" x="650" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_166" x="600" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_167" x="750" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_168" x="700" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_11">
+<rect id="Rectangle_169" x="600" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_170" x="650" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_171" x="700" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_172" x="750" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_173" x="600" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_174" x="650" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_175" x="700" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_176" x="750" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_12" clip-path="url(#clip13_1_6709)">
+<g id="Light_12">
+<rect id="Rectangle_177" x="50" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_178" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_179" x="150" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_180" x="100" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_181" x="50" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_182" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_183" x="150" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_184" x="100" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_12">
+<rect id="Rectangle_185" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_186" x="50" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_187" x="100" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_188" x="150" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_189" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_190" x="50" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_191" x="100" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_192" x="150" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_13" clip-path="url(#clip14_1_6709)">
+<g id="Light_13">
+<rect id="Rectangle_193" x="250" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_194" x="200" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_195" x="350" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_196" x="300" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_197" x="250" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_198" x="200" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_199" x="350" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_200" x="300" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_13">
+<rect id="Rectangle_201" x="200" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_202" x="250" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_203" x="300" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_204" x="350" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_205" x="200" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_206" x="250" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_207" x="300" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_208" x="350" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_14" clip-path="url(#clip15_1_6709)">
+<g id="Light_14">
+<rect id="Rectangle_209" x="450" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_210" x="400" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_211" x="550" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_212" x="500" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_213" x="450" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_214" x="400" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_215" x="550" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_216" x="500" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_14">
+<rect id="Rectangle_217" x="400" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_218" x="450" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_219" x="500" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_220" x="550" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_221" x="400" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_222" x="450" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_223" x="500" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_224" x="550" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_15" clip-path="url(#clip16_1_6709)">
+<g id="Light_15">
+<rect id="Rectangle_225" x="650" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_226" x="600" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_227" x="750" y="200" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_228" x="700" y="250" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_229" x="650" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_230" x="600" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_231" x="750" y="300" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_232" x="700" y="350" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_15">
+<rect id="Rectangle_233" x="600" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_234" x="650" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_235" x="700" y="200" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_236" x="750" y="250" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_237" x="600" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_238" x="650" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_239" x="700" y="300" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_240" x="750" y="350" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<g id="Background/Pattern_16" clip-path="url(#clip17_1_6709)">
+<g id="Light_16">
+<rect id="Rectangle_241" x="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_242" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_243" x="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_244" x="100" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_245" x="50" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_246" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_247" x="150" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_248" x="100" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark_16">
+<rect id="Rectangle_249" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_250" x="50" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_251" x="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_252" x="150" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_253" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_254" x="50" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_255" x="100" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_256" x="150" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+</g>
+<g id="UI/Button/Gear" clip-path="url(#clip18_1_6709)">
+<g id="Shape" filter="url(#filter0_d_1_6709)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M90.1562 75C90.1562 72.5104 91.6979 70.5417 94 69.1875C93.5833 67.8021 93.0312 66.4583 92.3542 65.2083C89.7604 65.8854 87.6667 64.875 85.8958 63.1042C84.1354 61.3438 83.5938 59.2396 84.2708 56.6458C83.0208 55.9688 81.6875 55.4167 80.2917 55C78.9375 57.3125 76.5 58.8438 74 58.8438C71.5104 58.8438 69.0625 57.3125 67.7083 55C66.3125 55.4167 64.9792 55.9688 63.7292 56.6458C64.4062 59.2396 63.8646 61.3333 62.1042 63.1042C60.3438 64.8646 58.2396 65.8854 55.6562 65.2083C54.9688 66.4583 54.4167 67.7917 54 69.1875C56.3125 70.5417 57.8542 72.5104 57.8542 75C57.8542 77.4896 56.3125 79.9375 54 81.2917C54.4167 82.6875 54.9688 84.0208 55.6458 85.2708C58.2396 84.5938 60.3333 85.1354 62.0938 86.8958C63.8646 88.6562 64.3958 90.7604 63.7188 93.3542C64.9792 94.0312 66.3021 94.5833 67.6979 95C69.0521 92.6875 71.5 91.1562 73.9896 91.1562C76.4792 91.1562 78.9271 92.6875 80.2812 95C81.6771 94.5833 83.0104 94.0312 84.2604 93.3542C83.5833 90.7604 84.125 88.6667 85.8854 86.8958C87.6458 85.1354 89.75 84.1146 92.3438 84.7917C93.0208 83.5312 93.5729 82.1979 93.9896 80.8125C91.6875 79.4583 90.1562 77.4896 90.1562 75ZM74 85.2396C68.3542 85.2396 63.7604 80.6562 63.7604 75C63.7604 69.3438 68.3438 64.7604 74 64.7604C79.6562 64.7604 84.2396 69.3438 84.2396 75C84.2396 80.6562 79.6562 85.2396 74 85.2396Z" fill="#50E3C2"/>
+</g>
+</g>
+<g id="UI/Button/Play">
+<g id="Triangle" filter="url(#filter1_d_1_6709)">
+<path d="M356 375V382.257L362.136 378.382L457.136 318.382L462.491 315L457.136 311.618L362.136 251.618L356 247.743V255V375Z" stroke="#50E3C2" stroke-width="8"/>
+</g>
+</g>
+<g id="UI/Logotype">
+<g id="Rectangle_257" opacity="0.9" filter="url(#filter2_d_1_6709)">
+<rect x="279" y="157" width="122" height="8" fill="#50E3C2"/>
+</g>
+<g id="Rectangle_258" opacity="0.9" filter="url(#filter3_d_1_6709)">
+<rect x="459" y="157" width="40" height="8" fill="#50E3C2"/>
+</g>
+<g id="Pongo" filter="url(#filter4_d_1_6709)">
+<text fill="#50E3C2" xml:space="preserve" style="white-space: pre" font-family="Josefin Sans" font-size="80" font-weight="500" letter-spacing="0px"><tspan x="273.547" y="149">Pongo</tspan></text>
+</g>
+<g id="Oval" filter="url(#filter5_d_1_6709)">
+<circle cx="481" cy="132" r="4" fill="#50E3C2"/>
+</g>
+<g id="Oval_2" filter="url(#filter6_d_1_6709)">
+<circle cx="434" cy="132" r="4" fill="#50E3C2"/>
+</g>
+<g id="Oval_3" filter="url(#filter7_d_1_6709)">
+<circle cx="344" cy="132" r="4" fill="#50E3C2"/>
+</g>
+<g id="!" filter="url(#filter8_d_1_6709)">
+<text fill="#50E3C2" xml:space="preserve" style="white-space: pre" font-family="Josefin Sans" font-size="80" font-weight="500" letter-spacing="0px"><tspan x="509.828" y="149">!</tspan></text>
+</g>
+</g>
+<g id="Group">
+<rect id="Rectangle_259" x="316" y="538" width="167" height="24" fill="#50E3C2"/>
+<text id="DESIGN BY PRINBLES" fill="#FEFEFE" xml:space="preserve" style="white-space: pre" font-family="Josefin Sans" font-size="14" font-weight="600" letter-spacing="0px"><tspan x="323" y="554.5">DESIGN BY PRINBLES</tspan></text>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_1_6709" x="50" y="53" width="48" height="48" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter1_d_1_6709" x="348" y="238.485" width="125.981" height="157.029" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter2_d_1_6709" x="275" y="155" width="130" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter3_d_1_6709" x="455" y="155" width="48" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter4_d_1_6709" x="277.707" y="88.92" width="225.869" height="82.72" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter5_d_1_6709" x="473" y="126" width="16" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter6_d_1_6709" x="426" y="126" width="16" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter7_d_1_6709" x="336" y="126" width="16" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<filter id="filter8_d_1_6709" x="508.788" y="86.12" width="18.16" height="68.88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6709"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6709" result="shape"/>
+</filter>
+<clipPath id="clip0_1_6709">
+<rect width="800" height="600" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1_6709">
+<rect width="800" height="600" fill="white"/>
+</clipPath>
+<clipPath id="clip2_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(0 400)"/>
+</clipPath>
+<clipPath id="clip3_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(200 400)"/>
+</clipPath>
+<clipPath id="clip4_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(400 400)"/>
+</clipPath>
+<clipPath id="clip5_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(600 400)"/>
+</clipPath>
+<clipPath id="clip6_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(200)"/>
+</clipPath>
+<clipPath id="clip7_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(400)"/>
+</clipPath>
+<clipPath id="clip8_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(600)"/>
+</clipPath>
+<clipPath id="clip9_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(0 200)"/>
+</clipPath>
+<clipPath id="clip10_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(200 200)"/>
+</clipPath>
+<clipPath id="clip11_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(400 200)"/>
+</clipPath>
+<clipPath id="clip12_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(600 200)"/>
+</clipPath>
+<clipPath id="clip13_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(0 200)"/>
+</clipPath>
+<clipPath id="clip14_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(200 200)"/>
+</clipPath>
+<clipPath id="clip15_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(400 200)"/>
+</clipPath>
+<clipPath id="clip16_1_6709">
+<rect width="200" height="200" fill="white" transform="translate(600 200)"/>
+</clipPath>
+<clipPath id="clip17_1_6709">
+<rect width="200" height="200" fill="white"/>
+</clipPath>
+<clipPath id="clip18_1_6709">
+<rect width="40" height="40" fill="white" transform="translate(54 55)"/>
+</clipPath>
+</defs>
+</svg>

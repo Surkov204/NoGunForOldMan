@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Background/Pattern" clip-path="url(#clip0_1_6720)">
+<g id="Light">
+<rect id="Rectangle" x="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_2" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_3" x="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_4" x="100" y="50" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_5" x="50" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_6" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_7" x="150" y="100" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+<rect id="Rectangle_8" x="100" y="150" width="50" height="50" fill="#FEFEFE" stroke="#EBEBEB"/>
+</g>
+<g id="Dark">
+<rect id="Rectangle_9" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_10" x="50" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_11" x="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_12" x="150" y="50" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_13" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_14" x="50" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_15" x="100" y="100" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+<rect id="Rectangle_16" x="150" y="150" width="50" height="50" fill="#F8F8F8" stroke="#EBEBEB"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1_6720">
+<rect width="200" height="200" fill="white"/>
+</clipPath>
+</defs>
+</svg>

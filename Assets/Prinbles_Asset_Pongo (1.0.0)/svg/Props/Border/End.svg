@@ -1,0 +1,11 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Props/Border/End">
+<g id="Rectangle">
+<mask id="path-1-inside-1_1_6814" fill="white">
+<path d="M0 0H20V10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10V0Z"/>
+</mask>
+<path d="M0 0H20V10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10V0Z" fill="#50E3C2"/>
+<path d="M0 0H20H0ZM21 10C21 16.0751 16.0751 21 10 21C3.92487 21 -1 16.0751 -1 10H1C1 14.9706 5.02944 19 10 19C14.9706 19 19 14.9706 19 10H21ZM10 21C3.92487 21 -1 16.0751 -1 10V0H1V10C1 14.9706 5.02944 19 10 19V21ZM21 0V10C21 16.0751 16.0751 21 10 21V19C14.9706 19 19 14.9706 19 10V0H21Z" fill="#3CCFAE" mask="url(#path-1-inside-1_1_6814)"/>
+</g>
+</g>
+</svg>

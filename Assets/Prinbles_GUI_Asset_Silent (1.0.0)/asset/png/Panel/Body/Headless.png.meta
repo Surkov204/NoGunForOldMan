@@ -116,12 +116,12 @@ TextureImporter:
       name: Headless_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 608
-        height: 208
+        x: 19
+        y: 16
+        width: 565
+        height: 185
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 01bc8bb7caa79d84d937cb3cfc2a83c4
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Headless_0: 5207205030991861475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
