@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 
 public class PlayerMoverment : MonoBehaviour
@@ -87,9 +86,9 @@ public class PlayerMoverment : MonoBehaviour
             jump();
         }
 
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) && body.linearVelocity.y > 0)
         {
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y / 2);
         }
 
         if (isGrounded() || isGroundDecay())
@@ -110,7 +109,7 @@ public class PlayerMoverment : MonoBehaviour
                 float dirX = (mouseWorld.x >= transform.position.x) ? 1f : -1f;
 
                 body.gravityScale = 0;
-                body.velocity = new Vector2(dirX * dashBoost, 0f);
+                body.linearVelocity = new Vector2(dirX * dashBoost, 0f);
 
                 _dashTime = dashTime;
                 isDashing = true;
@@ -162,7 +161,7 @@ public class PlayerMoverment : MonoBehaviour
             isSlamming = true;
             superGroundedDamageZone.SetActive(true);
             slamStartHeight = transform.position.y;
-            body.velocity = new Vector2(0, slamForce); 
+            body.linearVelocity = new Vector2(0, slamForce); 
         }
     
         if (isSlamming && (isGrounded() || isGroundDecay()))
@@ -206,20 +205,20 @@ public class PlayerMoverment : MonoBehaviour
         {
             movementvalue = 0;
         }
-        body.velocity = new Vector2(movementvalue * speed, body.velocity.y);
+        body.linearVelocity = new Vector2(movementvalue * speed, body.linearVelocity.y);
     }
 
     private void jump()
     {
         if (isGrounded() || isGroundDecay())
         {
-            body.velocity = new Vector2(body.velocity.x, jumpPower);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
         }
         else
         {
             if (extraJumpCounter > 0)
             {   
-                body.velocity = new Vector2(body.velocity.x, jumpPower);
+                body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
         
                 extraJumpCounter--;
             }

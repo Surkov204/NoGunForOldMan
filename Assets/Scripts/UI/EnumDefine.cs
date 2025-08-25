@@ -5,6 +5,8 @@ namespace JS
     {
         None,
         GameOverScreen,
+        PauseGameScreen,
+        GameSettingScreen
     }
     public enum ParentUI
     {

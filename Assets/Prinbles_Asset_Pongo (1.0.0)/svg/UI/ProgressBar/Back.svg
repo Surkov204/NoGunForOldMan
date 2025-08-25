@@ -1,0 +1,18 @@
+<svg width="558" height="33" viewBox="0 0 558 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="UI/ProgressBar/Back">
+<g id="Rectangle" opacity="0.9" filter="url(#filter0_d_1_6742)">
+<rect x="4" y="2" width="550" height="25" fill="#212121"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_1_6742" x="0" y="0" width="558" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6742"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6742" result="shape"/>
+</filter>
+</defs>
+</svg>

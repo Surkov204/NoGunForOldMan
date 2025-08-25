@@ -89,13 +89,36 @@ namespace JS
             }
         }
 
+        public BaseUI GetUI(UIName uiName)
+        {
+            if (spawnedUI.TryGetValue(uiName, out var ui))
+            {
+                return ui;
+            }
+            return null;
+        }
+
+        public T GetUI<T>(UIName uiName) where T : BaseUI
+        {
+            return GetUI(uiName) as T;
+        }
+
+        public bool IsUIShowing(UIName uiName)
+        {
+            if (spawnedUI.TryGetValue(uiName, out var ui))
+            {
+                return ui.gameObject.activeSelf;
+            }
+            return false;
+        }
+
         // Optional
-        // public void HideAll()
-        // {
-        //     foreach (var go in spawnedUI.Values)
-        //     {
-        //         go.gameObject.SetActive(false);
-        //     }
-        // }
+        public void HideAll()
+        {
+            foreach (var go in spawnedUI.Values)
+            {
+                go.gameObject.SetActive(false);
+            }
+        }
     }
 }

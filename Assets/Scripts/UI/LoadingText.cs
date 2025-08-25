@@ -8,7 +8,7 @@ public class LoadingText : MonoBehaviour
     public TextMeshProUGUI loadingText; 
     public float updateSpeed = 0.5f;
 
-    private string baseText = "Reloading"; 
+    [SerializeField] private string baseText = "Reloading"; 
     private int dotCount = 0; 
 
     void Start()

@@ -1,0 +1,108 @@
+<svg width="580" height="574" viewBox="0 0 580 574" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="@Props Components">
+<rect width="580" height="574" fill="white"/>
+<g id="Title">
+<rect x="50" y="50" width="156" height="24" rx="4" fill="#FED70A"/>
+<text id="Props Components" fill="#212121" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="58" y="66.8535">&#x2756; Props Components</tspan></text>
+</g>
+<g id="Frame">
+<g id="Props/Paddle">
+<path id="Rectangle" d="M50 134C50 128.477 54.4772 124 60 124C65.5228 124 70 128.477 70 134V314C70 319.523 65.5228 324 60 324C54.4772 324 50 319.523 50 314V134Z" fill="#50E3C2" stroke="#3CCFAE"/>
+</g>
+<g id="Props/Ball/A">
+<g id="Oval" filter="url(#filter0_d_1_6792)">
+<circle cx="110" cy="134" r="10" fill="#50E3C2"/>
+<circle cx="110" cy="134" r="9.5" stroke="#3CCFAE"/>
+</g>
+</g>
+<g id="Props/Ball/B">
+<circle id="Oval_2" cx="160" cy="134" r="10" fill="#212121"/>
+</g>
+<g id="Props/Spike">
+<path id="Vector" d="M240.397 124.799L231.293 144.598L240.397 164.397L220.598 155.293L200.799 164.397L209.903 144.598L200.799 124.799L220.598 133.903L240.397 124.799Z" fill="#212121"/>
+</g>
+<g id="Props/Hole">
+<g id="Oval_3" filter="url(#filter1_i_1_6792)">
+<circle cx="289" cy="142" r="18" fill="#212121" fill-opacity="0.7"/>
+</g>
+<g id="Oval_4" filter="url(#filter2_i_1_6792)">
+<circle cx="289" cy="142" r="13" fill="#212121" fill-opacity="0.9"/>
+</g>
+</g>
+<g id="Props/Block" clip-path="url(#clip0_1_6792)">
+<rect id="Rectangle_2" x="337.5" y="166.5" width="42" height="42" rx="9.5" transform="rotate(-90 337.5 166.5)" fill="#50E3C2" stroke="#3CCFAE"/>
+</g>
+<g id="Props/Border/Side">
+<g id="Rectangle_3">
+<mask id="path-11-inside-1_1_6792" fill="white">
+<path d="M410 124H430V224H410V124Z"/>
+</mask>
+<path d="M410 124H430V224H410V124Z" fill="#50E3C2"/>
+<path d="M429 124V224H431V124H429ZM411 224V124H409V224H411Z" fill="#3CCFAE" mask="url(#path-11-inside-1_1_6792)"/>
+</g>
+</g>
+<g id="Props/Border/Corner">
+<g id="Rectangle_4">
+<mask id="path-13-inside-2_1_6792" fill="white">
+<path d="M460 144V134C460 128.477 464.477 124 470 124H480V144H460Z"/>
+</mask>
+<path d="M460 144V134C460 128.477 464.477 124 470 124H480V144H460Z" fill="#50E3C2"/>
+<path d="M459 144V134C459 127.925 463.925 123 470 123V125C465.029 125 461 129.029 461 134V144H459ZM480 124V144V124ZM480 144H460H480ZM459 134C459 127.925 463.925 123 470 123H480V125H470C465.029 125 461 129.029 461 134H459Z" fill="#3CCFAE" mask="url(#path-13-inside-2_1_6792)"/>
+</g>
+<rect id="Rectangle_5" x="479" y="143" width="1" height="1" fill="#3CCFAE"/>
+</g>
+<g id="Props/Border/End">
+<g id="Rectangle_6">
+<mask id="path-16-inside-3_1_6792" fill="white">
+<path d="M510 124H530V134C530 139.523 525.523 144 520 144C514.477 144 510 139.523 510 134V124Z"/>
+</mask>
+<path d="M510 124H530V134C530 139.523 525.523 144 520 144C514.477 144 510 139.523 510 134V124Z" fill="#50E3C2"/>
+<path d="M510 124H530H510ZM531 134C531 140.075 526.075 145 520 145C513.925 145 509 140.075 509 134H511C511 138.971 515.029 143 520 143C524.971 143 529 138.971 529 134H531ZM520 145C513.925 145 509 140.075 509 134V124H511V134C511 138.971 515.029 143 520 143V145ZM531 124V134C531 140.075 526.075 145 520 145V143C524.971 143 529 138.971 529 134V124H531Z" fill="#3CCFAE" mask="url(#path-16-inside-3_1_6792)"/>
+</g>
+</g>
+</g>
+<g id="Props/Trace/Wide">
+<rect id="Rectangle_7" x="50" y="394" width="20" height="100" rx="10" transform="rotate(-90 50 394)" fill="#212121" fill-opacity="0.1"/>
+</g>
+<g id="Props/Trace/Thin">
+<rect id="Rectangle_8" x="50" y="454" width="10" height="100" transform="rotate(-90 50 454)" fill="#212121" fill-opacity="0.1"/>
+</g>
+<g id="Props/Trace/Paddle">
+<rect id="Rectangle_9" x="50" y="524" width="20" height="100" rx="10" transform="rotate(-90 50 524)" fill="#212121"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_1_6792" x="96" y="122" width="28" height="28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_6792"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_6792" result="shape"/>
+</filter>
+<filter id="filter1_i_1_6792" x="271" y="124" width="36" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_6792"/>
+</filter>
+<filter id="filter2_i_1_6792" x="276" y="129" width="26" height="30" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_6792"/>
+</filter>
+<clipPath id="clip0_1_6792">
+<rect width="43" height="43" fill="white" transform="translate(337 124)"/>
+</clipPath>
+</defs>
+</svg>

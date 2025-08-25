@@ -1321,7 +1321,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1492,6 +1492,12 @@ MonoBehaviour:
   DecayObject: {fileID: 7991785762082848318}
   screenDamage: {fileID: 0}
   shakingCamera: {fileID: 0}
+  regenDelay: 5
+  regenRate: 2
+  BoderAlertDamagedTaken: {fileID: 0}
+  fadeSpeed: 2
+  BoderAutoReGen: {fileID: 0}
+  fadeAutoGenSpeed: 0
   isPlayer: 0
 --- !u!1 &6271591230107846141
 GameObject:
@@ -2265,6 +2271,10 @@ PrefabInstance:
     - target: {fileID: 1547579140062478752, guid: b3a7c2262f55abb4a92b556e5f570965, type: 3}
       propertyPath: m_Name
       value: Decay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547579140062478752, guid: b3a7c2262f55abb4a92b556e5f570965, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
