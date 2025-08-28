@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlaySound(DeathSound);
+        AudioManager.Instance.PlaySound(DeathSound);
        
     }
     private void Update()
