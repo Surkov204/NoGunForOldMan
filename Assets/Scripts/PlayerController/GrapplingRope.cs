@@ -106,6 +106,7 @@ public class GrapplingRope : MonoBehaviour
         lineRenderer.enabled = false;
         ropeJoint.enabled = false;
         playerMoverment.isGrappling = false;
+        playerMoverment.ResetExtraJump();
     }
 
     void DrawRope()

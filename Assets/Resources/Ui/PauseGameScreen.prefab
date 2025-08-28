@@ -1038,7 +1038,7 @@ MonoBehaviour:
   settingButton: {fileID: 1817718172926977381}
   replayButton: {fileID: 2632875746304319008}
   quitButton: {fileID: 6346832231344042372}
-  gameplaySceneName: 
+  gameplaySceneName: MainMenu
   SelectLevelSceneName: SelectMap
 --- !u!1 &5884861714161047689
 GameObject:

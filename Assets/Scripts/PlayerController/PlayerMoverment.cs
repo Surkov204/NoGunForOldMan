@@ -41,6 +41,7 @@ public class PlayerMoverment : MonoBehaviour
     [Header("Ghost Trail Effect")]
     [SerializeField] private GameObject ghostPrefab;
     [SerializeField] private float ghostSpawnInterval = 0.05f;
+    [SerializeField] private Color slamGhostColor = Color.red;
     private float ghostSpawnTimer;
 
     [Header("Animation")]
@@ -50,7 +51,16 @@ public class PlayerMoverment : MonoBehaviour
     private float _dashTime;
     public float _coolDownBoosting { get; private set; }
     private bool isDashing = false;
+    private bool isUnderWater = false;
 
+    [Header("Under water")]
+    [SerializeField] private float underwaterTimeLimit = 10f;
+    [SerializeField] private float damagePerSecond = 50f;   
+    private float underwaterTimer = 0f;
+
+    [SerializeField] private float swimSpeed = 4f;
+
+    [SerializeField] private health playerHealth;
     /// Body player ///
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
@@ -68,6 +78,19 @@ public class PlayerMoverment : MonoBehaviour
 
     private void Update()
     {
+        if (isUnderWater)
+        {
+            underwaterTimer += Time.deltaTime;
+
+            if (underwaterTimer >= underwaterTimeLimit)
+            {
+                playerHealth.TakeDamage(damagePerSecond * Time.deltaTime);
+            }
+        }
+        else
+        {
+            underwaterTimer = 0f;
+        }
         if (!isGrappling) {
             if (!isDashing)
                 MoveForward();
@@ -75,6 +98,7 @@ public class PlayerMoverment : MonoBehaviour
                 JumpAndDoubleJump();
             if (!isSlamming)
                 Dashing();
+            if (!isUnderWater)
             PowerGrounded();
         }
     }
@@ -123,13 +147,13 @@ public class PlayerMoverment : MonoBehaviour
                 ghostSpawnTimer -= Time.deltaTime;
                 if (ghostSpawnTimer <= 0f)
                 {
-                    SpawnGhost();
+                    SpawnGhostDashing();
                     ghostSpawnTimer = ghostSpawnInterval;
                 }
 
                 if (_dashTime <= 0f)
                 {
-                    body.gravityScale = 5;
+                    body.gravityScale = 7;
                     isDashing = false;
                 }
             }
@@ -138,7 +162,7 @@ public class PlayerMoverment : MonoBehaviour
         }
     }
 
-    private void SpawnGhost()
+    private void SpawnGhostDashing()
     {
         if (ghostPrefab != null)
         {
@@ -150,6 +174,30 @@ public class PlayerMoverment : MonoBehaviour
             {
                 ghostSR.sprite = playerSR.sprite;
                 ghostSR.flipX = playerSR.flipX;   
+            }
+        }
+    }
+
+    private void SpawnGhostTrailVertical(Vector3 startPos, Vector3 endPos, int ghostCount = 5)
+    {
+        if (ghostPrefab == null) return;
+
+        SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < ghostCount; i++)
+        {
+            float t = i / (float)(ghostCount - 1);
+            Vector3 pos = Vector3.Lerp(startPos, endPos, t); 
+
+            GameObject ghost = Instantiate(ghostPrefab, pos, transform.rotation);
+            SpriteRenderer ghostSR = ghost.GetComponent<SpriteRenderer>();
+
+            if (ghostSR != null && playerSR != null)
+            {
+                ghostSR.sprite = playerSR.sprite;
+                ghostSR.flipX = playerSR.flipX;
+                float alpha = 1f - t;
+                ghostSR.color = slamGhostColor;
             }
         }
     }
@@ -183,6 +231,9 @@ public class PlayerMoverment : MonoBehaviour
                 Destroy(shockWave, shockwaveDuration);
             }
 
+            SpawnGhostTrailVertical(
+            new Vector3(transform.position.x, slamStartHeight, transform.position.z),transform.position,12);
+
             StartCoroutine(InActivatedSuperGroundedZone(timeToResetPowerGrounded));
             body.linearVelocity = Vector2.zero;
             Debug.Log("Power Slam Landed!");
@@ -205,7 +256,8 @@ public class PlayerMoverment : MonoBehaviour
         {
             movementvalue = 0;
         }
-        body.linearVelocity = new Vector2(movementvalue * speed, body.linearVelocity.y);
+        float currentSpeed = isUnderWater ? speed*0.4f : speed;
+        body.linearVelocity = new Vector2(movementvalue * currentSpeed, body.linearVelocity.y);
     }
 
     private void jump()
@@ -223,6 +275,32 @@ public class PlayerMoverment : MonoBehaviour
                 extraJumpCounter--;
             }
 
+        }
+    }
+
+    public void ApplyBuoyancy(float surfaceY, Rigidbody2D rb)
+    {
+        if (transform.position.y < surfaceY)
+        {
+            float displacement = surfaceY - transform.position.y;
+
+            rb.gravityScale = 0.05f;
+
+            // Lực nổi
+            float buoyancyStrength = 30f;
+            rb.AddForce(Vector2.up * displacement * buoyancyStrength);
+
+            // Lực kéo về mặt nước
+            float surfacePull = 20f;
+            float diff = surfaceY - rb.position.y;
+            rb.AddForce(Vector2.up * diff * surfacePull);
+
+            isUnderWater = true;
+        }
+        else
+        {
+            isUnderWater = false;
+            rb.gravityScale = 7f;
         }
     }
 
@@ -262,10 +340,16 @@ public class PlayerMoverment : MonoBehaviour
         return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0,
                                  Vector2.left, 0.1f, wallLayer);
     }
+
     public bool canAttack()
     {
         return movementvalue == 0 && isGrounded();
     }
-    
+
+    public void ResetExtraJump()
+    {
+        extraJumpCounter = extraJump;
+    }
+
 }
 

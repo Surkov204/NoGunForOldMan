@@ -49,6 +49,7 @@ public class UIPauseMenuScreen : BaseUI
 
     public void OnQuitClick()
     {
+        SceneLoader.Load(gameplaySceneName);
         Time.timeScale = 1f;
     }
 
