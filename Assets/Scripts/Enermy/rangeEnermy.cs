@@ -86,7 +86,7 @@ public class rangedEnemy : MonoBehaviour
             if (coolDownTimer >= attackCoolDown)
             {
                 coolDownTimer = 0;
-                AudioManager.instance.PlaySound(FireBulletSound);
+                AudioManager.Instance.PlaySound(FireBulletSound);
                 rangedAttack();
                 i++;
             }

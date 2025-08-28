@@ -1,6 +1,7 @@
-#if UNITY_EDITOR
+ï»¿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+using System.IO;
 
 [CustomEditor(typeof(SceneMusicConfig))]
 public class SceneMusicConfigEditor : Editor
@@ -14,22 +15,22 @@ public class SceneMusicConfigEditor : Editor
             config.sceneMusicList.Add(new SceneMusicConfig.SceneMusicEntry());
         }
 
+        EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
+        string[] sceneNames = new string[buildScenes.Length];
+        for (int i = 0; i < buildScenes.Length; i++)
+        {
+            sceneNames[i] = Path.GetFileNameWithoutExtension(buildScenes[i].path);
+        }
+
         for (int i = 0; i < config.sceneMusicList.Count; i++)
         {
             EditorGUILayout.BeginVertical("box");
 
-            // Dropdown danh sách scene trong Build Settings
-            string[] scenes = new string[UnityEditor.SceneManagement.EditorSceneManager.sceneCountInBuildSettings];
-            for (int j = 0; j < scenes.Length; j++)
-            {
-                scenes[j] = System.IO.Path.GetFileNameWithoutExtension(UnityEditor.SceneManagement.EditorSceneManager.GetSceneByBuildIndex(j).path);
-            }
+            int currentIndex = Mathf.Max(0, System.Array.IndexOf(sceneNames, config.sceneMusicList[i].sceneName));
+            int newIndex = EditorGUILayout.Popup("Scene", currentIndex, sceneNames);
 
-            int currentIndex = Mathf.Max(0, System.Array.IndexOf(scenes, config.sceneMusicList[i].sceneName));
-            int newIndex = EditorGUILayout.Popup("Scene", currentIndex, scenes);
-
-            if (newIndex >= 0 && newIndex < scenes.Length)
-                config.sceneMusicList[i].sceneName = scenes[newIndex];
+            if (newIndex >= 0 && newIndex < sceneNames.Length)
+                config.sceneMusicList[i].sceneName = sceneNames[newIndex];
 
             config.sceneMusicList[i].musicClip = (AudioClip)EditorGUILayout.ObjectField("Music Clip", config.sceneMusicList[i].musicClip, typeof(AudioClip), false);
 

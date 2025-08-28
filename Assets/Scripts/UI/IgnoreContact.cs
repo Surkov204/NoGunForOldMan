@@ -14,7 +14,7 @@ public class IgnoreContact : MonoBehaviour
     {
         if (collision.tag == "Ground" || collision.tag == "Surface")
         {
-            AudioManager.instance.PlaySound(soundDrop);
+            AudioManager.Instance.PlaySound(soundDrop);
             boxCollider.isTrigger = false;  
  
         }

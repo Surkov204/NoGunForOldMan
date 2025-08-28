@@ -148,7 +148,7 @@ public class GunFireAttack : MonoBehaviour
         ReloadingText.SetActive(true);
         Debug.Log(currentWeapon.weaponName);
 
-        AudioManager.instance.PlaySound(ReloadSound);
+        AudioManager.Instance.PlaySound(ReloadSound);
         yield return new WaitForSeconds(currentWeapon.reloadTime);
 
         if (currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && currentWeapon.HavingAmmo >= currentWeapon.maxAmmo)
@@ -251,7 +251,7 @@ public class GunFireAttack : MonoBehaviour
 
     private void attack()
     {
-        AudioManager.instance.PlaySound(GunSoundEffect);
+        AudioManager.Instance.PlaySound(GunSoundEffect);
         GameObject shell = Instantiate(shellPrefab, shellEjectPoint.position, shellEjectPoint.rotation);
         Rigidbody2D shellRb = shell.GetComponent<Rigidbody2D>();
         
