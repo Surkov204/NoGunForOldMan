@@ -28,10 +28,6 @@ public class UIController : MonoBehaviour
     public void ShowPauseMenu()
     {
         UiManager.Instance.ShowUI(UIName.PauseGameScreen);
-        var pauseMenu = UiManager.Instance.GetUI<UIPauseMenuScreen>(UIName.PauseGameScreen);
-        pauseMenu.Init(this);   
-        isPauseMenuShowing = true;
-        Time.timeScale = 0;
     }
 
     public void HidePauseMenu()

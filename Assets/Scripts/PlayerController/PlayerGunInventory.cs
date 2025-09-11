@@ -95,6 +95,12 @@ public class PlayerGunInventory : MonoBehaviour
     {
         if (CurrentIndex >= 0 && CurrentIndex < spawned.Count)
         {
+            GameObject currentGun = spawned[CurrentIndex];
+
+            if (currentGun != null && currentGun.name != "EmptyHand") {
+                Destroy(currentGun);
+            }
+
             spawned.RemoveAt(CurrentIndex);
             ownedIds.RemoveAt(CurrentIndex);
             CurrentIndex = Mathf.Clamp(CurrentIndex - 1, 0, spawned.Count - 1);
@@ -105,8 +111,6 @@ public class PlayerGunInventory : MonoBehaviour
                 CurrentIndex = -1;
         }
     }
-
-
 
     public bool UseGrenade()
     {

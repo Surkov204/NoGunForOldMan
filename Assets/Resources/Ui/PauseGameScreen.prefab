@@ -1028,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db7186fd50bdd642be14667a2356826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupType: 0
   listButtonControl:
   - {fileID: 4536271020139987342}
   - {fileID: 1817718172926977381}

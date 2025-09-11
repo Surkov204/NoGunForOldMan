@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using JS.Utils;
 using System.Buffers.Text;
 using System.Xml.Linq;
+using UnityEditor.Overlays;
 
 namespace JS
 {
@@ -22,6 +23,9 @@ namespace JS
         [Header("Prefab Mapping")]
         [SerializeField] private List<UIPair> prefabList;
 
+        private BaseUI activeNormalUI;
+        private readonly Stack<BaseUI> overlayStack = new();
+
         private Dictionary<UIName, string> prefabNameDict = new();
         private Dictionary<UIName, BaseUI> spawnedUI = new();
 
@@ -38,26 +42,19 @@ namespace JS
             }
         }
 
-        public void ShowUI(UIName ui)
+        private BaseUI GetOrSpawnUI(UIName ui)
         {
             if (spawnedUI.TryGetValue(ui, out var instance))
             {
                 if (instance != null)
-                {
-                    instance.gameObject.SetActive(true);
-                    instance.OnShowScreen();
-                    return;
-                }
-                else
-                {
-                    spawnedUI.Remove(ui);
-                }
+                    return instance;
+                spawnedUI.Remove(ui);
             }
 
             if (!prefabNameDict.TryGetValue(ui, out var prefabName))
             {
                 Debug.LogWarning($"[UiManager] No resource name mapped for UI: {ui}");
-                return;
+                return null;
             }
 
             string path = $"UI/{prefabName}";
@@ -65,7 +62,7 @@ namespace JS
             if (prefab == null)
             {
                 Debug.LogWarning($"[UiManager] Could not load prefab at path: {path}");
-                return;
+                return null;
             }
 
             GameObject newUI = Instantiate(prefab, uiTransform);
@@ -73,19 +70,63 @@ namespace JS
             if (baseUI == null)
             {
                 Debug.LogWarning($"[UiManager] UI prefab at '{path}' is missing BaseUI.");
-                return;
+                return null;
             }
 
             spawnedUI[ui] = baseUI;
-            baseUI.OnShowScreen();
+            return baseUI;
+        }
+
+        public void ShowUI(UIName ui)
+        {
+            BaseUI baseUI = GetOrSpawnUI(ui);
+            if (baseUI == null) return;
+            if (baseUI.PopupType == PopupType.Normal)
+            {
+                if (activeNormalUI != null)
+                {
+                    activeNormalUI.OnCloseScreen();
+                    activeNormalUI.gameObject.SetActive(false);
+                    activeNormalUI = null;
+                }
+
+                while (overlayStack.Count > 0)
+                {
+                    var overlay = overlayStack.Pop();
+                    overlay.OnCloseScreen();
+                    overlay.gameObject.SetActive(false);
+                }
+                activeNormalUI = baseUI;
+                baseUI.gameObject.SetActive(true);
+                baseUI.OnShowScreen();
+            }
+            else if (baseUI.PopupType == PopupType.Overlay) {
+                overlayStack.Push(baseUI);
+                baseUI.gameObject.SetActive(true);
+                baseUI.OnShowScreen();
+            }
         }
 
         public void HideUI(UIName uiName)
         {
-            if (spawnedUI.TryGetValue(uiName, out var ui))
+            if (!spawnedUI.TryGetValue(uiName, out var ui)) return;
+            if (ui.PopupType == PopupType.Normal)
             {
-                ui.gameObject.SetActive(false);
+                if (activeNormalUI == ui) activeNormalUI = null;
                 ui.OnCloseScreen();
+                ui.gameObject.SetActive(false);
+            }
+            else 
+            if (ui.PopupType == PopupType.Overlay) {
+                if (overlayStack.Count > 0 && overlayStack.Peek() == ui)
+                {
+                    overlayStack.Pop();
+                    ui.OnCloseScreen();
+                    ui.gameObject.SetActive(false);
+                }
+                else {
+                    Debug.Log("overlay by other UI");
+                }
             }
         }
 
@@ -111,7 +152,6 @@ namespace JS
             }
             return false;
         }
-
         // Optional
         public void HideAll()
         {

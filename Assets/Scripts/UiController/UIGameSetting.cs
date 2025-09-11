@@ -11,6 +11,6 @@ public class UIGameSetting : BaseUI
         
     }
     private void quitSettingPopup() {
-        UiManager.Instance.HideUI(UIName.GameSettingScreen);
+        GameStateManager.Instance.ChangeState(GameState.Paused);
     }
 }
