@@ -13,13 +13,6 @@ public class UIPauseMenuScreen : BaseUI
     [SerializeField] private string gameplaySceneName = "";
     [SerializeField] private string SelectLevelSceneName = "SelectMap";
 
-    private UIController controller;
-
-    public void Init(UIController ctrl)
-    {
-        controller = ctrl;
-    }
-
     protected override void Awake()
     {
         base.Awake();
@@ -32,12 +25,12 @@ public class UIPauseMenuScreen : BaseUI
 
     public void OnContinueClick()
     {
-        controller.HidePauseMenu();
+        GameStateManager.Instance.ChangeState(GameState.Playing);
     }
 
     public void OnSettingClick()
     {
-        UiManager.Instance.ShowUI(UIName.GameSettingScreen);
+        GameStateManager.Instance.ChangeState(GameState.GameSetting);
     }
 
     public void OnReplayClick()

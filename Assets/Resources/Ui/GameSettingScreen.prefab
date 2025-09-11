@@ -2540,6 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f30b51103bad4d8c30f8bc1c59187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupType: 1
   listButtonControl: []
   currentScreen: 3
   quitButton: {fileID: 6495721670159190571}

@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 namespace JS
 {
+    public enum PopupType
+    {
+        Normal,
+        Overlay
+    }
+
     public class BaseUI : MonoBehaviour
     {
+        [SerializeField] private PopupType popupType = PopupType.Normal;
+        public PopupType PopupType => popupType;
+
         [SerializeField] List<Button> listButtonControl;
 
         public UIName currentScreen;

@@ -26,7 +26,7 @@ public class ProjectTile : MonoBehaviour
     {
 
         if (hit) return;
-        float movementSpeed = speed * Time.deltaTime * direction ;
+        float movementSpeed = speed * Time.unscaledDeltaTime * direction ;
         transform.Translate(movementSpeed, 0, 0);
 
         lifetime += Time.deltaTime;

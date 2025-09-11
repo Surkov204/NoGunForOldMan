@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900690342389252288}
   - component: {fileID: 4662950481319329137}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: gunPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6079301472666297447}
   - component: {fileID: 8374786028669534611}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: gunPart (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2655902372846499133}
   - component: {fileID: 8420223593301905590}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: gunPart (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 60735278571783162}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -302,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937310590618291730}
   - component: {fileID: 5599529433079176666}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: gun (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 1556287501739734573}
   - component: {fileID: 6720015010197769447}
   - component: {fileID: 1411121931670157093}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PistolEnemy
   m_TagString: Gun
   m_Icon: {fileID: 0}

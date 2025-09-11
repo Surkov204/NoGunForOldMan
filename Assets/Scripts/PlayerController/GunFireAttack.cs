@@ -115,7 +115,6 @@ public class GunFireAttack : MonoBehaviour
 
             if (SimplePieMenu.PieMenuGlobals.IsChoosingWeapon)
                 return;
-            else Debug.Log(false);
 
             if (Input.GetMouseButton(0) && coolDownTimer > currentWeapon.fireRate && !isReloading)
             {

@@ -55,8 +55,6 @@ public class rangedEnemy : MonoBehaviour
 
         if (canSee)
         {
-            Debug.Log("player in sight");
-
             enemyPatrolling.enabled = false;
             Vector2 dir = detectedPlayer.position - enemyGun.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + gunForwardOffset;
