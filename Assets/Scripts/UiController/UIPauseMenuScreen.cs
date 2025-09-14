@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class UIPauseMenuScreen : BaseUI
+public class UIPauseMenuScreen : UIBase
 {
     [SerializeField] private Button continueButton;
     [SerializeField] private Button settingButton;
@@ -25,19 +25,20 @@ public class UIPauseMenuScreen : BaseUI
 
     public void OnContinueClick()
     {
-        GameStateManager.Instance.ChangeState(GameState.Playing);
+        UIManager.Instance.Hide(UIName.PauseGameScreen);
+        Time.timeScale = 1f;
     }
 
     public void OnSettingClick()
     {
-        GameStateManager.Instance.ChangeState(GameState.GameSetting);
+        UIManager.Instance.Show(UIName.GameSettingScreen);
     }
 
     public void OnReplayClick()
     {
-        UiManager.Instance.HideAll();
+        UIManager.Instance.Back();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
 
     public void OnQuitClick()

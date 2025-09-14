@@ -8,11 +8,12 @@ using UnityEditor.Overlays;
 
 namespace JS
 {
-    [Serializable]
-    public class UIPair
+    public enum CanvasType
     {
-        public UIName key;
-        public string resourceName;
+        FullScreen,
+        HUD,
+        Popup,
+        Loading
     }
 
     public class UiManager : ManualSingletonMono<UiManager>
@@ -20,26 +21,16 @@ namespace JS
         [Header("UI Root")]
         [SerializeField] private Transform uiTransform;
 
-        [Header("Prefab Mapping")]
-        [SerializeField] private List<UIPair> prefabList;
+        [Header("UI Config (ScriptableObject)")]
+        [SerializeField] private UIConfig uiConfig;
 
         private BaseUI activeNormalUI;
         private readonly Stack<BaseUI> overlayStack = new();
-
-        private Dictionary<UIName, string> prefabNameDict = new();
         private Dictionary<UIName, BaseUI> spawnedUI = new();
 
         protected override void Awake()
         {
             base.Awake();
-
-            foreach (var pair in prefabList)
-            {
-                if (!string.IsNullOrEmpty(pair.resourceName) && !prefabNameDict.ContainsKey(pair.key))
-                {
-                    prefabNameDict[pair.key] = pair.resourceName;
-                }
-            }
         }
 
         private BaseUI GetOrSpawnUI(UIName ui)
@@ -51,17 +42,9 @@ namespace JS
                 spawnedUI.Remove(ui);
             }
 
-            if (!prefabNameDict.TryGetValue(ui, out var prefabName))
-            {
-                Debug.LogWarning($"[UiManager] No resource name mapped for UI: {ui}");
-                return null;
-            }
-
-            string path = $"UI/{prefabName}";
-            GameObject prefab = Resources.Load<GameObject>(path);
+            GameObject prefab = uiConfig.GetPrefab(ui);
             if (prefab == null)
             {
-                Debug.LogWarning($"[UiManager] Could not load prefab at path: {path}");
                 return null;
             }
 
@@ -69,7 +52,6 @@ namespace JS
             BaseUI baseUI = newUI.GetComponent<BaseUI>();
             if (baseUI == null)
             {
-                Debug.LogWarning($"[UiManager] UI prefab at '{path}' is missing BaseUI.");
                 return null;
             }
 

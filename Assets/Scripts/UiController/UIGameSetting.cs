@@ -1,7 +1,7 @@
 using UnityEngine;
 using JS;
 using UnityEngine.UI;
-public class UIGameSetting : BaseUI
+public class UIGameSetting : UIBase
 {
     [SerializeField] private Button quitButton;
     private void Awake()
@@ -11,6 +11,6 @@ public class UIGameSetting : BaseUI
         
     }
     private void quitSettingPopup() {
-        GameStateManager.Instance.ChangeState(GameState.Paused);
+        UIManager.Instance.Hide(UIName.GameSettingScreen);
     }
 }

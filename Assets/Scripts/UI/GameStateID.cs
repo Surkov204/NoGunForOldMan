@@ -4,5 +4,6 @@ public enum GameState
     Playing,
     Paused,
     GameSetting,
-    Inventory
+    Inventory,
+    None
 }
