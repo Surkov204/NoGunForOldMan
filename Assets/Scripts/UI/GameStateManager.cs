@@ -47,9 +47,17 @@ public class GameStateManager : ManualSingletonMono<GameStateManager>
 
             if (newState == CurrentState) return;
 
-            OnExitState(CurrentState);
-            CurrentState = newState;
-            OnEnterState(CurrentState);
+            if (CurrentState != newState)
+            {
+                OnExitState(CurrentState);
+                CurrentState = newState;
+                OnEnterState(CurrentState);
+            }
+            else
+            {
+                OnExitState(CurrentState);
+                CurrentState = GameState.None;
+            }
         }
         else if (baseUI.PopupType == PopupType.Overlay)
         {

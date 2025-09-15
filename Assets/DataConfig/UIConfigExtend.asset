@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ac8d85f2765e54fa74ed51038c255a, type: 3}
+  m_Name: UIConfigExtend
+  m_EditorClassIdentifier: 
+  uiList:
+  - key: 1
+    prefab: {fileID: 8014824386269823475, guid: 591050d6adf99f045a7ac03381523b79, type: 3}
+    canvasType: 2
+  - key: 2
+    prefab: {fileID: 5683116796230883726, guid: f78d9051e460d6a4e9bb98edc9273e63, type: 3}
+    canvasType: 2
+  - key: 3
+    prefab: {fileID: 4845611414786478527, guid: b5da07e8389914247ae2e7fbfaa2de56, type: 3}
+    canvasType: 2

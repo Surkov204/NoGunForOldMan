@@ -147,7 +147,7 @@ public class health : MonoBehaviour
             if (isPlayer)
             {
                 Debug.Log("Game Over on");
-                UiManager.Instance.ShowUI(UIName.GameOverScreen);
+                UIManager.Instance.Show(UIName.GameOverScreen);
             }
             dead = true;
         }

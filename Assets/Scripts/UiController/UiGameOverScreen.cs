@@ -2,7 +2,7 @@ using JS;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UiGameOverScreen : BaseUI
+public class UiGameOverScreen : UIBase
 {
     public void Restart()
     {
