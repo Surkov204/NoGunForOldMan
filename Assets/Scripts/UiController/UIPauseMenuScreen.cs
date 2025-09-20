@@ -37,6 +37,8 @@ public class UIPauseMenuScreen : UIBase
     public void OnReplayClick()
     {
         UIManager.Instance.Back();
+        SaveManager.SkipLoad = true;
+        SaveManager.Instance.ResetOnly("Player");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
@@ -44,6 +46,7 @@ public class UIPauseMenuScreen : UIBase
     public void OnQuitClick()
     {
         SceneLoader.Load(gameplaySceneName);
+        SaveManager.Instance.Save();
         Time.timeScale = 1f;
     }
 

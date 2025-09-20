@@ -88,7 +88,6 @@ namespace JS
                 });
         }
 
-        // 🔹 Utility
         public void BlockMultiClick(float delay = 0.2f)
         {
             foreach (var btn in listButtonControl)

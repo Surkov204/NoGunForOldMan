@@ -20,6 +20,7 @@ public class ResolutionManager : MonoBehaviour
 
         isFullscreen = PlayerPrefs.GetInt(FullScreenKey, 1) == 1;
     }
+
     private void OnEnable()
     {
         ResolutionSettings.ResolutionChanged += SetResolution;
