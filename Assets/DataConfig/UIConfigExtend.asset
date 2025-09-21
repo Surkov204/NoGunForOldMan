@@ -13,12 +13,38 @@ MonoBehaviour:
   m_Name: UIConfigExtend
   m_EditorClassIdentifier: 
   uiList:
-  - key: 1
-    prefab: {fileID: 8014824386269823475, guid: 591050d6adf99f045a7ac03381523b79, type: 3}
+  - prefab: {fileID: 8014824386269823475, guid: 591050d6adf99f045a7ac03381523b79, type: 3}
+    key: 1
     canvasType: 2
-  - key: 2
-    prefab: {fileID: 5683116796230883726, guid: f78d9051e460d6a4e9bb98edc9273e63, type: 3}
+    animationType: 0
+    preload: 1
+    pauseOnShowing: 0
+    destroyAfterHide: 1
+  - prefab: {fileID: 5683116796230883726, guid: f78d9051e460d6a4e9bb98edc9273e63, type: 3}
+    key: 2
     canvasType: 2
-  - key: 3
-    prefab: {fileID: 4845611414786478527, guid: b5da07e8389914247ae2e7fbfaa2de56, type: 3}
+    animationType: 0
+    preload: 1
+    pauseOnShowing: 1
+    destroyAfterHide: 0
+  - prefab: {fileID: 4845611414786478527, guid: b5da07e8389914247ae2e7fbfaa2de56, type: 3}
+    key: 4
     canvasType: 2
+    animationType: 0
+    preload: 1
+    pauseOnShowing: 0
+    destroyAfterHide: 0
+  - prefab: {fileID: 1671837483981319362, guid: 550f5bff55da33d4db0e4299f0bec15c, type: 3}
+    key: 3
+    canvasType: 2
+    animationType: 0
+    preload: 1
+    pauseOnShowing: 1
+    destroyAfterHide: 0
+  - prefab: {fileID: 7210495588464947311, guid: a987488cf8532ca4f9f58a6199a9d24c, type: 3}
+    key: 5
+    canvasType: 2
+    animationType: 1
+    preload: 0
+    pauseOnShowing: 0
+    destroyAfterHide: 1

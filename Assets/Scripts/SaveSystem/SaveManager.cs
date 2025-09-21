@@ -9,23 +9,28 @@ public class SaveManager : ManualSingletonMono<SaveManager>
     public static bool HasInstance => Instance != null;
     public static bool SkipLoad { get; set; } = false;
     private string saveFile;
-
+    private string saveFolder;
     private void Start()
     {
         if (SkipLoad)
         {
-            Debug.Log("[SaveManager] Skipping load this time");
             SkipLoad = false; 
             return;
         }
-        Load();
+        Load(1);
     }
 
     private void Awake()
     {
         base.Awake();
-        string customFolder = Path.Combine("E:/SaveGame");
-        saveFile = Path.Combine(customFolder,"savegame.sav");
+        saveFolder = Path.Combine(Application.persistentDataPath, "SaveGame");
+        if (!Directory.Exists(saveFolder))
+            Directory.CreateDirectory(saveFolder);
+    }
+
+    private string GetSavePath(int slotId)
+    {
+        return Path.Combine(saveFolder, $"save_slot_{slotId}.sav");
     }
 
     public void Registry(ISaveable saveble)
@@ -42,7 +47,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             registry.Remove(id);
     }
 
-    public void Save()
+    public void Save(int slotId = 1)
     {
         var stateDict = new Dictionary<string, string>();
 
@@ -56,22 +61,47 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         var wrapper = new SerializationWrapper(stateDict);
         string json = JsonUtility.ToJson(wrapper, true);
 
-        string dir = Path.GetDirectoryName(saveFile);
-        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+        string filePath = GetSavePath(slotId);
 
-        File.WriteAllText(saveFile, json);
-        Debug.Log($"[SaveManager] Game saved to {saveFile}");
+        string tempFile = filePath + ".tmp";
+        File.WriteAllText(tempFile, json);
+        File.Copy(tempFile, filePath, true);
+        File.Delete(tempFile);
+
+        string metaFile = Path.Combine(saveFolder, "slots.json");
+        SerializationWrapper.SaveSlotMetaList list;
+
+        if (File.Exists(metaFile)) {
+            list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(File.ReadAllText(metaFile));
+        }
+        else
+        {
+            list = new SerializationWrapper.SaveSlotMetaList();
+        }
+
+        var existing = list.slots.Find(s => s.slotId == slotId);
+        if (existing != null) list.slots.Remove(existing);
+
+        list.slots.Add(new SerializationWrapper.SaveSlotMeta
+        {
+            slotId = slotId,
+            saveTime = System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+        });
+
+        list.slots.Sort((a, b) => a.slotId.CompareTo(b.slotId));
+        File.WriteAllText(metaFile, JsonUtility.ToJson(list, true));
     }
 
-    public void Load()
+    public void Load(int slotId = 1)
     {
-        if (!File.Exists(saveFile))
+        string filePath = GetSavePath(slotId);
+        if (!File.Exists(filePath))
         {
-            Debug.LogWarning("[SaveManager] No save file found!");
+            Debug.LogWarning($"[SaveManager] No save file found in slot {slotId}!");
             return;
         }
 
-        string json = File.ReadAllText(saveFile);
+        string json = File.ReadAllText(filePath);
         var wrapper = JsonUtility.FromJson<SerializationWrapper>(json);
         var stateDict = wrapper.ToDictionary();
 
@@ -79,13 +109,11 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         {
             if (stateDict.TryGetValue(kvp.Key, out string jsonState))
             {
-                object dummy = kvp.Value.CaptureState(); 
+                object dummy = kvp.Value.CaptureState();
                 object state = JsonUtility.FromJson(jsonState, dummy.GetType());
                 kvp.Value.RestoreState(state);
             }
         }
-
-        Debug.Log($"[SaveManager] Game loaded from {saveFile}");
     }
 
     public void ResetOnly(string id)
@@ -96,13 +124,32 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
     }
 
-    public void DeleteSave()
+    public void DeleteSave(int slotId)
     {
-        if (File.Exists(saveFile))
+        string filePath = GetSavePath(slotId);
+        if (File.Exists(filePath))
         {
-            File.Delete(saveFile);
-            Debug.Log($"[SaveManager] Save file deleted at {saveFile}");
+            File.Delete(filePath);
         }
+
+        string metaFile = Path.Combine(saveFolder, "slots.json");
+        if (File.Exists(metaFile))
+        {
+            var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(File.ReadAllText(metaFile));
+            var existing = list.slots.Find(s => s.slotId == slotId);
+            if (existing != null) list.slots.Remove(existing);
+            File.WriteAllText(metaFile, JsonUtility.ToJson(list, true));
+        }
+    }
+
+    public List<SerializationWrapper.SaveSlotMeta> GetAllSlotMeta()
+    {
+        string metaFile = Path.Combine(saveFolder, "slots.json");
+        if (!File.Exists(metaFile)) return new List<SerializationWrapper.SaveSlotMeta>();
+
+        string json = File.ReadAllText(metaFile);
+        var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(json);
+        return list.slots;
     }
 }
 
@@ -131,5 +178,16 @@ public class SerializationWrapper
         var dict = new Dictionary<string, string>();
         foreach (var e in entries) dict[e.key] = e.value;
         return dict;
+    }
+
+    [System.Serializable]
+    public class SaveSlotMeta {
+        public int slotId;
+        public string saveTime;
+    }
+
+    [System.Serializable]
+    public class SaveSlotMetaList {
+        public List<SaveSlotMeta> slots = new();
     }
 }

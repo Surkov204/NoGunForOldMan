@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
         AudioManager.Instance.PlaySound(DeathSound);
        
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (!hasExploded && isSuperGrounded == false)
         {

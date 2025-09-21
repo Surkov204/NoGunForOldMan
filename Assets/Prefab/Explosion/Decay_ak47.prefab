@@ -3726,8 +3726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSound: {fileID: 0}
-  fieldOfImpact: 0.38
-  force: 200
+  fieldOfImpact: 0.63
+  force: 300
   isSuperGrounded: 0
   layerMask:
     serializedVersion: 2

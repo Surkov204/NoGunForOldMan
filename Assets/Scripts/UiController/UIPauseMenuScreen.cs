@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIPauseMenuScreen : UIBase
 {
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button savegameButton;
     [SerializeField] private Button settingButton;
     [SerializeField] private Button replayButton;
     [SerializeField] private Button quitButton;
@@ -18,6 +19,7 @@ public class UIPauseMenuScreen : UIBase
         base.Awake();
 
         continueButton.onClick.AddListener(OnContinueClick);
+        savegameButton.onClick.AddListener(OnSaveGameClick);
         settingButton.onClick.AddListener(OnSettingClick);
         replayButton.onClick.AddListener(OnReplayClick);
         quitButton.onClick.AddListener(OnQuitClick);
@@ -27,6 +29,10 @@ public class UIPauseMenuScreen : UIBase
     {
         UIManager.Instance.Hide(UIName.PauseGameScreen);
         Time.timeScale = 1f;
+    }
+
+    public void OnSaveGameClick() {
+        UIManager.Instance.Show(UIName.GameSave);
     }
 
     public void OnSettingClick()
@@ -46,7 +52,7 @@ public class UIPauseMenuScreen : UIBase
     public void OnQuitClick()
     {
         SceneLoader.Load(gameplaySceneName);
-        SaveManager.Instance.Save();
+        SaveManager.Instance.Save(1);
         Time.timeScale = 1f;
     }
 
