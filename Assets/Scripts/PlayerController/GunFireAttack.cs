@@ -23,7 +23,6 @@ public class GunFireAttack : MonoBehaviour
     [SerializeField] private GameObject ReloadText;
     [SerializeField] private GameObject ReloadingText;
     [SerializeField] private float BulletHaving;
- //   [SerializeField] private DataWeapon[] weapons;
     [SerializeField] private float reloadTime = 1;
     [SerializeField] public float maxBullet = 12f;
     [SerializeField] private AudioClip GunSoundEffect;
@@ -31,6 +30,7 @@ public class GunFireAttack : MonoBehaviour
     [SerializeField] private string fireState;
     [SerializeField] private DataWeapon currentWeapon;
     [SerializeField] private Animator gunEffect;
+
     private float _BulletHaving;
     private float BulletCounting = 0;
     private bool isReloading = false;
@@ -82,28 +82,6 @@ public class GunFireAttack : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKey(KeyCode.Alpha1))
-        //{
-        //    weaponSelect = 0;
-        //    SwitchWeapon(weaponSelect);
-        //    _BulletHaving = currentWeapon.HavingAmmo;
-        //}
-
-        //if (Input.GetKey(KeyCode.Alpha2) && weapons.Length > 1)
-        //{
-        //    weaponSelect = 1;
-        //    SwitchWeapon(weaponSelect);
-        //    _BulletHaving = currentWeapon.HavingAmmo;
-        //}
-
-        //if (Input.GetKey(KeyCode.Alpha3) && weapons.Length > 1)
-        //{
-        //    weaponSelect = 2;
-        //    SwitchWeapon(weaponSelect);
-        //    _BulletHaving = currentWeapon.HavingAmmo;
-        //}
- 
-
         if (currentWeapon.HavingAmmo != 0 || currentWeapon.currentAmmor != 0)
         {
             if (Input.GetKeyDown(KeyCode.R) && currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && !isReloading && currentWeapon.HavingAmmo!= 0)
@@ -118,6 +96,8 @@ public class GunFireAttack : MonoBehaviour
 
             if (Input.GetMouseButton(0) && coolDownTimer > currentWeapon.fireRate && !isReloading)
             {
+                if (UIManager.Instance.IsVisible(JS.UIName.PauseGameScreen) || UIManager.Instance.IsVisible(JS.UIName.GameSave)) return;
+
                 if (currentWeapon.currentAmmor > 0)
                 {
 
@@ -177,22 +157,6 @@ public class GunFireAttack : MonoBehaviour
         isReloading = false;
     
     }
-
-    //private void SwitchWeapon(int weaponIndex)
-    //{
-    //    if (currentWeapon != null && currentWeapon.weaponGameObject.activeSelf)
-    //    {
-    //        currentWeapon.weaponGameObject.SetActive(false);
-    //        currentWeapon.imageWeaponGameObject.SetActive(false);
-    //        currentWeapon.bulletBarWeapon.SetActive(false);
-    //    } 
-    //    currentWeaponIndex = weaponIndex;
-    //    currentWeapon = weapons[currentWeaponIndex];
-    //    currentWeapon.weaponGameObject.SetActive(true);
-    //    currentWeapon.imageWeaponGameObject.SetActive(true);
-    //    currentWeapon.bulletBarWeapon.SetActive(true);
-    //    UpdateUI();
-    //}
 
     private void UpdateBulletTextUI()
     {

@@ -2462,6 +2462,7 @@ GameObject:
   - component: {fileID: 7454746026342420923}
   - component: {fileID: 1272620442321984330}
   - component: {fileID: 2911164978295016316}
+  - component: {fileID: 1690691011428119226}
   m_Layer: 5
   m_Name: GameSettingScreen
   m_TagString: Untagged
@@ -2540,10 +2541,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459f30b51103bad4d8c30f8bc1c59187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupType: 0
+  canvasType: 0
   listButtonControl: []
-  currentScreen: 3
   quitButton: {fileID: 6495721670159190571}
+--- !u!225 &1690691011428119226
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845611414786478527}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4994977617034292063
 GameObject:
   m_ObjectHideFlags: 0

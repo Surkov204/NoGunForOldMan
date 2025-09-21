@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoverment : MonoBehaviour
+public class PlayerMoverment : MonoBehaviour, ISaveable
 {
     [Header("Basic Movement Value")]
     [SerializeField] private float speed;
@@ -48,6 +48,9 @@ public class PlayerMoverment : MonoBehaviour
     [SerializeField] private Animator superGroundedShaking;
     [SerializeField] private string animationValue;
 
+    [Header("Point")]
+    [SerializeField] private Vector3 spawnPoint;
+
     private float _dashTime;
     public float _coolDownBoosting { get; private set; }
     private bool isDashing = false;
@@ -66,14 +69,56 @@ public class PlayerMoverment : MonoBehaviour
     private Rigidbody2D body;
 
     [HideInInspector] public bool isGrappling = false;
+
+    private void Start()
+    {
+        SaveManager.Instance.Registry(this);
+    }
+
     private void Awake()
     {
-        //VARIABLE
         CheckOnWall = false;
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         _coolDownBoosting = coolDownBoosting;
+    }
 
+    private void OnDestroy()
+    {
+        if (SaveManager.HasInstance)
+        SaveManager.Instance.UnRegistry(this);
+    }
+
+    [System.Serializable]
+    public class PlayerData
+    {
+        public float x, y, z;
+    }
+
+    public object CaptureState()
+    {
+        return new PlayerData
+        {
+            x = transform.position.x,
+            y = transform.position.y,
+            z = transform.position.z
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        PlayerData data = (PlayerData)state;
+        transform.position = new Vector3(data.x, data.y, data.z);
+    }
+
+    public string GetUniqueId()
+    {
+        return "Player";   
+    }
+
+    public void ResetState()
+    {
+        transform.position = spawnPoint;
     }
 
     private void Update()
@@ -350,6 +395,5 @@ public class PlayerMoverment : MonoBehaviour
     {
         extraJumpCounter = extraJump;
     }
-
 }
 

@@ -985,7 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathSound: {fileID: 8300000, guid: 3915abded3ef9d841893b5e3e246e9a4, type: 3}
   fieldOfImpact: 1.19
-  force: 119.9
+  force: 300
   isSuperGrounded: 0
   layerMask:
     serializedVersion: 2

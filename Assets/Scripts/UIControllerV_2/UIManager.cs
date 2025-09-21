@@ -2,6 +2,7 @@
 using JS;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum CanvasType
 {
@@ -23,9 +24,25 @@ public class UIManager : ManualSingletonMono<UIManager>
 
     public bool HasPopupOnTop => popupStack.Count > 0;
 
+    private void Start()
+    {
+        foreach (var pair in uiConfig.GetAll())
+        {
+            if (pair.preload && pair.prefab != null)
+            {
+                var instance = Instantiate(pair.prefab, uiRoot);
+                var baseUI = instance.GetComponent<UIBase>();
+                baseUI.SetUIName(pair.key);
+                spawned[pair.key] = baseUI;
+                baseUI.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private UIBase GetOrSpawn(UIName name, out CanvasType canvasType)
     {
         var pair = uiConfig.Get(name);
+
         if (pair == null)
         {
             Debug.LogWarning($"[UiManager] No config found for {name}");
@@ -48,16 +65,16 @@ public class UIManager : ManualSingletonMono<UIManager>
     {
         var ui = GetOrSpawn(name, out var canvasType);
         if (ui == null) return;
-
+        var pair = uiConfig.Get(name);
         switch (canvasType)
         {
             case CanvasType.FullScreen:
-                if (currentFullScreen != null) currentFullScreen.OnHide();
+                if (currentFullScreen != null) currentFullScreen.OnHide(pair.animationType);
                 currentFullScreen = ui;
                 break;
 
             case CanvasType.HUD:
-                if (currentHUD != null) currentHUD.OnHide();
+                if (currentHUD != null) currentHUD.OnHide(pair.animationType);
                 currentHUD = ui;
                 break;
 
@@ -69,7 +86,7 @@ public class UIManager : ManualSingletonMono<UIManager>
                 break;
         }
 
-        ui.OnShow();
+        ui.OnShow(pair.animationType);
         UpdateTimeScale();
     }
 
@@ -96,17 +113,87 @@ public class UIManager : ManualSingletonMono<UIManager>
                 break;
         }
 
-        ui.OnHide();
+        ui.OnHide(pair.animationType);
+
+        if (pair.destroyAfterHide)
+        {
+            DOVirtual.DelayedCall(0.35f, () =>
+            {
+                if (ui != null)
+                {
+                    Destroy(ui.gameObject);
+                    spawned.Remove(name);
+                }
+            }, ignoreTimeScale: true);
+        }
+        UpdateTimeScale();
+    }
+
+    public void HideAll()
+    {
+        if (currentFullScreen != null)
+        {
+            var pair = uiConfig.Get(currentFullScreen.UIName);
+            var type = pair != null ? pair.animationType : UIAnimationType.FadeScale;
+            currentFullScreen.OnHide(type);
+
+            if (pair != null && pair.destroyAfterHide)
+            {
+                Destroy(currentFullScreen.gameObject);
+                spawned.Remove(currentFullScreen.UIName);
+            }
+
+            currentFullScreen = null;
+        }
+
+        if (currentHUD != null)
+        {
+            var pair = uiConfig.Get(currentHUD.UIName);
+            var type = pair != null ? pair.animationType : UIAnimationType.FadeScale;
+            currentHUD.OnHide(type);
+
+            if (pair != null && pair.destroyAfterHide)
+            {
+                Destroy(currentHUD.gameObject);
+                spawned.Remove(currentHUD.UIName);
+            }
+
+            currentHUD = null;
+        }
+
+        while (popupStack.Count > 0)
+        {
+            var popup = popupStack.Pop();
+            var pair = uiConfig.Get(popup.UIName);
+            var type = pair != null ? pair.animationType : UIAnimationType.FadeScale;
+            popup.OnHide(type);
+
+            if (pair != null && pair.destroyAfterHide)
+            {
+                Destroy(popup.gameObject);
+                spawned.Remove(popup.UIName);
+            }
+        }
+
         UpdateTimeScale();
     }
 
     private void UpdateTimeScale()
     {
-        if (spawned.TryGetValue(UIName.PauseGameScreen, out var pauseUI)
-            && pauseUI.IsVisible)
-            Time.timeScale = 0f;
-        else
-            Time.timeScale = 1f;
+        bool shouldPause = false;
+
+        foreach (var kvp in spawned)
+        {
+            var pair = uiConfig.Get(kvp.Key);
+            if (pair != null && pair.pauseOnShowing && kvp.Value.IsVisible)
+            {
+                shouldPause = true;
+                break;
+            }
+        }
+
+        Time.timeScale = shouldPause ? 0f : 1f;
+
     }
 
     public bool IsVisible(UIName name)
@@ -123,6 +210,8 @@ public class UIManager : ManualSingletonMono<UIManager>
         if (popupStack.Count > 0)
         {
             var top = popupStack.Pop();
+            var pair = uiConfig.Get(top.UIName); 
+            var type = pair != null ? pair.animationType : UIAnimationType.FadeScale;
             top.OnHide();
             UpdateTimeScale();
         }
