@@ -13,9 +13,8 @@ namespace SimplePieMenu
             get { return mouseHoverClips; }
         }
 
-
         [SerializeField] List<AudioClip> mouseClickClips;
-
+  
         public List<AudioClip> MouseClickClips
         {
             get { return mouseClickClips; }
@@ -24,10 +23,17 @@ namespace SimplePieMenu
         public void PlayAudio(AudioSource audioSource)
         {
             audioSource.Play();
+            audioSource.volume = AudioManager.Instance.GetSFXVolume();
         }
 
         public void SetClip(AudioSource audioSource, AudioClip audioClip)
         {
+            if (audioSource == null)
+            {
+                Debug.LogWarning("[PieMenuAudioSettingsHandler] AudioSource is null, cannot set clip.");
+                return;
+            }
+
             audioSource.clip = audioClip;
         }
 
@@ -40,7 +46,14 @@ namespace SimplePieMenu
 
             foreach (var menuItem in pieMenu.GetMenuItems())
             {
-                audioSource = menuItem.Value.HoverAudioSource;
+                audioSource = menuItem.Value?.HoverAudioSource;
+
+                if (audioSource == null)
+                {
+                    Debug.LogWarning($"[PieMenuAudioSettingsHandler] MenuItem '{menuItem.Key}' has no HoverAudioSource.");
+                    continue;
+                }
+
                 SetClip(audioSource, hoverClip);
                 ChangeVolume(audioSource, volume);
             }
@@ -67,12 +80,16 @@ namespace SimplePieMenu
             else
                 clip = audioClips[0];
 
-
             return clip;
         }
 
         public void ChangeVolume(AudioSource audioSource, float volume)
         {
+            if (audioSource == null)
+            {
+                Debug.LogWarning("[PieMenuAudioSettingsHandler] ChangeVolume called with null AudioSource.");
+                return;
+            }
             audioSource.volume = volume;
         }
     }

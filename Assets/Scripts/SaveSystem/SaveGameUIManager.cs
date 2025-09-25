@@ -1,6 +1,5 @@
 ﻿using JS.Utils;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine.UI;
 using UnityEngine;
 using static SerializationWrapper;
@@ -8,8 +7,8 @@ using JS;
 
 public class SaveGameUIManager : UIBase
 {
-    [SerializeField] private Transform contentParent;   
-    [SerializeField] private GameObject saveSlotPrefab; 
+    [SerializeField] private Transform contentParent;
+    [SerializeField] private GameObject saveSlotPrefab;
     [SerializeField] private Button addSlotButton;
     [SerializeField] private Button deleteAllButton;
 
@@ -18,33 +17,36 @@ public class SaveGameUIManager : UIBase
     private void Start()
     {
         addSlotButton.onClick.AddListener(AddNewSlot);
-        deleteAllButton.onClick.AddListener(DeleteAllSlots); ;
+        deleteAllButton.onClick.AddListener(DeleteAllSlots);
         LoadSlotMetadata();
     }
 
     private void LoadSlotMetadata()
     {
-        string metaFile = Path.Combine(Application.persistentDataPath, "SaveGame", "slots.json");
-        if (!File.Exists(metaFile)) return;
+        // Xoá sạch UI trước khi load lại
+        foreach (Transform child in contentParent)
+        {
+            Destroy(child.gameObject);
+        }
 
-        string json = File.ReadAllText(metaFile);
-        var wrapper = JsonUtility.FromJson<SaveSlotMetaList>(json);
+        var slots = SaveManager.Instance.GetAllSlotMeta();
+        int maxId = 0;
 
-        foreach (var meta in wrapper.slots)
+        foreach (var meta in slots)
         {
             AddSlotUI(meta.slotId, meta.saveTime);
+            if (meta.slotId > maxId) maxId = meta.slotId;
         }
+        currentSlotCount = maxId;
     }
 
     private void AddNewSlot()
     {
         currentSlotCount++;
         SaveManager.Instance.Save(currentSlotCount);
-        foreach (Transform child in contentParent)
-        {
-            Destroy(child.gameObject);
-        }
-        LoadSlotMetadata();
+
+        // Chỉ add thêm 1 slot mới vào UI
+        AddSlotUI(currentSlotCount, System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
     }
 
     private void AddSlotUI(int slotId, string saveTime)
@@ -56,10 +58,10 @@ public class SaveGameUIManager : UIBase
 
     private void DeleteAllSlots()
     {
-        string saveFolder = Path.Combine(Application.persistentDataPath, "SaveGame");
-        if (Directory.Exists(saveFolder))
+        var slots = SaveManager.Instance.GetAllSlotMeta();
+        foreach (var meta in slots)
         {
-            Directory.Delete(saveFolder, true);
+            SaveManager.Instance.DeleteSave(meta.slotId);
         }
 
         currentSlotCount = 0;

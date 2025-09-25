@@ -192,7 +192,10 @@ public class UIManager : ManualSingletonMono<UIManager>
             }
         }
 
-        Time.timeScale = shouldPause ? 0f : 1f;
+        if (shouldPause)
+            PauseManager.Pause();
+        else
+            PauseManager.Resume();
 
     }
 

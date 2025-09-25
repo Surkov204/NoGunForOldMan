@@ -3,6 +3,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+public static class PauseManager
+{
+    public static bool IsPaused { get; private set; }
+
+    public static void Pause()
+    {
+        IsPaused = true;
+        Time.timeScale = 0f;
+    }
+
+    public static void Resume()
+    {
+        IsPaused = false;
+        Time.timeScale = 1f;
+    }
+}
+
 public class UIPauseMenuScreen : UIBase
 {
     [SerializeField] private Button continueButton;

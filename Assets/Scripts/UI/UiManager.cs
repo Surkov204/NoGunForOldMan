@@ -124,6 +124,16 @@ namespace JS
             return GetUI(uiName) as T;
         }
 
+        public bool IsVisible<T>() where T : UIBase
+        {
+            foreach (var ui in spawnedUI.Values)
+            {
+                if (ui is T typedUi && typedUi.IsVisible)
+                    return true;
+            }
+            return false;
+        }
+
         public bool IsUIShowing(UIName uiName)
         {
             if (spawnedUI.TryGetValue(uiName, out var ui))
@@ -132,6 +142,7 @@ namespace JS
             }
             return false;
         }
+
         // Optional
         public void HideAll()
         {

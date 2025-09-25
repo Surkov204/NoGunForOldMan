@@ -135,5 +135,15 @@ namespace SimplePieMenu
         {
             MouseClick = audioClip;
         }
+
+        public AudioClip GetMouseHoverClip()
+        {
+            return MouseHover;
+        }
+
+        public AudioClip GetMouseClickClip()
+        {
+            return MouseClick;
+        }
     }
 }

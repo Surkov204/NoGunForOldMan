@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JS;
+using UnityEngine;
 using UnityEngine.UI;
 public class SlowMotionController : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class SlowMotionController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused)
+            return; 
+
         if (Input.GetKeyDown(KeyCode.V))
         {
             if (!isSlowMotion && currentSlowTime >= maxSlowMotionTime)
@@ -31,7 +35,7 @@ public class SlowMotionController : MonoBehaviour
             }
             else if (isSlowMotion)
             {
-                DeactivateSlowMotion(); 
+                DeactivateSlowMotion();
             }
         }
 
@@ -53,8 +57,15 @@ public class SlowMotionController : MonoBehaviour
                     currentSlowTime = maxSlowMotionTime;
             }
         }
+
         if (slowMotionBar != null)
             slowMotionBar.fillAmount = currentSlowTime / maxSlowMotionTime;
+
+        if (isSlowMotion)
+        {
+            Time.timeScale = slowFactor;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
     }
 
     private void ActivateSlowMotion()

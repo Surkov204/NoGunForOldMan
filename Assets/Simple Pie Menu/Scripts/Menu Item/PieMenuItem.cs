@@ -99,6 +99,10 @@ namespace SimplePieMenu
             mouseOverButton = true;
 
             audioHandler.PlayAudio(HoverAudioSource);
+            Debug.Log(
+            $"[PieMenuItem] HoverAudioSource found on '{HoverAudioSource.gameObject.name}', volume={HoverAudioSource.volume}",
+            HoverAudioSource.gameObject
+            );
             animator.SetTrigger(mouseEnterTrigger);
 
             DisplayHeader();

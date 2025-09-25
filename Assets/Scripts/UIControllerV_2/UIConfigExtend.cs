@@ -25,8 +25,6 @@ public class UIConfigExtend : ScriptableObject
         public bool preload = false;
         public bool pauseOnShowing = false;
         public bool destroyAfterHide = false;
-
-
     }
 
     [SerializeField] private List<UIPairExtend> uiList = new();

@@ -20,7 +20,6 @@ public class VolumeController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Sync slider theo giá trị hiện tại trong AudioManager
         musicSlider.value = AudioManager.Instance.GetMusicVolume();
         sfxSlider.value = AudioManager.Instance.GetSFXVolume();
 
@@ -46,6 +45,8 @@ public class VolumeController : MonoBehaviour
         PlayerPrefs.SetFloat(SfxVolumeKey, value);
         PlayerPrefs.Save();
         AudioManager.Instance.SetSFXVolume(value);
+
+        OnSfxVolumechanged?.Invoke(value);
     }
 
 }
