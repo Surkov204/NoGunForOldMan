@@ -1,15 +1,22 @@
 ﻿using JS.Utils;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 public class SaveManager : ManualSingletonMono<SaveManager>
 {
+    [Header("Security")]
+    [SerializeField] private bool encryptSaves = true;
+
     private readonly Dictionary<string, ISaveable> registry = new();
+
     public static bool HasInstance => Instance != null;
     public static bool SkipLoad { get; set; } = false;
-    private string saveFile;
+
     private string saveFolder;
+
     private void Start()
     {
         if (SkipLoad)
@@ -28,9 +35,15 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             Directory.CreateDirectory(saveFolder);
     }
 
-    private string GetSavePath(int slotId)
+    private string GetSavePath(int slotId, bool encryptedPreferred)
     {
+        string name = encryptedPreferred ? $"save_slot_{slotId}.savx" : $"save_slot_{slotId}.sav";
         return Path.Combine(saveFolder, $"save_slot_{slotId}.sav");
+    }
+
+    private string GetMetaPath(bool encryptedPreferred)
+    {
+        return Path.Combine(saveFolder, encryptedPreferred ? "slots.meta" : "slots.json");
     }
 
     public void Registry(ISaveable saveble)
@@ -61,47 +74,134 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         var wrapper = new SerializationWrapper(stateDict);
         string json = JsonUtility.ToJson(wrapper, true);
 
-        string filePath = GetSavePath(slotId);
+        string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
 
         string tempFile = filePath + ".tmp";
-        File.WriteAllText(tempFile, json);
-        File.Copy(tempFile, filePath, true);
-        File.Delete(tempFile);
 
-        string metaFile = Path.Combine(saveFolder, "slots.json");
-        SerializationWrapper.SaveSlotMetaList list;
-
-        if (File.Exists(metaFile)) {
-            list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(File.ReadAllText(metaFile));
-        }
-        else
+        try
         {
+            if (encryptSaves)
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                byte[] payload = SaveCrypto.EncryptString(json, key);
+                File.WriteAllBytes(tempFile, payload);
+            }
+            else
+            {
+                File.WriteAllText(tempFile, json, Encoding.UTF8);
+            }
+
+            File.Copy(tempFile, filePath, true);
+            File.Delete(tempFile);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Save failed: {ex}");
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+            return;
+        }
+
+        // ---- Update meta ----
+        string metaPath = GetMetaPath(encryptSaves);
+        SerializationWrapper.SaveSlotMetaList list = new();
+
+        try
+        {
+            if (File.Exists(metaPath))
+            {
+                if (encryptSaves && SaveCrypto.LooksEncrypted(File.ReadAllBytes(metaPath)))
+                {
+                    byte[] key = SaveSecret.GetOrCreateKey();
+                    string metaJson = SaveCrypto.DecryptToString(File.ReadAllBytes(metaPath), key);
+                    list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+                }
+                else
+                {
+                    string metaJson = File.ReadAllText(metaPath, Encoding.UTF8);
+                    list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning($"[SaveManager] Meta read failed, recreating. {ex.Message}");
             list = new SerializationWrapper.SaveSlotMetaList();
         }
 
         var existing = list.slots.Find(s => s.slotId == slotId);
         if (existing != null) list.slots.Remove(existing);
-
         list.slots.Add(new SerializationWrapper.SaveSlotMeta
         {
             slotId = slotId,
             saveTime = System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
         });
-
         list.slots.Sort((a, b) => a.slotId.CompareTo(b.slotId));
-        File.WriteAllText(metaFile, JsonUtility.ToJson(list, true));
+
+        try
+        {
+            string metaJson = JsonUtility.ToJson(list, true);
+            if (encryptSaves)
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                byte[] payload = SaveCrypto.EncryptString(metaJson, key);
+                File.WriteAllBytes(metaPath, payload);
+            }
+            else
+            {
+                File.WriteAllText(metaPath, metaJson, Encoding.UTF8);
+            }
+
+            string oldMeta = GetMetaPath(false);
+            if (encryptSaves && File.Exists(oldMeta)) File.Delete(oldMeta);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Meta write failed: {ex}");
+        }
+        ;
     }
 
     public void Load(int slotId = 1)
     {
-        string filePath = GetSavePath(slotId);
-        if (!File.Exists(filePath))
+        // Ưu tiên đọc .savx (encrypted). Nếu không có, rơi về .sav (plaintext, backward-compat)
+        string encPath = GetSavePath(slotId, encryptedPreferred: true);
+        string plainPath = GetSavePath(slotId, encryptedPreferred: false);
+
+        string json = null;
+
+        try
         {
-            Debug.LogWarning($"[SaveManager] No save file found in slot {slotId}!");
+            if (File.Exists(encPath))
+            {
+                byte[] payload = File.ReadAllBytes(encPath);
+
+                if (SaveCrypto.LooksEncrypted(payload))
+                {
+                    byte[] key = SaveSecret.GetOrCreateKey();
+                    json = SaveCrypto.DecryptToString(payload, key);
+                }
+                else
+                {
+                    json = File.ReadAllText(encPath, Encoding.UTF8);
+                    Debug.LogWarning($"[SaveManager] Slot {slotId} file không mã hoá, load như JSON thường.");
+                }
+            }
+            else if (File.Exists(plainPath))
+            {
+                json = File.ReadAllText(plainPath, Encoding.UTF8);
+            }
+            else
+            {
+                Debug.LogWarning($"[SaveManager] No save file found in slot {slotId}!");
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Load failed (slot {slotId}): {ex}");
             return;
         }
 
-        string json = File.ReadAllText(filePath);
         var wrapper = JsonUtility.FromJson<SerializationWrapper>(json);
         var stateDict = wrapper.ToDictionary();
 
@@ -116,6 +216,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
     }
 
+
     public void ResetOnly(string id)
     {
         if (registry.TryGetValue(id, out ISaveable obj))
@@ -126,30 +227,82 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     public void DeleteSave(int slotId)
     {
-        string filePath = GetSavePath(slotId);
-        if (File.Exists(filePath))
-        {
-            File.Delete(filePath);
-        }
+        string pathEnc = GetSavePath(slotId, encryptedPreferred: true);
+        string pathPlain = GetSavePath(slotId, encryptedPreferred: false);
 
-        string metaFile = Path.Combine(saveFolder, "slots.json");
-        if (File.Exists(metaFile))
+        if (File.Exists(pathEnc)) File.Delete(pathEnc);
+        if (File.Exists(pathPlain)) File.Delete(pathPlain);
+
+        // update meta (encrypted hoặc plaintext – đọc linh hoạt)
+        string metaEnc = GetMetaPath(true);
+        string metaPlain = GetMetaPath(false);
+
+        SerializationWrapper.SaveSlotMetaList list = new();
+        bool metaEncrypted = false;
+
+        try
         {
-            var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(File.ReadAllText(metaFile));
+            if (File.Exists(metaEnc))
+            {
+                metaEncrypted = true;
+                byte[] key = SaveSecret.GetOrCreateKey();
+                string metaJson = SaveCrypto.DecryptToString(File.ReadAllBytes(metaEnc), key);
+                list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+            }
+            else if (File.Exists(metaPlain))
+            {
+                string metaJson = File.ReadAllText(metaPlain, Encoding.UTF8);
+                list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+            }
+
             var existing = list.slots.Find(s => s.slotId == slotId);
             if (existing != null) list.slots.Remove(existing);
-            File.WriteAllText(metaFile, JsonUtility.ToJson(list, true));
+
+            string newJson = JsonUtility.ToJson(list, true);
+            if (metaEncrypted)
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                byte[] payload = SaveCrypto.EncryptString(newJson, key);
+                File.WriteAllBytes(metaEnc, payload);
+            }
+            else
+            {
+                File.WriteAllText(metaPlain, newJson, Encoding.UTF8);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] DeleteSave meta update failed: {ex}");
         }
     }
 
     public List<SerializationWrapper.SaveSlotMeta> GetAllSlotMeta()
     {
-        string metaFile = Path.Combine(saveFolder, "slots.json");
-        if (!File.Exists(metaFile)) return new List<SerializationWrapper.SaveSlotMeta>();
+        string metaEnc = GetMetaPath(true);
+        string metaPlain = GetMetaPath(false);
 
-        string json = File.ReadAllText(metaFile);
-        var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(json);
-        return list.slots;
+        try
+        {
+            if (File.Exists(metaEnc))
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                string metaJson = SaveCrypto.DecryptToString(File.ReadAllBytes(metaEnc), key);
+                var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+                return list.slots;
+            }
+            if (File.Exists(metaPlain))
+            {
+                string metaJson = File.ReadAllText(metaPlain, Encoding.UTF8);
+                var list = JsonUtility.FromJson<SerializationWrapper.SaveSlotMetaList>(metaJson);
+                return list.slots;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] GetAllSlotMeta failed: {ex}");
+        }
+
+        return new List<SerializationWrapper.SaveSlotMeta>();
     }
 }
 
@@ -157,11 +310,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 public class SerializationWrapper
 {
     [System.Serializable]
-    public class Entry
-    {
-        public string key;
-        public string value;
-    }
+    public class Entry { public string key; public string value; }
 
     public List<Entry> entries = new();
 
@@ -181,13 +330,8 @@ public class SerializationWrapper
     }
 
     [System.Serializable]
-    public class SaveSlotMeta {
-        public int slotId;
-        public string saveTime;
-    }
+    public class SaveSlotMeta { public int slotId; public string saveTime; }
 
     [System.Serializable]
-    public class SaveSlotMetaList {
-        public List<SaveSlotMeta> slots = new();
-    }
+    public class SaveSlotMetaList { public List<SaveSlotMeta> slots = new(); }
 }

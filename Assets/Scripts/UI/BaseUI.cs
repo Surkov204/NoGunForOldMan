@@ -16,6 +16,7 @@ namespace JS
         [SerializeField] private PopupType popupType = PopupType.Normal;
         public PopupType PopupType => popupType;
 
+
         [SerializeField] List<Button> listButtonControl;
 
         public UIName currentScreen;

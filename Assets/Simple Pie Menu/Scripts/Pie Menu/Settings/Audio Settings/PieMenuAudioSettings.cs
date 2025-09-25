@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace SimplePieMenu
@@ -22,7 +22,6 @@ namespace SimplePieMenu
         public PieMenu PieMenu { get; private set; }
         public PieMenuAudioSettingsHandler AudioHandler { get; private set; }
 
-
         private void OnEnable()
         {
             volume = 1f;
@@ -33,6 +32,17 @@ namespace SimplePieMenu
         private void OnDisable()
         {
             PieMenu.OnComponentsInitialized -= InitializeAudioSettings;
+        }
+
+        public void ApplyVolume()
+        {
+            if (AudioHandler == null || PieMenu == null) return;
+            if (AudioManager.Instance != null)
+            {
+                float globalVolume = AudioManager.Instance.GetSFXVolume();
+                Debug.Log("value of sound " + globalVolume);
+                SelectRightSoundsInTheLists(globalVolume);
+            }
         }
 
         public void CreateHoverDropdownList(int list)
@@ -53,6 +63,8 @@ namespace SimplePieMenu
             InitializeSoundList(AudioHandler.MouseClickClips, MouseClickClipNames);
 
             SelectRightSoundsInTheLists();
+
+            ApplyVolume();
         }
 
         private void InitializeSoundList(List<AudioClip> sourceList, List<string> targetList)
@@ -63,15 +75,27 @@ namespace SimplePieMenu
             }
         }
 
-        private void SelectRightSoundsInTheLists()
+        private void SelectRightSoundsInTheLists(float value = 0)
         {
-            AudioClip hoverClip = PieMenu.GetTemplate().GetComponent<AudioSource>().clip;
-            PieMenu.PieMenuInfo.SetMouseHoverClip(hoverClip);
-            HoverClipsDropdownList = AudioHandler.MouseHoverClips.IndexOf(hoverClip);
+            var template = PieMenu.GetTemplate();
+            var templateSource = template != null ? template.GetComponent<AudioSource>() : null;
+            if (templateSource != null)
+            {
+                AudioClip hoverClip = templateSource.clip;
+                Debug.Log($"[PieMenuAudioSettings] TemplateSource Volume={templateSource.volume}," +
+                $" Object={templateSource.gameObject.name}", templateSource.gameObject);
 
-            AudioClip clickClip = PieMenu.PieMenuElements.MouseClickAudioSource.clip;
-            PieMenu.PieMenuInfo.SetMouseClickClip(clickClip);
-            ClickClipsDropdownList = AudioHandler.MouseClickClips.IndexOf(clickClip);
+                PieMenu.PieMenuInfo.SetMouseHoverClip(hoverClip);
+                HoverClipsDropdownList = AudioHandler.MouseHoverClips.IndexOf(hoverClip);
+            }
+
+            var clickSource = PieMenu.PieMenuElements != null ? PieMenu.PieMenuElements.MouseClickAudioSource : null;
+            if (clickSource != null)
+            {
+                AudioClip clickClip = clickSource.clip;
+                PieMenu.PieMenuInfo.SetMouseClickClip(clickClip);
+                ClickClipsDropdownList = AudioHandler.MouseClickClips.IndexOf(clickClip);
+            }
         }
     }
 }
