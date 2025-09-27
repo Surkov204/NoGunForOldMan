@@ -19,3 +19,5 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: 847d886c7f38b514f89c892e4fe7e1d7, type: 3}
   - sceneName: Loading
     musicClip: {fileID: 0}
+  - sceneName: MainGame
+    musicClip: {fileID: 8300000, guid: 847d886c7f38b514f89c892e4fe7e1d7, type: 3}

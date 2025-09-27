@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : ManualSingletonMono<SaveManager>
 {
@@ -40,13 +41,18 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     private string GetSavePath(int slotId, bool encryptedPreferred)
     {
-        string name = encryptedPreferred ? $"save_slot_{slotId}.savx" : $"save_slot_{slotId}.sav";
+        string scene = SceneManager.GetActiveScene().name;
+        string name = encryptedPreferred
+            ? $"{scene}_slot_{slotId}.savx"
+            : $"{scene}_slot_{slotId}.sav";
         return Path.Combine(saveFolder, name);
     }
 
     private string GetMetaPath(bool encryptedPreferred)
     {
-        return Path.Combine(saveFolder, encryptedPreferred ? "slots.meta" : "slots.json");
+            string scene = SceneManager.GetActiveScene().name;
+            return Path.Combine(saveFolder,
+                encryptedPreferred ? $"{scene}_slots.meta" : $"{scene}_slots.json");
     }
 
     public void Registry(ISaveable saveble)
@@ -74,8 +80,8 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             stateDict[kvp.Key] = jsonState;
         }
 
-        // GHI VERSION vào wrapper
         var wrapper = new SerializationWrapper(stateDict, SAVE_SCHEMA_VERSION, GAME_VERSION);
+        wrapper.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         string json = JsonUtility.ToJson(wrapper, true);
 
         string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
@@ -220,6 +226,14 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
 
         var wrapper = JsonUtility.FromJson<SerializationWrapper>(json);
+        if (!string.IsNullOrEmpty(wrapper.sceneName) &&
+            wrapper.sceneName != UnityEngine.SceneManagement.SceneManager.GetActiveScene().name)
+            {
+                Debug.Log($"[SaveManager]{wrapper.sceneName}");
+                UnityEngine.SceneManagement.SceneManager.LoadScene(wrapper.sceneName);
+                return;
+            }
+
         if (wrapper == null)
         {
             Debug.LogError("[SaveManager] Parsed JSON is null. The file might be corrupted or not a valid SerializationWrapper.");
@@ -358,7 +372,8 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 public class SerializationWrapper
 {
     public int version;      
-    public string gameVersion;    
+    public string gameVersion;
+    public string sceneName;
 
     [System.Serializable]
     public class Entry { public string key; public string value; }
