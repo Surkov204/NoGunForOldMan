@@ -23,7 +23,6 @@ public class SaveGameUIManager : UIBase
 
     private void LoadSlotMetadata()
     {
-        // Xoá sạch UI trước khi load lại
         foreach (Transform child in contentParent)
         {
             Destroy(child.gameObject);
@@ -44,8 +43,6 @@ public class SaveGameUIManager : UIBase
     {
         currentSlotCount++;
         SaveManager.Instance.Save(currentSlotCount);
-
-        // Chỉ add thêm 1 slot mới vào UI
         AddSlotUI(currentSlotCount, System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
     }
 
