@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface ISaveable
@@ -6,4 +7,6 @@ public interface ISaveable
     void RestoreState(object state);   
     string GetUniqueId();
     void ResetState();
+
+    Type GetSaveType();
 }
