@@ -78,7 +78,6 @@ public class PlayerGunInventory : MonoBehaviour
         for (int i = 0; i < spawned.Count; i++)
         {
             spawned[i].SetActive(i == index);
-        //    Debug.Log(ownedIds[i]);
         }    
         
         CurrentIndex = index;

@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class SaveManager : ManualSingletonMono<SaveManager>
 {
+    private const int SAVE_SCHEMA_VERSION = 1;                 
+    private static string GAME_VERSION => Application.version; 
+
     [Header("Security")]
     [SerializeField] private bool encryptSaves = true;
 
@@ -21,7 +24,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
     {
         if (SkipLoad)
         {
-            SkipLoad = false; 
+            SkipLoad = false;
             return;
         }
         Load(1);
@@ -38,7 +41,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
     private string GetSavePath(int slotId, bool encryptedPreferred)
     {
         string name = encryptedPreferred ? $"save_slot_{slotId}.savx" : $"save_slot_{slotId}.sav";
-        return Path.Combine(saveFolder, $"save_slot_{slotId}.sav");
+        return Path.Combine(saveFolder, name);
     }
 
     private string GetMetaPath(bool encryptedPreferred)
@@ -71,11 +74,11 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             stateDict[kvp.Key] = jsonState;
         }
 
-        var wrapper = new SerializationWrapper(stateDict);
+        // GHI VERSION vào wrapper
+        var wrapper = new SerializationWrapper(stateDict, SAVE_SCHEMA_VERSION, GAME_VERSION);
         string json = JsonUtility.ToJson(wrapper, true);
 
         string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
-
         string tempFile = filePath + ".tmp";
 
         try
@@ -101,7 +104,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             return;
         }
 
-        // ---- Update meta ----
+        // ---- META ----
         string metaPath = GetMetaPath(encryptSaves);
         SerializationWrapper.SaveSlotMetaList list = new();
 
@@ -133,7 +136,9 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         list.slots.Add(new SerializationWrapper.SaveSlotMeta
         {
             slotId = slotId,
-            saveTime = System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+            saveTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+            version = SAVE_SCHEMA_VERSION,
+            gameVersion = GAME_VERSION
         });
         list.slots.Sort((a, b) => a.slotId.CompareTo(b.slotId));
 
@@ -158,14 +163,12 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         {
             Debug.LogError($"[SaveManager] Meta write failed: {ex}");
         }
-        ;
     }
 
     public void Load(int slotId = 1)
     {
-        // Ưu tiên đọc .savx (encrypted). Nếu không có, rơi về .sav (plaintext, backward-compat)
-        string encPath = GetSavePath(slotId, encryptedPreferred: true);
-        string plainPath = GetSavePath(slotId, encryptedPreferred: false);
+        string encPath = GetSavePath(slotId, true);   // .savx => encrypted
+        string plainPath = GetSavePath(slotId, false); // .sav  => plaintext
 
         string json = null;
 
@@ -174,21 +177,35 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             if (File.Exists(encPath))
             {
                 byte[] payload = File.ReadAllBytes(encPath);
-
-                if (SaveCrypto.LooksEncrypted(payload))
-                {
-                    byte[] key = SaveSecret.GetOrCreateKey();
-                    json = SaveCrypto.DecryptToString(payload, key);
-                }
-                else
-                {
-                    json = File.ReadAllText(encPath, Encoding.UTF8);
-                    Debug.LogWarning($"[SaveManager] Slot {slotId} file không mã hoá, load như JSON thường.");
-                }
+                byte[] key = SaveSecret.GetOrCreateKey();
+                json = SaveCrypto.DecryptToString(payload, key);
             }
             else if (File.Exists(plainPath))
             {
-                json = File.ReadAllText(plainPath, Encoding.UTF8);
+                byte[] bytes = File.ReadAllBytes(plainPath);
+                string text = Encoding.UTF8.GetString(bytes);
+
+                bool looksJson = !string.IsNullOrWhiteSpace(text) && text.TrimStart().StartsWith("{");
+                if (looksJson)
+                {
+                    json = text;
+                }
+                else
+                {
+                    try
+                    {
+                        byte[] key = SaveSecret.GetOrCreateKey();
+                        json = SaveCrypto.DecryptToString(bytes, key);
+                        Debug.LogWarning("[SaveManager] Found encrypted payload in .sav (legacy). Migrating to .savx.");
+                        File.WriteAllBytes(encPath, bytes);
+                        File.Delete(plainPath);
+                    }
+                    catch (Exception decEx)
+                    {
+                        Debug.LogError($"[SaveManager] .sav is not JSON and cannot be decrypted. {decEx.Message}");
+                        return;
+                    }
+                }
             }
             else
             {
@@ -203,19 +220,51 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
 
         var wrapper = JsonUtility.FromJson<SerializationWrapper>(json);
+        if (wrapper == null)
+        {
+            Debug.LogError("[SaveManager] Parsed JSON is null. The file might be corrupted or not a valid SerializationWrapper.");
+            return;
+        }
+
+        if (wrapper.version == 0)
+        {
+            Debug.LogWarning("[SaveManager] Legacy save (version 0). Applying migration -> 1.");
+            MigrateIfNeeded(wrapper); 
+        }
+        else if (wrapper.version > SAVE_SCHEMA_VERSION)
+        {
+            Debug.LogWarning($"[SaveManager] Save file version ({wrapper.version}) is NEWER than runtime ({SAVE_SCHEMA_VERSION}). Attempting best-effort load.");
+        }
+
         var stateDict = wrapper.ToDictionary();
 
         foreach (var kvp in registry)
         {
             if (stateDict.TryGetValue(kvp.Key, out string jsonState))
             {
-                object dummy = kvp.Value.CaptureState();
-                object state = JsonUtility.FromJson(jsonState, dummy.GetType());
+                Type saveType = kvp.Value.GetSaveType();
+                object state = JsonUtility.FromJson(jsonState, saveType);
                 kvp.Value.RestoreState(state);
             }
         }
     }
 
+    // Pipeline migrate version
+    private void MigrateIfNeeded(SerializationWrapper w)
+    {
+        switch (w.version)
+        {
+            case 0:
+                // example change key's name: w.TryRenameKey("OldKey","NewKey");
+                w.version = 1;
+                w.gameVersion ??= GAME_VERSION;
+                break;
+                // case 1: // migrate to 2
+                //     ...
+                //     w.version = 2;
+                //     break;
+        }
+    }
 
     public void ResetOnly(string id)
     {
@@ -227,13 +276,12 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     public void DeleteSave(int slotId)
     {
-        string pathEnc = GetSavePath(slotId, encryptedPreferred: true);
-        string pathPlain = GetSavePath(slotId, encryptedPreferred: false);
+        string pathEnc = GetSavePath(slotId, true);
+        string pathPlain = GetSavePath(slotId, false);
 
         if (File.Exists(pathEnc)) File.Delete(pathEnc);
         if (File.Exists(pathPlain)) File.Delete(pathPlain);
 
-        // update meta (encrypted hoặc plaintext – đọc linh hoạt)
         string metaEnc = GetMetaPath(true);
         string metaPlain = GetMetaPath(false);
 
@@ -309,6 +357,9 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 [System.Serializable]
 public class SerializationWrapper
 {
+    public int version;      
+    public string gameVersion;    
+
     [System.Serializable]
     public class Entry { public string key; public string value; }
 
@@ -316,8 +367,10 @@ public class SerializationWrapper
 
     public SerializationWrapper() { }
 
-    public SerializationWrapper(Dictionary<string, string> dict)
+    public SerializationWrapper(Dictionary<string, string> dict, int schemaVersion = 1, string gameVer = null)
     {
+        version = schemaVersion;
+        gameVersion = gameVer;
         foreach (var kv in dict)
             entries.Add(new Entry { key = kv.Key, value = kv.Value });
     }
@@ -329,8 +382,37 @@ public class SerializationWrapper
         return dict;
     }
 
+    public bool TryGet(string key, out string value)
+    {
+        foreach (var e in entries)
+        {
+            if (e.key == key) { value = e.value; return true; }
+        }
+        value = null;
+        return false;
+    }
+
+    public bool TryRenameKey(string oldKey, string newKey)
+    {
+        for (int i = 0; i < entries.Count; i++)
+        {
+            if (entries[i].key == oldKey)
+            {
+                entries[i].key = newKey;
+                return true;
+            }
+        }
+        return false;
+    }
+
     [System.Serializable]
-    public class SaveSlotMeta { public int slotId; public string saveTime; }
+    public class SaveSlotMeta
+    {
+        public int slotId;
+        public string saveTime;
+        public int version;          
+        public string gameVersion;   
+    }
 
     [System.Serializable]
     public class SaveSlotMetaList { public List<SaveSlotMeta> slots = new(); }

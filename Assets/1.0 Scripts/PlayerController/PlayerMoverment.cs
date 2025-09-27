@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerMoverment : MonoBehaviour, ISaveable
 {
     [Header("Basic Movement Value")]
@@ -110,6 +110,8 @@ public class PlayerMoverment : MonoBehaviour, ISaveable
         PlayerData data = (PlayerData)state;
         transform.position = new Vector3(data.x, data.y, data.z);
     }
+
+    public Type GetSaveType() => typeof(PlayerData);
 
     public string GetUniqueId()
     {
