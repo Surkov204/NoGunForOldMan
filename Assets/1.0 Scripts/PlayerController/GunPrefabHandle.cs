@@ -12,7 +12,23 @@ public class GunPrefabHandle : MonoBehaviour
         byId.Clear();
         foreach (var gunPrefab in gunPrefabs) {
             if (!gunPrefab) continue;
-            if (!byId.ContainsKey(gunPrefab.name)) byId.Add(gunPrefab.name, gunPrefab);
+
+            var name = gunPrefab.name;
+            if (string.IsNullOrEmpty(name))
+            {
+                Debug.LogWarning($"[GunPrefabHandle] Skipped prefab with null/empty name in list: {gunPrefab}");
+                continue;
+            }
+
+            if (!byId.ContainsKey(name))
+            {
+                byId.Add(name, gunPrefab);
+                Debug.Log($"[GunPrefabHandle] Registered prefab '{name}'");
+            }
+            else
+            {
+                Debug.LogWarning($"[GunPrefabHandle] Duplicate prefab name '{name}' skipped.");
+            }
         }
     }
 

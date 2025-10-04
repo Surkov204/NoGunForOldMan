@@ -26,7 +26,7 @@ public class BulletBar : MonoBehaviour
     void OnEnable()
     {
         TryBindToCurrentGun(true);
-        try { inventory.OnWeaponChanged += OnWeaponChanged; } catch { /* không có event cũng ok */ }
+        try { inventory.OnWeaponChanged += OnWeaponChanged; } catch { }
     }
 
     void OnDisable()

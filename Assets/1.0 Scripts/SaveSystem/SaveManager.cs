@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 public class SaveManager : ManualSingletonMono<SaveManager>
@@ -34,6 +35,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
     private void Awake()
     {
         base.Awake();
+        SaveSecret.Init();
         saveFolder = Path.Combine(Application.persistentDataPath, "SaveGame");
         if (!Directory.Exists(saveFolder))
             Directory.CreateDirectory(saveFolder);
@@ -57,22 +59,40 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     public void Registry(ISaveable saveble)
     {
+        if (saveble == null) return;
+
         string id = saveble.GetUniqueId();
-        if (!registry.ContainsKey(id))
-            registry[id] = saveble;
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            Debug.LogError($"[SaveManager] Registry FAILED — object {saveble} has null/empty ID!");
+            return;
+        }
+
+        if (registry.TryGetValue(id, out var old) && old != null && old != saveble)
+        {
+            Debug.LogWarning($"[SaveManager] Duplicate ID detected: {id}, replaced old reference.");
+            registry[id] = saveble; 
+        }
+        else
+        {
+            registry[id] = saveble; 
+        }
     }
 
     public void UnRegistry(ISaveable saveble)
     {
+        if (saveble == null) return;
+
         string id = saveble.GetUniqueId();
-        if (registry.ContainsKey(id))
-            registry.Remove(id);
+        if (string.IsNullOrWhiteSpace(id)) return;
+
+        if (registry.Remove(id))
+            Debug.Log($"[SaveManager] Unregistered {id}");
     }
 
-    public void Save(int slotId = 1)
+    public async Task SaveAsync(int slotId = 1)
     {
         var stateDict = new Dictionary<string, string>();
-
         foreach (var kvp in registry)
         {
             object state = kvp.Value.CaptureState();
@@ -81,36 +101,80 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
 
         var wrapper = new SerializationWrapper(stateDict, SAVE_SCHEMA_VERSION, GAME_VERSION);
-        wrapper.sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        wrapper.sceneName = SceneManager.GetActiveScene().name;
         string json = JsonUtility.ToJson(wrapper, true);
 
         string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
         string tempFile = filePath + ".tmp";
 
+        await Task.Run(() =>
+        {
+            try
+            {
+                if (encryptSaves)
+                {
+                    byte[] key = SaveSecret.GetOrCreateKey();
+                    byte[] payload = SaveCrypto.EncryptString(json, key);
+                    File.WriteAllBytes(tempFile, payload);
+                }
+                else
+                {
+                    File.WriteAllText(tempFile, json, Encoding.UTF8);
+                }
+
+                File.Copy(tempFile, filePath, true);
+                File.Delete(tempFile);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveManager] SaveAsync failed: {ex}");
+                if (File.Exists(tempFile)) File.Delete(tempFile);
+            }
+        });
+
+        SaveMeta(slotId);
+
+        Debug.Log($"[SaveManager] SaveAsync done (slot {slotId})");
+    }
+
+    public void SaveSync(int slotId = 1)
+    {
+        var stateDict = new Dictionary<string, string>();
+        foreach (var kvp in registry)
+        {
+            object state = kvp.Value.CaptureState();
+            string jsonState = JsonUtility.ToJson(state);
+            stateDict[kvp.Key] = jsonState;
+        }
+
+        var wrapper = new SerializationWrapper(stateDict, SAVE_SCHEMA_VERSION, GAME_VERSION);
+        wrapper.sceneName = SceneManager.GetActiveScene().name;
+        string json = JsonUtility.ToJson(wrapper, true);
+
+        string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
         try
         {
             if (encryptSaves)
             {
                 byte[] key = SaveSecret.GetOrCreateKey();
                 byte[] payload = SaveCrypto.EncryptString(json, key);
-                File.WriteAllBytes(tempFile, payload);
+                File.WriteAllBytes(filePath, payload);
             }
             else
             {
-                File.WriteAllText(tempFile, json, Encoding.UTF8);
+                File.WriteAllText(filePath, json, Encoding.UTF8);
             }
-
-            File.Copy(tempFile, filePath, true);
-            File.Delete(tempFile);
+            SaveMeta(slotId);
+            Debug.Log($"[SaveManager] SaveSync done (slot {slotId})");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[SaveManager] Save failed: {ex}");
-            if (File.Exists(tempFile)) File.Delete(tempFile);
-            return;
+            Debug.LogError($"[SaveManager] SaveSync failed: {ex}");
         }
+    }
 
-        // ---- META ----
+    private void SaveMeta(int slotId)
+    {
         string metaPath = GetMetaPath(encryptSaves);
         SerializationWrapper.SaveSlotMetaList list = new();
 
@@ -139,6 +203,7 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
         var existing = list.slots.Find(s => s.slotId == slotId);
         if (existing != null) list.slots.Remove(existing);
+
         list.slots.Add(new SerializationWrapper.SaveSlotMeta
         {
             slotId = slotId,
@@ -251,17 +316,28 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
 
         var stateDict = wrapper.ToDictionary();
+        var snapshot = new List<ISaveable>(registry.Values);
 
-        foreach (var kvp in registry)
+        foreach (var obj in snapshot)
         {
-            if (stateDict.TryGetValue(kvp.Key, out string jsonState))
+            string id = obj.GetUniqueId();
+            if (string.IsNullOrWhiteSpace(id)) continue;
+
+            if (stateDict.TryGetValue(id, out string jsonState))
             {
-                Type saveType = kvp.Value.GetSaveType();
-                object state = JsonUtility.FromJson(jsonState, saveType);
-                kvp.Value.RestoreState(state);
+                try
+                {
+                    Type saveType = obj.GetSaveType();
+                    object state = JsonUtility.FromJson(jsonState, saveType);
+                    obj.RestoreState(state);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[SaveManager] Failed to restore object '{id}': {ex.Message}");
+                }
             }
         }
-    }
+    }   
 
     // Pipeline migrate version
     private void MigrateIfNeeded(SerializationWrapper w)
@@ -365,6 +441,35 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         }
 
         return new List<SerializationWrapper.SaveSlotMeta>();
+    }
+
+    private void OnApplicationQuit()
+    {
+        try
+        {
+            SaveSync(1); 
+            Debug.Log("[SaveManager] Auto-saved on quit.");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Auto-save on quit failed: {ex}");
+        }
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            try
+            {
+                SaveSync(1); 
+                Debug.Log("[SaveManager] Auto-saved on pause.");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveManager] Auto-save on pause failed: {ex}");
+            }
+        }
     }
 }
 

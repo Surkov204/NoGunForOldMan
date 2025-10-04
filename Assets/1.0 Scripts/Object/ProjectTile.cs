@@ -33,7 +33,6 @@ public class ProjectTile : MonoBehaviour
         if (lifetime > 3)
         {
             gameObject.SetActive(false);
-            Debug.Log("inactive");
         }
 
 

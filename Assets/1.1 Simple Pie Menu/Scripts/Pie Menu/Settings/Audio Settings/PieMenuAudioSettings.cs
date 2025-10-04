@@ -40,7 +40,6 @@ namespace SimplePieMenu
             if (AudioManager.Instance != null)
             {
                 float globalVolume = AudioManager.Instance.GetSFXVolume();
-                Debug.Log("value of sound " + globalVolume);
                 SelectRightSoundsInTheLists(globalVolume);
             }
         }
@@ -82,8 +81,8 @@ namespace SimplePieMenu
             if (templateSource != null)
             {
                 AudioClip hoverClip = templateSource.clip;
-                Debug.Log($"[PieMenuAudioSettings] TemplateSource Volume={templateSource.volume}," +
-                $" Object={templateSource.gameObject.name}", templateSource.gameObject);
+              //  Debug.Log($"[PieMenuAudioSettings] TemplateSource Volume={templateSource.volume}," +
+              //  $" Object={templateSource.gameObject.name}", templateSource.gameObject);
 
                 PieMenu.PieMenuInfo.SetMouseHoverClip(hoverClip);
                 HoverClipsDropdownList = AudioHandler.MouseHoverClips.IndexOf(hoverClip);

@@ -8,6 +8,7 @@ public class ParallaxEffect : MonoBehaviour
 
     private GameObject[] backgrounds;
     private Material[] mats;
+ //   private SpriteRenderer[] sprites;
     private float[] backSpeeds;
     private float farthestBack;
 
@@ -22,12 +23,14 @@ public class ParallaxEffect : MonoBehaviour
         int backCount = transform.childCount;
         backgrounds = new GameObject[backCount];
         mats = new Material[backCount];
+        //sprites = new SpriteRenderer[backCount];
         backSpeeds = new float[backCount];
 
         for (int i = 0; i < backCount; i++)
         {
             backgrounds[i] = transform.GetChild(i).gameObject;
             mats[i] = backgrounds[i].GetComponent<Renderer>().material;
+         //   sprites[i] = backgrounds[i].GetComponent<SpriteRenderer>();
         }
 
         CalculateBackSpeeds(backCount);
@@ -60,7 +63,16 @@ public class ParallaxEffect : MonoBehaviour
         for (int i = 0; i < backgrounds.Length; i++)
         {
             float speed = backSpeeds[i] * parallaxSpeed;
-            mats[i].SetTextureOffset("_MainTex", new Vector2(distance * speed, 0));
+            if (mats[i] != null) 
+            {
+                mats[i].SetTextureOffset("_MainTex", new Vector2(distance * speed, 0));
+            }
+            //else if (sprites[i] != null) 
+            //{
+            //    Vector3 pos = sprites[i].transform.position;
+            //    sprites[i].transform.position = new Vector3(cam.position.x * speed, pos.y, pos.z);
+            //}
+
         }
     }
 }

@@ -7,30 +7,40 @@ using UnityEngine;
 public static class SaveSecret
 {
     private const int KEY_LEN = 32; // 256-bit
-    private static string SecretPath =>
-        Path.Combine(Application.persistentDataPath, "SaveGame", "secret.bin");
+    private static string cachedSecretPath;
+    public static void Init()
+    {
+        cachedSecretPath = Path.Combine(Application.persistentDataPath, "SaveGame", "secret.bin");
+    }
     public static byte[] GetOrCreateKey()
     {
         try
         {
-            string dir = Path.GetDirectoryName(SecretPath);
+            if (string.IsNullOrEmpty(cachedSecretPath))
+            {
+                // fallback: vẫn đảm bảo chạy nếu dev quên Init
+                cachedSecretPath = Path.Combine(Application.persistentDataPath, "SaveGame", "secret.bin");
+            }
+
+            string dir = Path.GetDirectoryName(cachedSecretPath);
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            if (File.Exists(SecretPath))
+            if (File.Exists(cachedSecretPath))
             {
-                var k = File.ReadAllBytes(SecretPath);
+                var k = File.ReadAllBytes(cachedSecretPath);
                 if (k.Length == KEY_LEN) return k;
             }
 
             byte[] key = new byte[KEY_LEN];
             using (var rng = RandomNumberGenerator.Create()) rng.GetBytes(key);
-            File.WriteAllBytes(SecretPath, key);
+            File.WriteAllBytes(cachedSecretPath, key);
             return key;
         }
         catch (Exception ex)
         {
             Debug.LogError("[SaveSecret] Failed to get/create key: " + ex);
-            return Encoding.UTF8.GetBytes("fallback_key_32_bytes_________").AsSpan(0, KEY_LEN).ToArray();
+            return Encoding.UTF8.GetBytes("fallback_key_32_bytes_________")
+                .AsSpan(0, KEY_LEN).ToArray();
         }
     }
 }

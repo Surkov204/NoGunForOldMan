@@ -54,6 +54,12 @@ TagManager:
   - name: BackGround
     uniqueID: 2418449413
     locked: 0
+  - name: furniture_0
+    uniqueID: 2763535403
+    locked: 0
+  - name: furniture
+    uniqueID: 3305556661
+    locked: 0
   - name: Player
     uniqueID: 2269749097
     locked: 0
@@ -68,6 +74,12 @@ TagManager:
     locked: 0
   - name: Grenade
     uniqueID: 1695753077
+    locked: 0
+  - name: Bush
+    uniqueID: 3598955247
+    locked: 0
+  - name: Bush1
+    uniqueID: 113154309
     locked: 0
   m_RenderingLayers:
   - Default
