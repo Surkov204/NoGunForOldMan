@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 
-[System.Serializable]
-public class GunFireAttackState
-{
-    public string weaponName;
-    public float currentAmmo;
-    public float havingAmmo;
-}
-
-public class GunFireAttack : MonoBehaviour, ISaveable
+public class GunFireAttack : MonoBehaviour
 {
     [Header("Weapon Config")]
     [SerializeField] private DataWeapon currentWeapon;
@@ -42,42 +35,15 @@ public class GunFireAttack : MonoBehaviour, ISaveable
 
     private float coolDownTimer = Mathf.Infinity;
     private bool isReloading = false;
-    private bool isRestored = false;
-    private string uniqueID;
 
     public float currentBullet { get; private set; }
     public float havingAmmo { get; private set; }
     public bool IsReloading => isReloading;
 
-    private bool restoredFromSave = false;
 
-    // ===== INIT =====
     private void Awake()
     {
-        if (!isRestored && SaveManager.SkipLoad)
-        {
-            ResetState();
-        }
-    }
-
-    private void Start()
-    {
-        if (string.IsNullOrWhiteSpace(uniqueID))
-            uniqueID = BuildUniqueId();
-
-        if (string.IsNullOrWhiteSpace(uniqueID))
-            uniqueID = $"Gun_{gameObject.name}_{GetInstanceID()}";
-
-        Debug.Log($"[GunFireAttack] Built ID: {uniqueID}");
-
-        if (!restoredFromSave)
-        {
-            ResetState();
-        }
-        else
-        {
-            UpdateBulletTextUI();
-        }
+        LoadAmmoFromPrefs();
     }
 
     private void OnEnable()
@@ -98,69 +64,49 @@ public class GunFireAttack : MonoBehaviour, ISaveable
             currentWeapon.bulletBarWeapon.SetActive(false);
     }
 
-    // ===== SAVE SYSTEM =====
-
-    private string BuildUniqueId()
+    private void OnDestroy()
     {
-        string weaponId = currentWeapon && !string.IsNullOrWhiteSpace(currentWeapon.weaponName)
-       ? currentWeapon.weaponName
-       : gameObject.name;
-
-        return $"Gun_{weaponId}_{GetInstanceID()}";
+        SaveAmmoToPrefs();
     }
 
-    public string GetUniqueId()
+    private void LoadAmmoFromPrefs()
     {
-        if (string.IsNullOrWhiteSpace(uniqueID))
-            uniqueID = BuildUniqueId();
-        return uniqueID;
-    }
+        string ammoKey = $"Gun_{currentWeapon.weaponName}_ammo";
+        string havingKey = $"Gun_{currentWeapon.weaponName}_having";
 
-    public Type GetSaveType() => typeof(GunFireAttackState);
-
-    public object CaptureState()
-    {
-        return new GunFireAttackState
+        if (PlayerPrefs.HasKey(ammoKey))
         {
-            weaponName = currentWeapon.weaponName,
-            currentAmmo = currentBullet,
-            havingAmmo = havingAmmo
-        };
-    }
-
-    public void RestoreState(object state)
-    {
-        var s = (GunFireAttackState)state;
-        if (s.weaponName == currentWeapon.weaponName)
-        {
-            currentBullet = s.currentAmmo;
-            havingAmmo = s.havingAmmo;
-            isRestored = true;
-            restoredFromSave = true;
-            Debug.Log($"[GunFireAttack] Restored {currentWeapon.weaponName}: {currentBullet}/{havingAmmo}");
-            UpdateBulletTextUI();
+            currentBullet = PlayerPrefs.GetFloat(ammoKey);
+            havingAmmo = PlayerPrefs.GetFloat(havingKey);
+            Debug.Log($"[GunFireAttack] Loaded from PlayerPrefs: {currentWeapon.weaponName} = {currentBullet}/{havingAmmo}");
         }
-    }
+        else
+        {
+            currentBullet = currentWeapon.maxAmmo;
+            havingAmmo = currentWeapon.HavingAmmo;
+            Debug.Log($"[GunFireAttack] First-time init: {currentWeapon.weaponName} = {currentBullet}/{havingAmmo}");
+        }
 
-    public void ResetState()
-    {
-        if (restoredFromSave) return;
-        currentBullet = currentWeapon.maxAmmo;
-        havingAmmo = currentWeapon.HavingAmmo;
-        isRestored = true;
         UpdateBulletTextUI();
     }
 
-    public void GetBullet() {
-        Debug.Log($"[GunFireAttack] GetBullet {currentWeapon.weaponName}: {currentBullet}/{havingAmmo}");
+    private void SaveAmmoToPrefs()
+    {
+        if (currentWeapon == null) return;
+
+        string ammoKey = $"Gun_{currentWeapon.weaponName}_ammo";
+        string havingKey = $"Gun_{currentWeapon.weaponName}_having";
+
+        PlayerPrefs.SetFloat(ammoKey, currentBullet);
+        PlayerPrefs.SetFloat(havingKey, havingAmmo);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[GunFireAttack] Saved ammo for {currentWeapon.weaponName}: {currentBullet}/{havingAmmo}");
     }
 
     // ===== GAMEPLAY =====
     private void Update()
     {
-        if (Time.timeScale % 60 == 0)
-        GetBullet();
-
         if (SimplePieMenu.PieMenuGlobals.IsChoosingWeapon) return;
         if (UIManager.Instance.IsVisible(JS.UIName.PauseGameScreen) ||
             UIManager.Instance.IsVisible(JS.UIName.GameSave)) return;

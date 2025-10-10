@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GameHealthSystem;
 
 public class GunThrowDamaged : MonoBehaviour
 {

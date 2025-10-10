@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 [System.Serializable]
 public class PlayerGunInventoryState {
@@ -136,7 +138,7 @@ public class PlayerGunInventory : MonoBehaviour, ISaveable
             ownedIds.Add("EmptyHand");
             spawned.Add(hand);
         }
-        SelectGun(0);
+        if (!SaveManager.isLoading) SelectGun(0); 
     }
 
     public bool AddGunPrefab(GameObject gunPrefab)
@@ -148,12 +150,6 @@ public class PlayerGunInventory : MonoBehaviour, ISaveable
 
         if (exist >= 0)
         {
-            var gfaExist = spawned[exist]?.GetComponent<GunFireAttack>();
-            if (gfaExist != null && SaveManager.HasInstance)
-            {
-                SaveManager.Instance.Registry(gfaExist);
-                Debug.Log($"[Inventory] Re-registered existing gun: {gfaExist.GetUniqueId()}");
-            }
             SelectGun(exist);
             return true;
         }  
@@ -165,13 +161,6 @@ public class PlayerGunInventory : MonoBehaviour, ISaveable
 
         ownedIds.Add(id);
         spawned.Add(inst);
-
-        var gfa = inst.GetComponent<GunFireAttack>();
-        if (gfa != null && SaveManager.HasInstance)
-        {
-            SaveManager.Instance.Registry(gfa);
-            Debug.Log($"[Inventory] Registered spawned gun: {gfa.GetUniqueId()}");
-        }
 
         if (CurrentIndex == -1) SelectGun(0);
         return true;
@@ -224,17 +213,8 @@ public class PlayerGunInventory : MonoBehaviour, ISaveable
             GameObject currentGun = spawned[CurrentIndex];
 
             if (currentGun != null && currentGun.name != "EmptyHand") {
-
-                var gfa = currentGun.GetComponent<GunFireAttack>();
-                if (gfa != null && SaveManager.HasInstance)
-                {
-                    SaveManager.Instance.UnRegistry(gfa);
-                    Debug.Log($"[Inventory] Unregistered gun: {gfa.GetUniqueId()}");
-                }
-
                 Destroy(currentGun);
             }
-
             spawned.RemoveAt(CurrentIndex);
             ownedIds.RemoveAt(CurrentIndex);
             CurrentIndex = Mathf.Clamp(CurrentIndex - 1, 0, spawned.Count - 1);

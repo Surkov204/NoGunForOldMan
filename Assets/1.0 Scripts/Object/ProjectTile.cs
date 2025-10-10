@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using GameHealthSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

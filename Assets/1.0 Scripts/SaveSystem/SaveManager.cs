@@ -1,11 +1,13 @@
 ﻿using JS.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using System.Text;
 using UnityEngine;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class SaveManager : ManualSingletonMono<SaveManager>
 {
@@ -17,10 +19,22 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     private readonly Dictionary<string, ISaveable> registry = new();
 
+    public static Action OnCompleteReset;
+
     public static bool HasInstance => Instance != null;
     public static bool SkipLoad { get; set; } = false;
+    public static bool isLoading { get; set; } = true;
 
     private string saveFolder;
+
+    private void Awake()
+    {
+        base.Awake();
+        SaveSecret.Init();
+        saveFolder = Path.Combine(Application.persistentDataPath, "SaveGame");
+        if (!Directory.Exists(saveFolder))
+            Directory.CreateDirectory(saveFolder);
+    }
 
     private void Start()
     {
@@ -30,15 +44,6 @@ public class SaveManager : ManualSingletonMono<SaveManager>
             return;
         }
         Load(1);
-    }
-
-    private void Awake()
-    {
-        base.Awake();
-        SaveSecret.Init();
-        saveFolder = Path.Combine(Application.persistentDataPath, "SaveGame");
-        if (!Directory.Exists(saveFolder))
-            Directory.CreateDirectory(saveFolder);
     }
 
     private string GetSavePath(int slotId, bool encryptedPreferred)
@@ -64,7 +69,6 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         string id = saveble.GetUniqueId();
         if (string.IsNullOrWhiteSpace(id))
         {
-            Debug.LogError($"[SaveManager] Registry FAILED — object {saveble} has null/empty ID!");
             return;
         }
 
@@ -107,14 +111,20 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         string filePath = GetSavePath(slotId, encryptedPreferred: encryptSaves);
         string tempFile = filePath + ".tmp";
 
-        await Task.Run(() =>
+        try
         {
-            try
+            byte[] payload = null;
+
+            if (encryptSaves)
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                payload = SaveCrypto.EncryptString(json, key);
+            }
+
+            await Task.Run(() =>
             {
                 if (encryptSaves)
                 {
-                    byte[] key = SaveSecret.GetOrCreateKey();
-                    byte[] payload = SaveCrypto.EncryptString(json, key);
                     File.WriteAllBytes(tempFile, payload);
                 }
                 else
@@ -124,17 +134,16 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
                 File.Copy(tempFile, filePath, true);
                 File.Delete(tempFile);
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[SaveManager] SaveAsync failed: {ex}");
-                if (File.Exists(tempFile)) File.Delete(tempFile);
-            }
-        });
+            });
 
-        SaveMeta(slotId);
-
-        Debug.Log($"[SaveManager] SaveAsync done (slot {slotId})");
+            SaveMeta(slotId);
+            Debug.Log($"[SaveManager] SaveAsync done (slot {slotId})");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] SaveAsync failed: {ex}");
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+        }
     }
 
     public void SaveSync(int slotId = 1)
@@ -238,6 +247,8 @@ public class SaveManager : ManualSingletonMono<SaveManager>
 
     public void Load(int slotId = 1)
     {
+        isLoading = true;
+
         string encPath = GetSavePath(slotId, true);   // .savx => encrypted
         string plainPath = GetSavePath(slotId, false); // .sav  => plaintext
 
@@ -337,6 +348,8 @@ public class SaveManager : ManualSingletonMono<SaveManager>
                 }
             }
         }
+
+        isLoading = false;
     }   
 
     // Pipeline migrate version
@@ -443,11 +456,94 @@ public class SaveManager : ManualSingletonMono<SaveManager>
         return new List<SerializationWrapper.SaveSlotMeta>();
     }
 
+    public bool DeleteSavedDataById(string id, int slotId = 1)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            Debug.LogError("[SaveManager] DeleteSavedDataById failed: ID is null or empty.");
+            return false;
+        }
+
+        string encPath = GetSavePath(slotId, true);
+        string plainPath = GetSavePath(slotId, false);
+
+        string json = null;
+        string savePath = null;
+
+        try
+        {
+            if (File.Exists(encPath))
+            {
+                byte[] payload = File.ReadAllBytes(encPath);
+                byte[] key = SaveSecret.GetOrCreateKey();
+                json = SaveCrypto.DecryptToString(payload, key);
+                savePath = encPath;
+            }
+            else if (File.Exists(plainPath))
+            {
+                json = File.ReadAllText(plainPath, Encoding.UTF8);
+                savePath = plainPath;
+            }
+            else
+            {
+                Debug.LogWarning($"[SaveManager] No save file found in slot {slotId}.");
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Failed to read save file for deletion: {ex}");
+            return false;
+        }
+
+        var wrapper = JsonUtility.FromJson<SerializationWrapper>(json);
+        if (wrapper == null)
+        {
+            Debug.LogError("[SaveManager] Failed to parse save JSON wrapper.");
+            return false;
+        }
+
+        // Xóa entry có key trùng ID
+        int removed = wrapper.entries.RemoveAll(e => e.key == id);
+        if (removed == 0)
+        {
+            Debug.LogWarning($"[SaveManager] No entry found with ID '{id}' to delete.");
+            return false;
+        }
+
+        // Ghi lại file sau khi xóa
+        try
+        {
+            string newJson = JsonUtility.ToJson(wrapper, true);
+
+            if (encryptSaves)
+            {
+                byte[] key = SaveSecret.GetOrCreateKey();
+                byte[] payload = SaveCrypto.EncryptString(newJson, key);
+                File.WriteAllBytes(encPath, payload);
+                if (File.Exists(plainPath)) File.Delete(plainPath); // tránh file cũ
+            }
+            else
+            {
+                File.WriteAllText(plainPath, newJson, Encoding.UTF8);
+                if (File.Exists(encPath)) File.Delete(encPath);
+            }
+
+            Debug.Log($"[SaveManager] Deleted saved data of ID '{id}' from slot {slotId}.");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[SaveManager] Failed to write updated save file after deletion: {ex}");
+            return false;
+        }
+    }
+
     private void OnApplicationQuit()
     {
         try
         {
-            SaveSync(1); 
+            SaveAsync(1);
             Debug.Log("[SaveManager] Auto-saved on quit.");
         }
         catch (Exception ex)

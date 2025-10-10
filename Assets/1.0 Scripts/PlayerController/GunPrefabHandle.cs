@@ -23,7 +23,6 @@ public class GunPrefabHandle : MonoBehaviour
             if (!byId.ContainsKey(name))
             {
                 byId.Add(name, gunPrefab);
-                Debug.Log($"[GunPrefabHandle] Registered prefab '{name}'");
             }
             else
             {

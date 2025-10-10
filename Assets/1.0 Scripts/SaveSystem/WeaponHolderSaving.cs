@@ -13,10 +13,7 @@ public class WeaponHolderSaving : MonoBehaviour
         var guns = GetComponentsInChildren<GunFireAttack>(includeInactive: true);
         foreach (var g in guns)
         {
-
-            SaveManager.Instance?.Registry(g);
             Debug.Log("saving");
-            Debug.Log($"[SaveBinder] Registered gun: {g.GetUniqueId()}");
         }
     }
 
@@ -32,7 +29,6 @@ public class WeaponHolderSaving : MonoBehaviour
         var guns = GetComponentsInChildren<GunFireAttack>(includeInactive: true);
         foreach (var g in guns)
         {
-            SaveManager.Instance.UnRegistry(g);
         }
     }
 }
