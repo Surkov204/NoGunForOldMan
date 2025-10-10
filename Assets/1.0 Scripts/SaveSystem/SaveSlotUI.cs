@@ -18,7 +18,7 @@ public class SaveSlotUI : MonoBehaviour
         textName.text = $"Slot {slotId}";
         timeText.text = saveTime;
         saveButton.onClick.AddListener(() => { 
-            SaveManager.Instance.Save(slotId);
+            SaveManager.Instance.SaveAsync(slotId);
             if (UIManager.Instance.IsVisible(JS.UIName.GameSave)) {
                 UIManager.Instance.Show(JS.UIName.SaveBoard);
             }

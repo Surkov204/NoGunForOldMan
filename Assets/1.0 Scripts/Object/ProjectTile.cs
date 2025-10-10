@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using GameHealthSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -33,7 +34,6 @@ public class ProjectTile : MonoBehaviour
         if (lifetime > 3)
         {
             gameObject.SetActive(false);
-            Debug.Log("inactive");
         }
 
 

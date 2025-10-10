@@ -70,7 +70,7 @@ public class UIPauseMenuScreen : UIBase
     public void OnQuitClick()
     {
         SceneLoader.Load(gameplaySceneName);
-        SaveManager.Instance.Save(1);
+        SaveManager.Instance.SaveAsync(1);
         Time.timeScale = 1f;
     }
 

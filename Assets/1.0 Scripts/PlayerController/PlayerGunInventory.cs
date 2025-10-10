@@ -1,8 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
-public class PlayerGunInventory : MonoBehaviour
+[System.Serializable]
+public class PlayerGunInventoryState {
+    public List<string> gunIds = new();
+    public int currentIndex;
+    public int grenadeCount;
+}
+
+public class PlayerGunInventory : MonoBehaviour, ISaveable
 {
     [SerializeField, Range(1, 8)] private int maxSlots = 4;
     [SerializeField] private Transform weaponHolder;
@@ -17,6 +26,109 @@ public class PlayerGunInventory : MonoBehaviour
 
     public event Action<GameObject, GameObject> OnWeaponChanged;
 
+    private string uniqueID;
+
+    private void Start()
+    {
+        uniqueID = $"{gameObject.name}_gunID";
+        SaveManager.Instance?.Registry(this);
+    }
+
+    private void OnDestroy()
+    {
+        SaveManager.Instance?.UnRegistry(this);
+    }
+
+    public string GetUniqueId() => uniqueID;
+
+    public Type GetSaveType() => typeof(PlayerGunInventoryState);
+
+    public object CaptureState() {
+        return new PlayerGunInventoryState
+        {
+            gunIds = new List<string>(ownedIds), 
+            currentIndex = CurrentIndex,
+            grenadeCount = grenadeCount
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        var s = (PlayerGunInventoryState)state;
+
+        spawned.RemoveAll(go => go == null);
+        ownedIds.RemoveAll(id => string.IsNullOrWhiteSpace(id));
+
+        var gunHandle = FindObjectOfType<GunPrefabHandle>();
+
+        foreach (var id in s.gunIds)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                Debug.LogWarning("[PlayerGunInventory] Skipped empty or null weapon ID in save file.");
+                continue;
+            }
+
+            if (id == "EmptyHand")
+            {
+                if (!ownedIds.Contains("EmptyHand") && emptyHandPrefab)
+                {
+                    var hand = Instantiate(emptyHandPrefab, weaponHolder);
+                    hand.SetActive(false);
+                    ownedIds.Add("EmptyHand");
+                    spawned.Add(hand);
+                }
+                continue;
+            }
+
+            int existIndex = ownedIds.IndexOf(id);
+            if (existIndex >= 0)
+            {
+                var gfa = spawned[existIndex]?.GetComponent<GunFireAttack>();
+                if (gfa != null)
+                {
+                    Debug.Log($"[PlayerGunInventory] Restoring existing gun {id}");
+                }
+            }
+            else
+            {
+                if (gunHandle != null)
+                {
+                    bool ok = gunHandle.TransferToInventory(id, this);
+                    if (!ok)
+                        Debug.LogWarning($"[PlayerGunInventory] Failed to restore weapon '{id}' — prefab not found in GunPrefabHandle.");
+                }
+            }
+        }
+
+        grenadeCount = s.grenadeCount;
+        if (spawned.Count > 0 && s.currentIndex >= 0 && s.currentIndex < spawned.Count)
+            SelectGun(s.currentIndex);
+        else if (spawned.Count > 0)
+            SelectGun(0);
+    }
+
+    public void ResetState()
+    {
+        foreach (var g in spawned)
+        {
+            if (g) Destroy(g);
+        }
+        spawned.Clear();
+        ownedIds.Clear();
+
+        if (emptyHandPrefab)
+        {
+            GameObject hand = Instantiate(emptyHandPrefab, weaponHolder);
+            hand.SetActive(false);
+            ownedIds.Add("EmptyHand");
+            spawned.Add(hand);
+        }
+
+        grenadeCount = 0;
+        SelectGun(0);
+    }
+
     private void Awake()
     {
         if (emptyHandPrefab)
@@ -26,7 +138,7 @@ public class PlayerGunInventory : MonoBehaviour
             ownedIds.Add("EmptyHand");
             spawned.Add(hand);
         }
-        SelectGun(0);
+        if (!SaveManager.isLoading) SelectGun(0); 
     }
 
     public bool AddGunPrefab(GameObject gunPrefab)
@@ -36,7 +148,11 @@ public class PlayerGunInventory : MonoBehaviour
         string id = ExtractId(gunPrefab);
         int exist = ownedIds.IndexOf(id);
 
-        if (exist >= 0) { SelectGun(exist); return true; }  
+        if (exist >= 0)
+        {
+            SelectGun(exist);
+            return true;
+        }  
 
         if (spawned.Count >= maxSlots) return false;
 
@@ -99,7 +215,6 @@ public class PlayerGunInventory : MonoBehaviour
             if (currentGun != null && currentGun.name != "EmptyHand") {
                 Destroy(currentGun);
             }
-
             spawned.RemoveAt(CurrentIndex);
             ownedIds.RemoveAt(CurrentIndex);
             CurrentIndex = Mathf.Clamp(CurrentIndex - 1, 0, spawned.Count - 1);

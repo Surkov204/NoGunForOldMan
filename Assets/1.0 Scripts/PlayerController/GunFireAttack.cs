@@ -1,246 +1,206 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class GunFireAttack : MonoBehaviour
 {
+    [Header("Weapon Config")]
+    [SerializeField] private DataWeapon currentWeapon;
+    [SerializeField] public float maxBullet = 12f;
+
+    [Header("Fire Settings")]
     [SerializeField] private float attackCoolDown;
     [SerializeField] private Transform firepoint;
     [SerializeField] private Transform Player;
     [SerializeField] private Transform GunScale;
     [SerializeField] private GameObject[] Bullets;
+
+    [Header("Shell Eject")]
     [SerializeField] private GameObject shellPrefab;
-    [SerializeField] Transform shellEjectPoint;
-    [SerializeField] float ejectForce =50f;
+    [SerializeField] private Transform shellEjectPoint;
+    [SerializeField] private float ejectForce = 50f;
     [SerializeField] public Vector3 ejectDirection = new Vector3(-0.5f, 1f, 0f);
+
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI currentBulletText;
     [SerializeField] private TextMeshProUGUI currentBulletHavingText;
     [SerializeField] private GameObject ReloadText;
     [SerializeField] private GameObject ReloadingText;
-    [SerializeField] private float BulletHaving;
-    [SerializeField] private float reloadTime = 1;
-    [SerializeField] public float maxBullet = 12f;
+
+    [Header("Audio")]
     [SerializeField] private AudioClip GunSoundEffect;
     [SerializeField] private AudioClip ReloadSound;
-    [SerializeField] private string fireState;
-    [SerializeField] private DataWeapon currentWeapon;
-    [SerializeField] private Animator gunEffect;
 
-    private float _BulletHaving;
-    private float BulletCounting = 0;
+    private float coolDownTimer = Mathf.Infinity;
     private bool isReloading = false;
-    public float currentBullet { get; private set; }
-    private int currentWeaponIndex = 0;
-    private int weaponSelect = 0;
 
+    public float currentBullet { get; private set; }
+    public float havingAmmo { get; private set; }
     public bool IsReloading => isReloading;
 
-    private PlayerMoverment playerMoverment;
-    private float coolDownTimer = Mathf.Infinity;
 
     private void Awake()
     {
-        playerMoverment = GetComponent<PlayerMoverment>();
-    }
-
-    private void Start()
-    {
-        currentBullet = maxBullet;
-        _BulletHaving = currentWeapon.HavingAmmo;
+        LoadAmmoFromPrefs();
     }
 
     private void OnEnable()
     {
-        if (currentWeapon != null)
-        {
-            UpdateBulletTextUI();
+        if (currentWeapon.imageWeaponGameObject)
+            currentWeapon.imageWeaponGameObject.SetActive(true);
+        if (currentWeapon.bulletBarWeapon)
+            currentWeapon.bulletBarWeapon.SetActive(true);
 
-            if (currentWeapon.imageWeaponGameObject != null)
-                currentWeapon.imageWeaponGameObject.SetActive(true);
-
-            if (currentWeapon.bulletBarWeapon != null)
-                currentWeapon.bulletBarWeapon.SetActive(true);
-        }
+        UpdateBulletTextUI();
     }
 
     private void OnDisable()
     {
-        if (currentWeapon != null)
-        {
-            if (currentWeapon.imageWeaponGameObject != null)
-                currentWeapon.imageWeaponGameObject.SetActive(false);
-
-            if (currentWeapon.bulletBarWeapon != null)
-                currentWeapon.bulletBarWeapon.SetActive(false);
-        }
+        if (currentWeapon.imageWeaponGameObject)
+            currentWeapon.imageWeaponGameObject.SetActive(false);
+        if (currentWeapon.bulletBarWeapon)
+            currentWeapon.bulletBarWeapon.SetActive(false);
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (currentWeapon.HavingAmmo != 0 || currentWeapon.currentAmmor != 0)
+        SaveAmmoToPrefs();
+    }
+
+    private void LoadAmmoFromPrefs()
+    {
+        string ammoKey = $"Gun_{currentWeapon.weaponName}_ammo";
+        string havingKey = $"Gun_{currentWeapon.weaponName}_having";
+
+        if (PlayerPrefs.HasKey(ammoKey))
         {
-            if (Input.GetKeyDown(KeyCode.R) && currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && !isReloading && currentWeapon.HavingAmmo!= 0)
-            {
-
-                UpdateBulletTextUI();
-                StartCoroutine(Reload());
-            }
-
-            if (SimplePieMenu.PieMenuGlobals.IsChoosingWeapon)
-                return;
-
-            if (Input.GetMouseButton(0) && coolDownTimer > currentWeapon.fireRate && !isReloading)
-            {
-                if (UIManager.Instance.IsVisible(JS.UIName.PauseGameScreen) || UIManager.Instance.IsVisible(JS.UIName.GameSave)) return;
-
-                if (currentWeapon.currentAmmor > 0)
-                {
-
-                    Debug.Log("shooting");
-                    attack();
-
-                    currentWeapon.currentAmmor--;
-                    currentBullet = currentWeapon.currentAmmor;
-                    UpdateBulletTextUI();
-                    coolDownTimer = 0;
-                }
-                else
-                {
-                    ReloadText.SetActive(true);
-                }
-            }
-            coolDownTimer += Time.deltaTime;
+            currentBullet = PlayerPrefs.GetFloat(ammoKey);
+            havingAmmo = PlayerPrefs.GetFloat(havingKey);
+            Debug.Log($"[GunFireAttack] Loaded from PlayerPrefs: {currentWeapon.weaponName} = {currentBullet}/{havingAmmo}");
         }
         else
         {
-        }  
-    }
-
-    IEnumerator Reload()
-    {
-        isReloading = true;
-        ReloadingText.SetActive(true);
-        Debug.Log(currentWeapon.weaponName);
-
-        AudioManager.Instance.PlaySound(ReloadSound);
-        yield return new WaitForSeconds(currentWeapon.reloadTime);
-
-        if (currentWeapon.currentAmmor >= 0 && currentWeapon.currentAmmor < currentWeapon.maxAmmo && currentWeapon.HavingAmmo >= currentWeapon.maxAmmo)
-        {
-            float remainding = currentWeapon.maxAmmo - currentWeapon.currentAmmor;
-            currentWeapon.HavingAmmo = currentWeapon.HavingAmmo - remainding;
-            currentWeapon.currentAmmor = currentWeapon.currentAmmor + remainding;
-            currentBullet = currentWeapon.currentAmmor;
-        } 
-        else
-        {
-            currentWeapon.currentAmmor = currentWeapon.currentAmmor + currentWeapon.HavingAmmo;
-            currentBullet = currentWeapon.currentAmmor;
-            if (currentWeapon.currentAmmor > currentWeapon.maxAmmo)
-            {
-                currentWeapon.HavingAmmo = currentWeapon.currentAmmor - maxBullet;
-                currentWeapon.currentAmmor = currentWeapon.maxAmmo;
-                currentBullet = currentWeapon.currentAmmor;
-            } else currentWeapon.HavingAmmo = 0;
-
+            currentBullet = currentWeapon.maxAmmo;
+            havingAmmo = currentWeapon.HavingAmmo;
+            Debug.Log($"[GunFireAttack] First-time init: {currentWeapon.weaponName} = {currentBullet}/{havingAmmo}");
         }
 
         UpdateBulletTextUI();
-        ReloadText.SetActive(false);
-   
-        ReloadingText.SetActive(false);
+    }
+
+    private void SaveAmmoToPrefs()
+    {
+        if (currentWeapon == null) return;
+
+        string ammoKey = $"Gun_{currentWeapon.weaponName}_ammo";
+        string havingKey = $"Gun_{currentWeapon.weaponName}_having";
+
+        PlayerPrefs.SetFloat(ammoKey, currentBullet);
+        PlayerPrefs.SetFloat(havingKey, havingAmmo);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[GunFireAttack] Saved ammo for {currentWeapon.weaponName}: {currentBullet}/{havingAmmo}");
+    }
+
+    // ===== GAMEPLAY =====
+    private void Update()
+    {
+        if (SimplePieMenu.PieMenuGlobals.IsChoosingWeapon) return;
+        if (UIManager.Instance.IsVisible(JS.UIName.PauseGameScreen) ||
+            UIManager.Instance.IsVisible(JS.UIName.GameSave)) return;
+
+        if (Input.GetKeyDown(KeyCode.R) &&
+            currentBullet < currentWeapon.maxAmmo &&
+            !isReloading && havingAmmo > 0)
+        {
+            StartCoroutine(Reload());
+        }
+
+        if (Input.GetMouseButton(0) && coolDownTimer > currentWeapon.fireRate && !isReloading)
+        {
+            if (currentBullet > 0)
+            {
+                Attack();
+                currentBullet--;
+                UpdateBulletTextUI();
+                coolDownTimer = 0;
+            }
+            else
+            {
+                ReloadText?.SetActive(true);
+            }
+        }
+
+        coolDownTimer += Time.deltaTime;
+    }
+
+    private IEnumerator Reload()
+    {
+        isReloading = true;
+        ReloadingText?.SetActive(true);
+        AudioManager.Instance.PlaySound(ReloadSound);
+
+        yield return new WaitForSeconds(currentWeapon.reloadTime);
+
+        float need = currentWeapon.maxAmmo - currentBullet;
+        float load = Mathf.Min(need, havingAmmo);
+
+        currentBullet += load;
+        havingAmmo -= load;
+
+        UpdateBulletTextUI();
+        ReloadText?.SetActive(false);
+        ReloadingText?.SetActive(false);
         isReloading = false;
-    
     }
 
     private void UpdateBulletTextUI()
     {
-        currentBulletText.text = currentWeapon.currentAmmor.ToString();
-        currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
+        if (currentBulletText) currentBulletText.text = currentBullet.ToString();
+        if (currentBulletHavingText) currentBulletHavingText.text = havingAmmo.ToString();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.tag == "ArmorRevolver")
-        {
-            if (currentWeapon != null && currentWeapon.weaponName == "Revolver" && currentWeapon.weaponGameObject.activeInHierarchy)
-            {
-                Debug.Log(currentWeapon.weaponName);
-                collision.gameObject.SetActive(false);
-                currentWeapon.HavingAmmo += 12;
-                currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
-            }
-            else
-            {
-                Debug.Log("Object null");
-            }
-        }
-
-        if (collision.tag == "ArmorAk47")
-        {
-            if (currentWeapon != null && currentWeapon.weaponName == "ak47" && currentWeapon.weaponGameObject.activeInHierarchy)
-            {
-                Debug.Log(currentWeapon.weaponName);
-                collision.gameObject.SetActive(false); 
-                currentWeapon.HavingAmmo += 42;
-                currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
-            }
-            else
-            {
-                Debug.Log("Object null");
-            }
-        }
-
-        if (collision.tag == "ArmorShotGun")
-        {
-            if (currentWeapon != null && currentWeapon.weaponName == "ShotGun" && currentWeapon.weaponGameObject.activeInHierarchy)
-            {
-                Debug.Log(currentWeapon.weaponName);
-                collision.gameObject.SetActive(false);
-                currentWeapon.HavingAmmo += 6;
-                currentBulletHavingText.text = currentWeapon.HavingAmmo.ToString();
-            }
-            else
-            {
-                Debug.Log("Object null");
-            }
-        }
+        if (col.CompareTag("ArmorRevolver") && currentWeapon.weaponName == "Revolver")
+            AddAmmo(col, 12);
+        else if (col.CompareTag("ArmorAk47") && currentWeapon.weaponName == "ak47")
+            AddAmmo(col, 42);
+        else if (col.CompareTag("ArmorShotGun") && currentWeapon.weaponName == "ShotGun")
+            AddAmmo(col, 6);
     }
 
-    private void attack()
+    private void AddAmmo(Collider2D col, int amount)
+    {
+        col.gameObject.SetActive(false);
+        havingAmmo += amount;
+        UpdateBulletTextUI();
+    }
+
+    private void Attack()
     {
         AudioManager.Instance.PlaySound(GunSoundEffect);
-        GameObject shell = Instantiate(shellPrefab, shellEjectPoint.position, shellEjectPoint.rotation);
-        Rigidbody2D shellRb = shell.GetComponent<Rigidbody2D>();
-        
-        if (shellRb != null)
+
+        var shell = Instantiate(shellPrefab, shellEjectPoint.position, shellEjectPoint.rotation);
+        if (shell.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            Vector3 forceDirection = shellEjectPoint.TransformDirection(ejectDirection.normalized);
-            shellRb.AddForce(forceDirection * ejectForce, ForceMode2D.Impulse);
-
-            float randomTorque = Random.Range(-200f, 200f); // Xoay ngẫu nhiên
-            shellRb.AddTorque(randomTorque);
+            Vector3 dir = shellEjectPoint.TransformDirection(ejectDirection.normalized);
+            rb.AddForce(dir * ejectForce, ForceMode2D.Impulse);
+            rb.AddTorque(UnityEngine.Random.Range(-200f, 200f));
         }
-
-
         Destroy(shell, 20f);
 
-        Bullets[FindFireball()].transform.position = firepoint.position;
-        Bullets[FindFireball()].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(Player.localScale.x), GunScale);
+        int idx = FindFireball();
+        Bullets[idx].transform.position = firepoint.position;
+        Bullets[idx].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(Player.localScale.x), GunScale);
     }
 
     private int FindFireball()
     {
         for (int i = 0; i < Bullets.Length; i++)
-        {
-            if (!Bullets[i].activeInHierarchy)
-                return i;
-        }
+            if (!Bullets[i].activeInHierarchy) return i;
         return 0;
     }
 }

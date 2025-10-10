@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace JS
 {
@@ -76,7 +77,6 @@ namespace JS
 
             fadeTween?.Kill();
             scaleTween?.Kill();
-
             fadeTween = canvasGroup.DOFade(1f, 0.2f)
                 .SetEase(Ease.InQuad)
                 .SetUpdate(true) 
@@ -84,7 +84,7 @@ namespace JS
                 {
                     canvasGroup.alpha = 1f;
                     IsAnimating = false;
-        
+                    
                 });
 
             scaleTween = transform.DOScale(1f, 0.2f)

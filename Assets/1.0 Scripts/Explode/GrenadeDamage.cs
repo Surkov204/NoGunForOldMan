@@ -1,4 +1,5 @@
 using Unity.Burst.CompilerServices;
+using GameHealthSystem;
 using UnityEngine;
 
 public class GrenadeDamage : MonoBehaviour

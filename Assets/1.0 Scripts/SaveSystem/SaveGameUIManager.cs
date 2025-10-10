@@ -42,7 +42,7 @@ public class SaveGameUIManager : UIBase
     private void AddNewSlot()
     {
         currentSlotCount++;
-        SaveManager.Instance.Save(currentSlotCount);
+        SaveManager.Instance.SaveAsync(currentSlotCount);
         AddSlotUI(currentSlotCount, System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
     }
 
